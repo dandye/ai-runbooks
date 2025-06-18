@@ -1,0 +1,1 @@
+../.clinerules/coding_conventions.md
