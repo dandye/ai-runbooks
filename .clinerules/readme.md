@@ -1,56 +1,119 @@
-# .clinerules Directory Overview
+# AI Runbooks for Security Operations
 
-This directory contains configuration files and documentation to provide context and guidance for LLM Agents operating within this security environment.
+This repository contains a comprehensive security operations (SOC) runbook and persona system designed to guide LLM agents through standardized security workflows.
 
-## Existing Components
+## Overview
 
-### Personas (`./personas/`)
+The project provides structured documentation, procedural guides, and configuration scripts that enable AI assistants (Claude Code, Cline, and Gemini CLI) to effectively assist with security operations tasks.
 
-*   **Purpose:** These files define standard roles within the security operations team (e.g., SOC Analyst Tiers 1-3, Incident Responder, Threat Hunter, CTI Researcher, Security Engineer, Compliance Manager, SOC Manager).
-*   **Content:** Each persona description outlines typical responsibilities, required skills, commonly used MCP tools, and relevant runbooks.
-*   **Usage by LLM Agent:** Helps the agent understand user intent, tailor responses and actions to the user's likely role and perspective, and select appropriate tools and runbooks.
+## Repository Structure
 
-### Runbooks (`./run_books/`)
+```
+dandye_ai_runbooks/
+├── rules_bank/                    # Master source directory for all content
+│   ├── personas/                  # Security role definitions
+│   ├── run_books/                 # Procedural guides for security tasks
+│   │   ├── common_steps/         # Reusable procedure components
+│   │   ├── irps/                 # Incident Response Plans
+│   │   └── guidelines/           # Best practices and documentation
+│   └── [other documentation]     # Configuration and reference files
+├── .claude/                      # Claude Code configuration directory
+│   └── rules_bank/               # Symlink to ../rules_bank
+├── .clinerules/                  # Cline configuration directory
+│   └── rules_bank/               # Symlink to ../rules_bank
+├── .gemini/                      # Gemini CLI configuration directory
+│   └── rules_bank/               # Symlink to ../rules_bank
+├── reports/                      # Generated security reports
+├── set_persona_rules.py          # Script to configure active personas
+└── symlink_common_steps.py       # Script to manage common steps symlinks
+```
 
-*   **Purpose:** These files contain documented, step-by-step procedures or workflows for specific security operations tasks (e.g., triaging alerts, investigating IOCs, hunting for threats, responding to phishing).
-*   **Content:** They often include objectives, scope, required inputs, specific MCP tools to use, workflow steps (sometimes visualized with diagrams like Mermaid), and expected outcomes.
-*   **Usage by LLM Agent:** Serves as a primary plan for executing common security workflows, ensuring adherence to established procedures, guiding tool selection and sequencing, and promoting consistency.
-*   **IRP vs. Runbook Distinction:** While all files here serve as procedural guides, we differentiate between:
-    *   **Incident Response Plans (IRPs):** Located in the `./run_books/irps/` subdirectory, these outline the *end-to-end strategy* for handling major incident types (e.g., malware, phishing) following the full PICERL lifecycle. They orchestrate multiple steps and often call other runbooks. Use these as the starting point for major incident types.
-    *   **Runbooks:** Located directly within `./run_books/` or in `./run_books/common_steps/`, these provide detailed, *tactical steps* for specific tasks (e.g., enriching an IOC, triaging an alert, isolating an endpoint) or reusable procedures. They are often components within a larger IRP.
+## AI Tool Integration
 
-## Suggested Additional Context Files
+This repository is designed to work with three AI coding assistants:
 
-The following types of files could further enhance an LLM Agent's effectiveness:
+### Claude Code (claude.ai/code)
+- Uses the `.claude/` directory for configuration
+- Reads context from `.claude/rules_bank/` symlink
+- See `CLAUDE.md` for Claude-specific guidance
 
-### 1. Environment & Infrastructure Context
+### Cline
+- Uses the `.clinerules/` directory for configuration
+- Reads context from `.clinerules/rules_bank/` symlink
+- Follows the same runbook and persona system
 
-*   **`network_map.md`**: Describes key network segments (e.g., DMZ, production servers, user subnets), their IP ranges, and primary functions. Helps in understanding the context of network events and potential lateral movement.
-*   **`asset_inventory_guidelines.md`**: Outlines naming conventions for hosts/servers, common OS types, and potentially maps critical assets to their roles or owners. Helps contextualize alerts involving specific hosts.
-*   **`critical_applications.md`**: Lists key business applications, their associated servers/IPs, and expected communication patterns. Useful for identifying anomalous behavior related to core services.
-*   **`cloud_architecture.md`**: Provides an overview of the cloud environment structure (e.g., GCP project organization, key services like GKE, Cloud SQL), relevant for cloud-focused investigations (using SCC, etc.).
+### Gemini CLI
+- Uses the `.gemini/` directory for configuration
+- Reads context from `.gemini/rules_bank/` symlink
+- Compatible with the same documentation structure
 
-### 2. Tool Configuration & Usage
+## Symlink Architecture
 
-*   **`tool_configurations.md`**: Details specific configurations crucial for tool usage, like:
-    *   Important Chronicle Reference List names (e.g., `IP_Blocklist`, `Domain_Allowlist`) and their purpose.
-    *   Key SOAR playbook names/IDs and what triggers them.
-    *   Default timeframes or limits preferred for certain searches.
-*   **`mcp_tool_best_practices.md`**: Offers tips or preferred syntax for using specific MCP tools effectively (e.g., optimizing `search_security_events` queries, interpreting specific GTI fields).
-*   **`tool_rate_limits.md`**: Explicitly lists known rate limits or quotas for tools (like the Chronicle UDM query limit mentioned for a SOAR action) to help manage usage.
+The project uses a symlink-based system to share the same content across all three AI tools:
 
-### 3. Organizational Policies & Procedures
+1. **Master Content**: All documentation, personas, and runbooks are maintained in `rules_bank/`
+2. **Symlinks**: Each AI tool's configuration directory contains a symlink to `rules_bank/`
+3. **Benefits**: 
+   - Single source of truth for all content
+   - Updates automatically propagate to all AI tools
+   - No duplication or synchronization needed
 
-*   **`incident_severity_matrix.md`**: Defines how incident severity (Low, Medium, High, Critical) is determined based on impact and threat type. Aids in prioritization.
-*   **`escalation_paths.md`**: Outlines who to notify or escalate to under specific circumstances (e.g., confirmed ransomware, PII exposure).
-*   **`reporting_templates.md`**: Provides standard formats or key sections required for different types of reports (e.g., daily SOC summary, post-incident report).
-*   **`approved_remediations.md`**: Lists standard, pre-approved containment or remediation actions for common, lower-severity findings.
-*   **`key_contacts.md`**: Lists relevant teams or individuals for specific issues (e.g., Network Ops, Identity Team, Legal).
+## Key Components
 
-### 4. Threat Intelligence & Context
+### Personas
+Security role definitions including:
+- SOC Analysts (Tier 1-3)
+- Threat Hunters
+- Incident Responders
+- CTI Researchers
+- Security Engineers
+- And more...
 
-*   **`internal_threat_profile.md`**: Details specific threat actors, campaigns, or TTPs that are of high concern to *this specific organization*.
-*   **`allowlists.md`**: Lists organization-specific known-good IPs, domains, file hashes, or process names that should generally be ignored unless context suggests otherwise.
-*   **`common_benign_alerts.md`**: Describes alerts often triggered by known benign activity (e.g., vulnerability scans, specific admin scripts) and how to typically handle them.
+### Runbooks
+Step-by-step procedural guides for:
+- Alert triage
+- IOC enrichment and investigation
+- Threat hunting
+- Incident response
+- Case management
+- And many more security operations tasks
 
-Having these additional context files would allow the LLM Agent to perform more nuanced analysis, make better-informed decisions, adhere more closely to organizational standards, and require less clarification during complex tasks.
+### Incident Response Plans (IRPs)
+Comprehensive end-to-end strategies for:
+- Malware incidents
+- Phishing attacks
+- Ransomware
+- Compromised accounts
+
+## Usage
+
+1. **For AI Assistants**: The symlinked `rules_bank` directory in each tool's configuration folder provides access to all personas, runbooks, and documentation.
+
+2. **For Developers**: 
+   - Edit content only in the `rules_bank/` directory
+   - Never edit files through the symlinks
+   - Use the provided Python scripts for persona configuration if needed
+
+3. **For Security Teams**: Use this repository to standardize and document your security operations procedures for AI-assisted workflows.
+
+## Configuration Scripts
+
+- `set_persona_rules.py`: Configure active personas (legacy - may need updates for new structure)
+- `symlink_common_steps.py`: Manage common steps symlinks (legacy - may need updates)
+
+## Integration
+
+This project is designed to work with:
+- Chronicle SIEM
+- SOAR platforms
+- Google Threat Intelligence (GTI)
+- Security Command Center (SCC)
+- Various MCP (Model Context Protocol) tools
+
+## Contributing
+
+See `CONTRIBUTING` file for guidelines on contributing to this project.
+
+## License
+
+This project is licensed under the Apache License 2.0 - see the `LICENSE` file for details.
