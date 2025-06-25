@@ -1,1 +1,0 @@
-../.clinerules/reporting_templates.md

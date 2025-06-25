@@ -1,1 +1,0 @@
-../.clinerules/suggested_mcp_tools.md

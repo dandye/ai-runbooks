@@ -1,1 +1,0 @@
-../.clinerules/model_selection.md
