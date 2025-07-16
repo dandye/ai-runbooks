@@ -1,3 +1,15 @@
+---
+title: "Proactive Threat Hunting based on GTI Campaign/Actor"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - threat_hunting
+  - gti
+  - campaign_analysis
+  - actor_analysis
+---
+
 ## Proactive Threat Hunting based on GTI Campaign/Actor
 
 Objective: Given a GTI Campaign or Threat Actor Collection ID (`${GTI_COLLECTION_ID}`), proactively search the local environment (SIEM) for related IOCs and TTPs (approximated by searching related entities). If any IOCs from the report are also found in the SecOps tenant (confirmed presence), perform deeper enrichment on those specific IOCs using GTI and check for related SIEM alerts or SOAR cases. Once done, summarize findings in a markdown report. Provide as much detail as possible.
@@ -19,7 +31,7 @@ Uses Tools:
 *   **Action:** Request user input (e.g., using `ask_followup_question`)
 *   **Common Steps:** `common_steps/find_relevant_soar_case.md`
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant User
     participant Cline as Cline (MCP Client)

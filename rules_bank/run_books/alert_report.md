@@ -1,3 +1,14 @@
+---
+title: "Alert Investigation Summary Report Runbook"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - alert_investigation
+  - reporting
+  - documentation
+---
+
 # Alert Investigation Summary Report Runbook
 
 ## Objective
@@ -60,7 +71,7 @@ This runbook covers gathering essential details about the alert(s), associated e
     *   Use `secops-soar.post_case_comment` to add a comment to `${CASE_ID}` stating that the report has been generated and providing the filename, or pasting a concise summary directly.
 9.  **Completion:** **Conclude runbook** execution.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst/User
     participant Cline as Cline (MCP Client)

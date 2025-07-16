@@ -1,8 +1,30 @@
-# Runbook: Group Cases v2 (Placeholder)
+---
+title: "Group Cases v2 - Enhanced Workflow (Placeholder)"
+type: "runbook"
+category: "security_operations"
+status: "placeholder"
+supersedes: "group_cases.md"
+version: "2.0"
+tags:
+  - case_management
+  - case_grouping
+  - workflow_automation
+  - enhanced_grouping
+  - version_2
+---
+
+# Runbook: Group Cases v2 - Enhanced Workflow (Placeholder)
+
+## Status Note
+
+**This is a placeholder for an enhanced version of the Group Cases workflow.** 
+
+**Current Active Version**: Use `group_cases.md` for operational workflows.  
+**Future Enhancement**: This v2 will provide improved grouping algorithms, enhanced automation, and streamlined reporting.
 
 ## Objective
 
-*(Define the goal, e.g., To analyze a set of recent SOAR cases, identify logical groupings based on shared entities or alert types, prioritize the groups, and generate a summary report.)*
+To provide an enhanced workflow for analyzing recent SOAR cases with improved grouping logic, automated prioritization algorithms, and advanced entity correlation capabilities that extend beyond the current `group_cases.md` implementation.
 
 ## Scope
 
@@ -30,7 +52,7 @@
 5.  **Enrich Key Entities (Optional):** Perform basic enrichment on key shared entities within high-priority groups using `lookup_entity` and GTI tools.
 6.  **Generate Summary Report:** Create a report summarizing the case groups, prioritization rationale, and key findings using the "Generate report file" action.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst/User
     participant Cline as Cline (MCP Client)

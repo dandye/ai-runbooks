@@ -1,3 +1,15 @@
+---
+title: "Project Plan: Enhance LLM Agent Context"
+type: "guideline"
+category: "security_operations"
+status: "active"
+tags:
+  - project_plan
+  - llm_agent
+  - context_enhancement
+  - documentation
+---
+
 # Project Plan: Enhance LLM Agent Context
 
 **Project Goal:** To create a comprehensive set of context files within the `.clinerules` directory, improving the LLM Agent's understanding of the environment, tools, policies, and relevant threats.

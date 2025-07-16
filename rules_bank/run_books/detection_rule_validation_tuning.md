@@ -1,3 +1,15 @@
+---
+title: "Detection Rule Validation & Tuning Runbook"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - detection_engineering
+  - rule_tuning
+  - validation
+  - false_positive_reduction
+---
+
 # Detection Rule Validation & Tuning Runbook
 
 ## Objective
@@ -57,7 +69,7 @@ This runbook covers the analysis of a single detection rule's historical perform
 9.  **Handover:** Assign the case/report to the Security Engineering team for implementation and testing of the proposed tuning changes.
 10. **Completion:** Conclude the runbook execution.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst/Engineer
     participant Cline as Cline (MCP Client)

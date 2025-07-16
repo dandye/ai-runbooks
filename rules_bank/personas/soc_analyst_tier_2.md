@@ -1,3 +1,15 @@
+---
+title: "Persona: Tier 2 SOC Analyst"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - soc_analyst
+  - tier_2
+  - investigation
+  - incident_response
+---
+
 # Persona: Tier 2 SOC Analyst
 
 ## Overview

@@ -1,12 +1,24 @@
-# Runbook: Generate Detection Report (Placeholder)
+---
+title: "Generate Detection Report (Placeholder)"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - detection_engineering
+  - reporting
+  - detection_metrics
+  - analysis
+---
+
+# Runbook: Generate Detection Report
 
 ## Objective
 
-*(Define the goal, e.g., To summarize the findings, logic, and performance of a specific detection rule or a set of related rules, often used for review, tuning documentation, or reporting on detection capabilities.)*
+To summarize the findings, logic, and performance of a specific detection rule or set of related rules for review, tuning documentation, management reporting, or detection capability assessment. This runbook creates comprehensive reports that capture rule effectiveness, performance metrics, tuning history, and recommendations for optimization or retirement.
 
 ## Scope
 
-*(Define what is included/excluded, e.g., Focuses on summarizing existing information about a detection. May include data from validation/tuning efforts but doesn't typically involve executing new validation steps.)*
+Focuses on analyzing existing information about detection rules including alert volume, true/false positive rates, coverage analysis, and performance metrics. Includes correlation with SOAR case outcomes to assess rule effectiveness. May include data from recent validation or tuning efforts but doesn't typically involve executing new validation steps. Excludes rule development or modification activities - those are covered by Detection-as-Code workflows.
 
 ## Inputs
 
@@ -30,7 +42,7 @@
 6.  **Format Report:** Compile the synthesized information and the Mermaid diagram into a final Markdown report.
 7.  **Generate report file:** Save the report with a standardized name (e.g., `./reports/detection_report_${RULE_ID}_${timestamp}.md`).
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst/User
     participant Cline as Cline (MCP Client)
@@ -69,4 +81,28 @@ sequenceDiagram
 
 ## Completion Criteria
 
-*(Define how successful completion is determined, e.g., Report generated containing rule details and performance summary, report saved.)*
+- Rule definition and logic clearly documented with implementation details
+- Historical performance data gathered for specified timeframe with alert volumes
+- True positive/false positive analysis completed based on SOAR case outcomes
+- Alert distribution analysis completed showing trends and patterns over time
+- Rule effectiveness metrics calculated including detection rate and accuracy
+- Coverage analysis performed identifying protected and unprotected attack vectors
+- Tuning history documented with changes made and rationale for modifications
+- Performance impact assessment completed including resource usage and execution time
+- Comparative analysis performed against similar rules or detection capabilities
+- Recommendations formulated for rule optimization, retirement, or enhancement
+- Report formatted in standardized template with executive summary and technical details
+- Visual representations created for key metrics and trends using appropriate diagrams
+
+## Expected Outputs
+
+- **Detection Analysis Report**: Comprehensive report file saved in standardized format
+- **Performance Metrics**: Alert volume, TP/FP rates, execution time, and resource usage
+- **Effectiveness Assessment**: Coverage analysis and detection capability evaluation
+- **Trend Analysis**: Historical patterns and alert distribution over specified timeframe
+- **Tuning Recommendations**: Specific suggestions for rule optimization or modification
+- **Executive Summary**: High-level overview suitable for management consumption
+- **Technical Details**: Rule logic, implementation specifics, and configuration parameters
+- **Comparative Analysis**: Benchmarking against similar rules or industry standards
+- **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
+- **Runbook Reference**: Clear identification of which runbook was executed to generate the report

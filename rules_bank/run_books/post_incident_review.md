@@ -1,3 +1,15 @@
+---
+title: "Post-Incident Review (PIR) Runbook"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - post_incident_review
+  - lessons_learned
+  - incident_response
+  - process_improvement
+---
+
 # Post-Incident Review (PIR) Runbook
 
 ## Objective
@@ -51,7 +63,7 @@ This runbook outlines the process for conducting a PIR meeting, analyzing incide
     *   Store any formal PIR report in the designated repository.
 8.  **Completion:** Conclude the runbook execution.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant PIR_Lead/Analyst
     participant Cline as Cline (MCP Client)

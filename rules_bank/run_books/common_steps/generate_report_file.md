@@ -1,3 +1,15 @@
+---
+title: "Generate Report File"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - common_step
+  - reporting
+  - file_generation
+  - documentation
+---
+
 # Common Step: Generate Report File
 
 ## Objective
@@ -34,7 +46,7 @@ This sub-runbook executes the "Generate report file" action. It assumes the repo
 3.  **Generate report file:** Call the "Generate report file" action with `path=${REPORT_FILE_PATH}` and `content=${REPORT_CONTENT}`.
 4.  **Return Status:** Store the result/status of the write operation in `${WRITE_STATUS}` and return `${REPORT_FILE_PATH}` and `${WRITE_STATUS}` to the calling runbook.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant CallingRunbook
     participant GenerateReportFile as generate_report_file.md (This Runbook)

@@ -1,3 +1,15 @@
+---
+title: "Persona: Compliance Manager"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - compliance_manager
+  - regulatory_compliance
+  - audits
+  - policy_management
+---
+
 # Persona: Compliance Manager
 
 ## Overview

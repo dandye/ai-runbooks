@@ -1,4 +1,16 @@
-# .clinerules Directory Overview
+---
+title: "Rules Bank Directory Overview"
+type: "guideline"
+category: "security_operations"
+status: "active"
+tags:
+  - overview
+  - directory_structure
+  - documentation
+  - getting_started
+---
+
+# Rules Bank Directory Overview
 
 This directory contains configuration files and documentation to provide context and guidance for LLM Agents operating within this security environment.
 

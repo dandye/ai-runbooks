@@ -1,3 +1,15 @@
+---
+title: "Lateral Movement Detection Hunt (Example: PsExec/WMI)"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - threat_hunting
+  - lateral_movement
+  - psexec
+  - wmi
+---
+
 # Lateral Movement Detection Hunt (Example: PsExec/WMI)
 
 ## Objective
@@ -62,7 +74,7 @@ This runbook provides a template for hunting specific lateral movement TTPs, foc
     *   If no significant findings, conclude the hunt and document it thoroughly.
 11. **Completion:** Conclude the runbook execution.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant Cline as Cline (MCP Client)

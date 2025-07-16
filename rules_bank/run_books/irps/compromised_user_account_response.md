@@ -1,3 +1,15 @@
+---
+title: "Compromised User Account Incident Response Plan (IRP) / Runbook"
+type: "irp"
+category: "security_operations"
+status: "active"
+tags:
+  - compromised_account
+  - incident_response
+  - identity_security
+  - irp
+---
+
 # Compromised User Account Incident Response Plan (IRP) / Runbook
 
 ## Objective
@@ -36,7 +48,7 @@ This runbook covers the end-to-end response lifecycle for compromised user accou
 
 ## Workflow Steps & Diagram
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant IRP as compromised_user_account_response.md (This Runbook)

@@ -1,3 +1,15 @@
+---
+title: "Check for Duplicate/Similar SOAR Cases"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - common_step
+  - case_management
+  - duplicate_detection
+  - soar
+---
+
 # Common Step: Check for Duplicate/Similar SOAR Cases
 
 ## Objective
@@ -32,7 +44,7 @@ This sub-runbook executes the `siemplify_get_similar_cases` action in the SOAR p
 2.  **Check Similar Cases:** Call `secops-soar.siemplify_get_similar_cases` with the provided inputs. Use defaults if optional inputs are not provided.
 3.  **Return Results:** Store the list of similar case IDs found in `${SIMILAR_CASE_IDS}` and the status of the check in `${SIMILARITY_CHECK_STATUS}`. Return these to the calling runbook.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant CallingRunbook
     participant CheckDuplicates as check_duplicate_cases.md (This Runbook)

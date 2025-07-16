@@ -1,3 +1,15 @@
+---
+title: "Persona: Red Team Member"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - red_team
+  - penetration_testing
+  - adversary_simulation
+  - security_testing
+---
+
 # Persona: Red Team Member
 
 ## Overview

@@ -1,3 +1,15 @@
+---
+title: "Phishing Incident Response Plan (IRP) / Runbook"
+type: "irp"
+category: "security_operations"
+status: "active"
+tags:
+  - phishing
+  - incident_response
+  - email_security
+  - irp
+---
+
 # Phishing Incident Response Plan (IRP) / Runbook
 
 ## Objective
@@ -45,7 +57,7 @@ This runbook covers the end-to-end response lifecycle for phishing incidents. It
 
 ## Workflow Steps & Diagram
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant IRP as phishing_response.md (This Runbook)

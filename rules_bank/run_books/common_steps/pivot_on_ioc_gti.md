@@ -1,3 +1,15 @@
+---
+title: "Pivot on IOC using GTI Relationships"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - common_step
+  - threat_intelligence
+  - gti
+  - relationship_analysis
+---
+
 # Common Step: Pivot on IOC using GTI Relationships
 
 ## Objective
@@ -32,7 +44,7 @@ This sub-runbook executes the appropriate `gti-mcp.get_entities_related_to_a_...
     *   Store the results under the `relationship` key within `${RELATED_ENTITIES}`.
 4.  **Return Results:** Set `${PIVOT_STATUS}` based on the success/failure of the API calls. Return `${RELATED_ENTITIES}` and `${PIVOT_STATUS}` to the calling runbook.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant CallingRunbook
     participant PivotOnIOC as pivot_on_ioc_gti.md (This Runbook)

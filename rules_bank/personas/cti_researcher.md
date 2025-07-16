@@ -1,3 +1,15 @@
+---
+title: "Persona: Cyber Threat Intelligence (CTI) Researcher"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - cti_researcher
+  - threat_intelligence
+  - research
+  - malware_analysis
+---
+
 # Persona: Cyber Threat Intelligence (CTI) Researcher
 
 ## Overview

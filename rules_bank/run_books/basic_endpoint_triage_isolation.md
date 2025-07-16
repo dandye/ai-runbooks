@@ -1,3 +1,15 @@
+---
+title: "Basic Endpoint Triage & Isolation Runbook"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - endpoint_triage
+  - isolation
+  - incident_response
+  - containment
+---
+
 # Basic Endpoint Triage & Isolation Runbook
 
 ## Objective
@@ -54,7 +66,7 @@ This runbook covers the initial assessment and potential network isolation of an
     *   Document recommended next steps in the case comment.
 9.  **Completion:** Conclude the runbook execution.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant Cline as Cline (MCP Client)

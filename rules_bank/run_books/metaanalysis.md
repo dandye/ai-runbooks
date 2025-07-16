@@ -1,12 +1,24 @@
-# Runbook: Meta-Analysis (Placeholder)
+---
+title: "Meta-Analysis (Placeholder)"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - meta_analysis
+  - advanced_analytics
+  - pattern_analysis
+  - correlation
+---
+
+# Runbook: Meta-Analysis
 
 ## Objective
 
-*(Define the goal, e.g., To analyze trends, patterns, or correlations across multiple incidents, alerts, or hunts over a defined period to identify broader security issues, detection gaps, or recurring threats.)*
+To analyze trends, patterns, and correlations across multiple incidents, alerts, or hunts over a defined period to identify broader security issues, detection gaps, recurring threats, or systemic vulnerabilities. This runbook enables strategic analysis that informs security program improvements, threat landscape understanding, and resource allocation decisions.
 
 ## Scope
 
-*(Define what is included/excluded, e.g., Focuses on analyzing aggregated data from SIEM, SOAR, and potentially other sources. Excludes deep investigation of individual events unless relevant to the identified pattern.)*
+Focuses on analyzing aggregated data from SIEM, SOAR, threat intelligence, and security tools to identify macro-level patterns and trends. Includes statistical analysis, pattern recognition, and correlation analysis across large datasets. Covers multiple timeframes and data sources to provide comprehensive insights. Excludes deep investigation of individual events unless specifically relevant to identified patterns or trends. Does not include real-time analysis or operational incident response activities.
 
 ## Inputs
 
@@ -31,7 +43,7 @@
 5.  **Develop Recommendations:** Based on the findings, formulate actionable recommendations (e.g., tune specific detection rules, update runbooks, implement new security controls, focus threat hunting efforts).
 6.  **Generate Report:** Create a comprehensive report detailing the analysis objective, methodology, data sources, findings, and recommendations using the "Generate report file" action. Include visualizations (e.g., Mermaid diagrams summarizing data flow or findings) if applicable.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst/Researcher
     participant Cline as Cline (MCP Client)
@@ -81,4 +93,28 @@ sequenceDiagram
 
 ## Completion Criteria
 
-*(Define how successful completion is determined, e.g., Data collected and analyzed, findings documented, recommendations formulated, report generated.)*
+- Analysis scope and objectives clearly defined with specific focus areas identified
+- Relevant data sources identified and accessed including SIEM, SOAR, and external feeds
+- Data collection completed across specified timeframe with appropriate sampling methods
+- Statistical analysis performed using appropriate methodologies and tools
+- Pattern recognition completed identifying trends, anomalies, and correlations
+- Cross-source correlation analysis performed to validate findings across platforms
+- Key insights synthesized with clear articulation of identified patterns and trends
+- Root cause analysis completed for identified systemic issues or recurring problems
+- Impact assessment performed measuring effect on security posture and operations
+- Actionable recommendations formulated addressing identified gaps and opportunities
+- Comprehensive report generated with executive summary and technical findings
+- Data visualizations created to support key findings and recommendations
+
+## Expected Outputs
+
+- **Meta-Analysis Report**: Comprehensive document with findings, trends, and recommendations
+- **Trend Analysis**: Statistical patterns identified across multiple dimensions and timeframes
+- **Gap Assessment**: Identification of detection, response, or coverage gaps
+- **Pattern Documentation**: Detailed description of recurring themes or anomalies
+- **Recommendations Matrix**: Prioritized action items with implementation guidance
+- **Data Visualizations**: Charts, graphs, and diagrams supporting key findings
+- **Executive Summary**: High-level insights suitable for leadership consumption
+- **Technical Appendix**: Detailed methodology, data sources, and analysis procedures
+- **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
+- **Runbook Reference**: Clear identification of which runbook was executed to generate the report

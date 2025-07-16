@@ -1,3 +1,15 @@
+---
+title: "Suspicious Login Alert Triage Runbook"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - login_analysis
+  - alert_triage
+  - authentication
+  - anomaly_detection
+---
+
 # Suspicious Login Alert Triage Runbook
 
 ## Objective
@@ -70,7 +82,7 @@ This runbook covers the initial investigation steps to gather context about a su
     *   **Else:** Set `${REPORT_GENERATION_STATUS}` = "Skipped".
 11. **Completion:** **Conclude runbook** execution. Tier 1 analyst acts on the recommendation in the comment. Report generation status provided if applicable.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant Cline as Cline (MCP Client)

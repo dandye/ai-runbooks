@@ -1,3 +1,15 @@
+---
+title: "SOC Analyst Standard Workflow Guide"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - guidelines
+  - soc_workflows
+  - analyst_guide
+  - workflow_navigation
+---
+
 # Runbook: SOC Analyst Standard Workflow Guide
 
 ## Objective
@@ -45,7 +57,7 @@ The standard workflow generally follows these phases. Refer to the linked runboo
     *   **Close:** If determined to be FP, BTP, or fully resolved at the current tier.
         *   Refer to: `.clinerules/run_books/common_steps/close_soar_artifact.md`
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant SOAR as secops-soar

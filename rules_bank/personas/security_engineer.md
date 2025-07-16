@@ -1,3 +1,15 @@
+---
+title: "Persona: Security Engineer"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - security_engineer
+  - infrastructure
+  - automation
+  - security_tools
+---
+
 # Persona: Security Engineer
 
 ## Overview

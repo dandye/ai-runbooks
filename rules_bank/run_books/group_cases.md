@@ -1,3 +1,15 @@
+---
+title: "Group Cases Workflow"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - case_management
+  - case_grouping
+  - entity_analysis
+  - workflow_automation
+---
+
 # Group Cases Workflow
 
 From the last 5 cases, examine the underlying entities in the alerts and events and group the cases logically. Then, extract details from each case in each cluster to build a high fidelity understanding of each cases' disposition and involved entities. Make sure you have an in depth understanding of each case before moving on to the next step.

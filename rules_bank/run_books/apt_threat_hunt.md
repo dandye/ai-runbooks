@@ -1,3 +1,15 @@
+---
+title: "APT Threat Hunt"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - threat_hunting
+  - apt
+  - threat_intelligence
+  - ttp
+---
+
 # Runbook: APT Threat Hunt
 
 ## Objective
@@ -75,7 +87,7 @@ Focuses on SIEM log analysis and GTI correlation for specific TTPs and IOCs rela
     *   **Execute Report Generation:** Call `common_steps/generate_report_file.md` with the synthesized report content, `REPORT_TYPE="apt_hunt_report"`, and `REPORT_NAME_SUFFIX=${THREAT_ACTOR_ID}`.
 9.  **Escalation/Conclusion:** Escalate confirmed threats or conclude the hunt based on findings. Update `${HUNT_CASE_ID}` status if applicable.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst/Hunter
     participant Cline as Cline (MCP Client)

@@ -1,6 +1,18 @@
+---
+title: "Close duplicate/similar Cases Workflow"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - case_management
+  - duplicate_cases
+  - workflow_automation
+  - soar
+---
+
 ## Close duplicate/similar Cases Workflow
 
-```{mermaid}
+```mermaid
   sequenceDiagram
       participant User
       participant Cline as Cline (MCP Client)

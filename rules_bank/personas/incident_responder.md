@@ -1,3 +1,15 @@
+---
+title: "Persona: Incident Responder (IR)"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - incident_responder
+  - incident_response
+  - coordination
+  - containment
+---
+
 # Persona: Incident Responder (IR)
 
 ## Overview

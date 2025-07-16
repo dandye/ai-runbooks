@@ -1,3 +1,15 @@
+---
+title: "Persona: Detection Engineer"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - detection_engineer
+  - rule_development
+  - siem
+  - detection_tuning
+---
+
 # Persona: Detection Engineer
 
 ## Overview

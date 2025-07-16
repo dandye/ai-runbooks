@@ -1,3 +1,15 @@
+---
+title: "Persona: Tier 3 SOC Analyst"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - soc_analyst
+  - tier_3
+  - advanced_analysis
+  - threat_hunting
+---
+
 # Persona: Tier 3 SOC Analyst
 
 ## Overview

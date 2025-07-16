@@ -1,12 +1,24 @@
-# Runbook: Generate Case Investigation Report (Placeholder)
+---
+title: "Runbook: Generate Case Investigation Report"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - case_report
+  - investigation
+  - documentation
+  - post_incident
+---
+
+# Runbook: Generate Case Investigation Report
 
 ## Objective
 
-*(Define the goal, e.g., To consolidate findings from a completed investigation for a specific SOAR case into a comprehensive report suitable for stakeholders or post-incident review.)*
+To consolidate findings from a completed investigation for a specific SOAR case into a comprehensive report suitable for stakeholders, management review, or post-incident analysis. This runbook creates structured documentation that captures the investigation methodology, key findings, timeline of events, and final conclusions in a format suitable for technical and non-technical audiences.
 
 ## Scope
 
-*(Define what is included/excluded, e.g., Summarizes key alerts, events, entity analysis, enrichment, actions taken, and conclusions for a single case. Does not typically involve new investigation steps.)*
+Summarizes key alerts, events, entity analysis, enrichment data, actions taken, and conclusions for a single case. Includes visualization of the investigation workflow and timeline of key events. Does not typically involve new investigation steps - focuses on synthesizing existing case data, comments, and findings into a coherent narrative. Excludes real-time investigation activities or new data collection.
 
 ## Inputs
 
@@ -31,7 +43,7 @@
 6.  **Generate report file:** Save the report with a standardized name (e.g., `./reports/case_report_${CASE_ID}_${timestamp}.md`).
 7.  **(Optional) Update Case:** Add a comment to the SOAR case indicating the report has been generated and its location using `post_case_comment`.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst/User
     participant Cline as Cline (MCP Client)
@@ -70,4 +82,26 @@ sequenceDiagram
 
 ## Completion Criteria
 
-*(Define how successful completion is determined, e.g., Report generated containing key investigation elements, report saved, case optionally updated.)*
+- Complete case data gathered including all alerts, events, comments, and enrichment findings
+- Investigation timeline reconstructed with key events properly sequenced
+- All involved entities documented with their enrichment status and findings
+- Investigation methodology and tools used clearly documented
+- Executive summary created suitable for management consumption
+- Technical findings section completed with specific IOCs, TTPs, and evidence
+- Analysis section includes root cause determination (if identified)
+- Actions taken section documents all containment, mitigation, or remediation steps
+- Recommendations section provides lessons learned and improvement suggestions
+- Mermaid diagram created showing investigation workflow and tool usage
+- Report saved in standardized format with proper naming convention
+- SOAR case updated with report location and completion status
+- Report ready for stakeholder distribution and archival
+
+## Expected Outputs
+
+- **Investigation Report File**: Comprehensive Markdown report (saved as `./reports/case_report_${CASE_ID}_${timestamp}.md`)
+- **Executive Summary**: High-level overview suitable for management
+- **Technical Timeline**: Detailed sequence of events and investigative actions
+- **Entity Analysis**: Summary of all involved entities and their risk assessment
+- **Workflow Diagram**: Mermaid visualization of investigation process
+- **SOAR Documentation**: Case comment indicating report completion and location
+- **Recommendations**: Actionable items for process or security improvements

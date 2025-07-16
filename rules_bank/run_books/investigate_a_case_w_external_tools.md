@@ -1,3 +1,15 @@
+---
+title: "Investigate a Case + external tools"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - case_investigation
+  - external_tools
+  - okta
+  - user_analysis
+---
+
 ### Investigate a Case + external tools
 
 Using SecOps, GTI, and Okta. Start with a Case (anomalous login Alerts). Find the entities involved and look up any related indicators. Find any users involved and look up Okta information to determine any suspicious characteristics. If confident in disposition, disable that User. Finally, provide a report about any identified activity for security analyst consumption.
@@ -14,7 +26,7 @@ Uses tools:
  * **Common Steps:** `common_steps/find_relevant_soar_case.md`
 
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant User
     participant Cline as Cline (MCP Client)

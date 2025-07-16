@@ -1,3 +1,15 @@
+---
+title: "Reporting Templates & Guidelines"
+type: "guideline"
+category: "security_operations"
+status: "active"
+tags:
+  - reporting
+  - templates
+  - documentation
+  - standards
+---
+
 # Reporting Templates & Guidelines
 
 This file outlines standard formats and required elements for common reports generated during security operations.
