@@ -1,3 +1,15 @@
+---
+title: "Create Investigation Report"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - investigation_report
+  - documentation
+  - incident_response
+  - stakeholder_communication
+---
+
 # Runbook: Create Investigation Report
 
 ## Objective
@@ -58,7 +70,7 @@ Consolidate findings from a completed or ongoing investigation involving various
     *   Document upload status/location via `common_steps/document_in_soar.md`.
 11. **Completion:** **Conclude runbook** execution.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant User
     participant Cline as Cline (MCP Client)

@@ -1,3 +1,15 @@
+---
+title: "Persona: Chief Information Security Officer (CISO)"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - ciso
+  - executive
+  - strategy
+  - risk_management
+---
+
 # Persona: Chief Information Security Officer (CISO)
 
 ## Overview

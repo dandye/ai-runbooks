@@ -1,12 +1,24 @@
-# Runbook: IOC Threat Hunt (Placeholder)
+---
+title: "Runbook: IOC Threat Hunt"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - ioc_hunting
+  - threat_hunting
+  - indicators
+  - proactive_hunting
+---
+
+# Runbook: IOC Threat Hunt
 
 ## Objective
 
-*(Define the goal, e.g., To proactively hunt for specific Indicators of Compromise (IOCs) across the environment based on threat intelligence feeds, recent incidents, or specific hypotheses.)*
+To proactively hunt for specific Indicators of Compromise (IOCs) across the environment based on threat intelligence feeds, recent incidents, emerging threats, or specific hypotheses. This runbook enables systematic searching for known bad indicators to identify potential compromise, lateral movement, or persistence mechanisms that may have evaded detection rules.
 
 ## Scope
 
-*(Define what is included/excluded, e.g., Focuses on searching SIEM and potentially other log sources for specific IOC values (IPs, domains, hashes, URLs). May include basic enrichment of findings.)*
+Focuses on searching SIEM and data lake sources for specific IOC values (IPs, domains, file hashes, URLs) using targeted queries optimized for each IOC type. Includes basic enrichment of findings, correlation with existing cases, and escalation procedures for confirmed hits. Covers multiple IOC types in a single hunt session and provides comprehensive documentation of hunt methodology and results. Excludes hypothesis-driven hunting or advanced analytics - those are covered by specialized threat hunting runbooks.
 
 ## Inputs
 
@@ -42,7 +54,7 @@
     *   If confirmed malicious activity related to the hunted IOCs is found, escalate by creating/updating an incident case.
     *   If no significant findings, conclude the hunt and document it.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst/Hunter
     participant Cline as Cline (MCP Client)
@@ -94,4 +106,27 @@ sequenceDiagram
 
 ## Completion Criteria
 
-*(Define how successful completion is determined, e.g., All IOCs searched, results analyzed, findings documented/escalated.)*
+- All provided IOCs searched across specified timeframe using appropriate UDM queries
+- IOC match check completed against integrated threat intelligence feeds
+- Search results analyzed for legitimate vs. suspicious activity patterns
+- Any hits enriched using GTI and SIEM entity lookup capabilities
+- Involved entities (hosts, users, processes) identified and assessed for impact
+- Correlation performed with existing open cases and previous incidents
+- Hunt findings documented in SOAR with detailed methodology and results
+- Confirmed malicious activity escalated to incident response processes
+- Hunt summary includes both positive and negative results for intelligence value
+- IOCs with no hits documented to confirm environment is clean
+- Recommendations provided for detection rule improvements or monitoring gaps
+
+## Expected Outputs
+
+- **Hunt Results Summary**: Comprehensive overview of all IOCs searched and findings
+- **Hit Analysis**: Detailed breakdown of any confirmed IOC matches with context
+- **Entity Impact Assessment**: Analysis of compromised or affected systems/users
+- **Timeline Reconstruction**: Sequence of events for any confirmed malicious activity
+- **SOAR Documentation**: Case comments with complete hunt methodology and findings
+- **Escalation Actions**: Incident cases created or updated for confirmed threats
+- **Clean IOCs List**: Documentation of IOCs with no environmental presence
+- **Detection Gaps**: Recommendations for improved monitoring or detection rules
+- **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
+- **Runbook Reference**: Clear identification of which runbook was executed to generate the report

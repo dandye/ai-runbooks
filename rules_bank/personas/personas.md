@@ -1,3 +1,15 @@
+---
+title: "Security Personas Overview"
+type: "guideline"
+category: "security_operations"
+status: "active"
+tags:
+  - personas
+  - overview
+  - security_roles
+  - documentation
+---
+
 # Security Personas
 
 This directory contains descriptions of various security roles, outlining their typical responsibilities, skills, commonly used tools (especially within the MCP context), and relevant runbooks.

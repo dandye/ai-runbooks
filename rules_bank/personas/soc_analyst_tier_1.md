@@ -1,3 +1,15 @@
+---
+title: "Persona: Tier 1 SOC Analyst"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - soc_analyst
+  - tier_1
+  - alert_triage
+  - monitoring
+---
+
 # Persona: Tier 1 SOC Analyst
 
 ## Overview

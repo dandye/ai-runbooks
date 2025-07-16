@@ -1,3 +1,15 @@
+---
+title: "Find Relevant SOAR Case"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - common_step
+  - case_management
+  - case_correlation
+  - soar
+---
+
 # Common Step: Find Relevant SOAR Case
 
 ## Objective
@@ -40,7 +52,7 @@ This sub-runbook executes searches within the SOAR platform's case list based on
 5.  **(Optional) Refine Results:** If the initial search returns too many results, potentially use `get_case_full_details` on a subset to perform more specific checks (e.g., verify if a specific entity is truly present within the alerts/events of the case) and refine the `${RELEVANT_CASE_IDS}` list.
 6.  **Return Results:** Set `${FIND_CASE_STATUS}` based on the success/failure of the API calls. Return `${RELEVANT_CASE_IDS}`, `${RELEVANT_CASE_SUMMARIES}`, and `${FIND_CASE_STATUS}` to the calling runbook.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant CallingRunbook
     participant FindCase as find_relevant_soar_case.md (This Runbook)

@@ -1,3 +1,15 @@
+---
+title: "Confirm Action with User"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - common_step
+  - user_interaction
+  - confirmation
+  - workflow
+---
+
 # Common Step: Confirm Action with User
 
 ## Objective
@@ -27,7 +39,7 @@ This sub-runbook executes a user confirmation action. It returns the user's resp
 2.  **Ask Question:** **Request user input** with `question=${QUESTION_TEXT}` and `options=${RESPONSE_OPTIONS}` (if provided).
 3.  **Return Response:** Store the user's response in `${USER_RESPONSE}` and return it to the calling runbook.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant CallingRunbook
     participant ConfirmAction as confirm_action.md (This Runbook)

@@ -1,3 +1,15 @@
+---
+title: "Basic IOC Enrichment Runbook"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - ioc_enrichment
+  - tier_1
+  - threat_intelligence
+  - investigation
+---
+
 # Basic IOC Enrichment Runbook
 
 ## Objective
@@ -69,7 +81,7 @@ This runbook covers fundamental enrichment steps using readily available GTI and
     *   **Else:** Set `${REPORT_GENERATION_STATUS}` = "Skipped".
 9.  **Completion:** **Conclude runbook** execution. Present the key findings, assessment, recommendation, documentation status, and report generation status to the analyst.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant Cline as Cline (MCP Client)

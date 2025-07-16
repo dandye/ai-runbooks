@@ -1,3 +1,15 @@
+---
+title: "Guided TTP Hunt Runbook (Example: Credential Access)"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - threat_hunting
+  - ttp
+  - credential_access
+  - mitre_attack
+---
+
 # Guided TTP Hunt Runbook (Example: Credential Access)
 
 ## Objective
@@ -50,7 +62,7 @@ This runbook provides a template for hunting specific TTPs. This example focuses
     *   If no significant findings, conclude the hunt and document it.
 9.  **Completion:** Conclude the runbook execution.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant Cline as Cline (MCP Client)

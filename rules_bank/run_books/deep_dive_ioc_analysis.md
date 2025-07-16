@@ -1,3 +1,15 @@
+---
+title: "Deep Dive IOC Analysis Runbook"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - ioc_analysis
+  - threat_intelligence
+  - investigation
+  - advanced_analysis
+---
+
 # Deep Dive IOC Analysis Runbook
 
 ## Objective
@@ -62,7 +74,7 @@ This runbook covers in-depth analysis of a single IOC (IP, Domain, Hash, URL) us
         *   Execute `common_steps/generate_report_file.md` with `REPORT_CONTENT`, `REPORT_TYPE="deep_dive_ioc"`, `REPORT_NAME_SUFFIX=${IOC_VALUE}`. Obtain `${REPORT_FILE_PATH}` and `${WRITE_STATUS}`.
 8.  **Completion:** Conclude the runbook execution. Inform analyst of completion status and report location (SOAR comment or local file path).
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant Cline as Cline (MCP Client)

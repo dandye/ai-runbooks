@@ -1,3 +1,15 @@
+---
+title: "Document Findings/Actions in SOAR Case"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - common_step
+  - documentation
+  - case_management
+  - soar
+---
+
 # Common Step: Document Findings/Actions in SOAR Case
 
 ## Objective
@@ -28,7 +40,7 @@ This sub-runbook executes the `post_case_comment` action in the SOAR platform. I
 2.  **Post Comment:** Call `secops-soar.post_case_comment` with `case_id=${CASE_ID}` and `comment=${COMMENT_TEXT}` (and `alert_group_identifiers` if needed).
 3.  **Return Status:** Store the result/status of the API call in `${COMMENT_POST_STATUS}` and return it to the calling runbook.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant CallingRunbook
     participant DocumentInSOAR as document_in_soar.md (This Runbook)

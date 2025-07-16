@@ -1,3 +1,15 @@
+---
+title: "Investigate Google Threat Intelligence Collection ID (Enhanced)"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - threat_intelligence
+  - gti
+  - collection_investigation
+  - threat_correlation
+---
+
 # Investigate Google Threat Intelligence Collection ID (Enhanced)
 
 Objective: Investigate Google Threat Intelligence Collection ID provided by the user `${COLLECTION_ID}`. Enrich findings with detailed entity reports and correlate with the local environment (SIEM/SOAR). Create a timestamped markdown report summarizing findings, correlations, and recommended actions.
@@ -51,7 +63,7 @@ Instructions:
     *   Construct filename: `./reports/enhanced_report_${COLLECTION_ID}_${timestamp}.md`.
     *   **Generate report file** with the path and formatted markdown string.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant User
     participant Cline as Cline (MCP Client)

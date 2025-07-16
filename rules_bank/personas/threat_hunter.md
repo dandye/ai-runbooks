@@ -1,3 +1,15 @@
+---
+title: "Persona: Threat Hunter"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - threat_hunter
+  - proactive_hunting
+  - threat_intelligence
+  - advanced_analysis
+---
+
 # Persona: Threat Hunter
 
 ## Overview

@@ -1,3 +1,15 @@
+---
+title: "Runbook Guidelines"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - guidelines
+  - runbook_creation
+  - best_practices
+  - documentation
+---
+
 # Runbook Guidelines
 
 This document provides general guidelines for creating, maintaining, and executing runbooks within this security environment.

@@ -1,3 +1,15 @@
+---
+title: "Compare GTI Collection to IoCs, Events in SecOps"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - threat_intelligence
+  - ioc_correlation
+  - gti
+  - event_analysis
+---
+
 ### Compare GTI Collection to IoCs, Events in SecOps
 
 From a GTI Collection (could be a Private Collection as well), search the past 3 days for any UDM events containing:
@@ -20,7 +32,7 @@ Uses tools:
  * `secops-soar.post_case_comment`
  * `secops-soar.list_cases` (Optional, for finding existing case)
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant User
     participant Cline as Cline (MCP Client)

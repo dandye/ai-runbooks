@@ -1,12 +1,24 @@
-# Runbook: UEBA Report Analysis (Placeholder)
+---
+title: "UEBA Report Analysis (Placeholder)"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - ueba
+  - behavioral_analysis
+  - anomaly_detection
+  - user_analytics
+---
+
+# Runbook: UEBA Report Analysis
 
 ## Objective
 
-*(Define the goal, e.g., To analyze a User and Entity Behavior Analytics (UEBA) alert or report, investigate the anomalous activity, gather context, and determine if it represents a genuine threat or benign deviation.)*
+To analyze a User and Entity Behavior Analytics (UEBA) alert or report, investigate the anomalous activity, gather contextual information, and determine if it represents a genuine security threat or benign behavioral deviation. This runbook provides systematic analysis of behavioral anomalies using baseline comparison, activity correlation, and risk assessment methodologies.
 
 ## Scope
 
-*(Define what is included/excluded, e.g., Focuses on analyzing UEBA findings, correlating with SIEM logs and user context. May involve basic enrichment but not necessarily deep endpoint forensics unless indicated.)*
+Focuses on analyzing UEBA findings, correlating with SIEM logs, user context, and historical behavioral patterns. Includes entity enrichment, timeline reconstruction, and risk assessment based on deviation severity and potential impact. Covers user activity analysis, resource access patterns, and anomaly investigation. May involve basic enrichment but excludes deep endpoint forensics or network traffic analysis unless specifically indicated by the anomaly type.
 
 ## Inputs
 
@@ -33,42 +45,81 @@
 6.  **Synthesize Findings:** Combine UEBA anomaly details, SIEM logs, baseline comparison, and enrichment data. Determine if the activity is explainable, benign, or suspicious/malicious.
 7.  **Document & Recommend:** Document findings and assessment in the SOAR case using `post_case_comment`. Recommend next steps: [Close as Benign/Explained | Monitor User/Entity | Escalate for Incident Response (Trigger relevant runbook like Compromised User Account Response)].
 
-```{mermaid}
+```mermaid
 sequenceDiagram
-    participant Analyst
+    participant Analyst/User
+    participant Cline as Cline (MCP Client)
     participant SOAR as secops-soar
     participant SIEM as secops-mcp
     participant GTI as gti-mcp
     participant IDP as Identity Provider (Optional)
 
-    Analyst->>SOAR: Receive UEBA Alert/Case (ID, User, Entity, Anomaly Desc.)
-    SOAR-->>Analyst: Alert/Case Details
-    Analyst->>SOAR: get_case_full_details (Optional)
-    SOAR-->>Analyst: Case Context
-    Analyst->>SIEM: lookup_entity(entity_value=USER_ID)
-    SIEM-->>Analyst: User SIEM Context
-    Analyst->>SIEM: lookup_entity(entity_value=ENTITY_ID)
-    SIEM-->>Analyst: Entity SIEM Context
+    Analyst/User->>Cline: Start UEBA Report Analysis\nInput: UEBA_ALERT_ID, USER_ID, ENTITY_ID, ANOMALY_DESCRIPTION...
+
+    %% Step 1: Receive Alert/Case
+    Cline->>SOAR: get_case_full_details(case_id=CASE_ID)
+    SOAR-->>Cline: Case Context and Alert Details
+
+    %% Step 2: Gather Context
+    Cline->>SIEM: lookup_entity(entity_value=USER_ID)
+    SIEM-->>Cline: User SIEM Context
+    Cline->>SIEM: lookup_entity(entity_value=ENTITY_ID)
+    SIEM-->>Cline: Entity SIEM Context
+    
     opt IDP Check
-        Analyst->>IDP: lookup_user(user=USER_ID)
-        IDP-->>Analyst: User IDP Context
+        Cline->>IDP: lookup_user(user=USER_ID)
+        IDP-->>Cline: User IDP Context
     end
-    Analyst->>SIEM: search_security_events(text="Detailed logs for anomaly timeframe/activity")
-    SIEM-->>Analyst: Specific Activity Logs
-    Note over Analyst: Compare activity to baseline/history
+
+    %% Step 3: Analyze Specific Activity
+    Cline->>SIEM: search_security_events(text="Detailed logs for anomaly timeframe/activity")
+    SIEM-->>Cline: Specific Activity Logs
+    
+    %% Step 4: Compare to Baseline
+    Note over Cline: Compare activity to baseline/history
+
+    %% Step 5: Enrich Associated Indicators
     opt IOCs Involved (I1, I2...)
         loop For each IOC Ii
-            Analyst->>SIEM: lookup_entity(entity_value=Ii)
-            SIEM-->>Analyst: SIEM Context for Ii
-            Analyst->>GTI: get...report(ioc=Ii)
-            GTI-->>Analyst: GTI Context for Ii
+            Cline->>SIEM: lookup_entity(entity_value=Ii)
+            SIEM-->>Cline: SIEM Context for Ii
+            Cline->>GTI: get_..._report(ioc=Ii)
+            GTI-->>Cline: GTI Context for Ii
         end
     end
-    Note over Analyst: Synthesize findings, assess activity
-    Analyst->>SOAR: post_case_comment(case_id=..., comment="UEBA Analysis Summary... Assessment: [...]. Recommendation: [Close/Monitor/Escalate]")
-    SOAR-->>Analyst: Comment Confirmation
+
+    %% Step 6 & 7: Synthesize Findings & Document
+    Note over Cline: Synthesize findings, assess activity
+    Cline->>SOAR: post_case_comment(case_id=CASE_ID, comment="UEBA Analysis Summary... Assessment: [...]. Recommendation: [Close/Monitor/Escalate]")
+    SOAR-->>Cline: Comment Confirmation
+
+    Cline->>Analyst/User: Conclude runbook (result="UEBA analysis complete. Findings documented.")
 ```
 
 ## Completion Criteria
 
-*(Define how successful completion is determined, e.g., UEBA alert analyzed, correlated with logs, findings documented, and appropriate next step recommended/taken.)*
+- UEBA alert details and anomaly description thoroughly analyzed and documented
+- User and entity context gathered including baseline behavior and historical patterns
+- Detailed activity logs retrieved covering the timeframe of anomalous behavior
+- Baseline comparison performed to quantify deviation from normal patterns
+- Correlated events identified across multiple log sources and security tools
+- Risk assessment completed considering deviation severity and potential impact
+- Identity provider integration checked for account status and recent changes
+- Associated IOCs enriched if anomalous activity involves external indicators
+- Timeline reconstruction completed showing sequence of anomalous events
+- Findings synthesized with clear determination of threat vs. benign activity
+- Recommendations formulated for appropriate response actions
+- Complete documentation provided in SOAR with analysis methodology and conclusions
+
+## Expected Outputs
+
+- **UEBA Analysis Report**: Comprehensive analysis of behavioral anomaly with context
+- **Baseline Comparison**: Quantitative analysis of deviation from normal behavior patterns
+- **Activity Timeline**: Chronological reconstruction of events during anomalous period
+- **Risk Assessment**: Evaluation of potential security impact and threat likelihood
+- **Correlation Results**: Related events and patterns identified across security tools
+- **User Context**: Identity information, role details, and recent account changes
+- **IOC Enrichment**: Analysis of any external indicators associated with anomalous activity
+- **Response Recommendations**: Specific next steps based on threat assessment
+- **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
+- **Runbook Reference**: Clear identification of which runbook was executed to generate the report

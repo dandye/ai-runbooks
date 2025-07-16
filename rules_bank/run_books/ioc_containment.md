@@ -1,3 +1,15 @@
+---
+title: "IOC Containment Runbook"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - ioc_containment
+  - incident_response
+  - containment
+  - threat_mitigation
+---
+
 # IOC Containment Runbook
 
 ## Objective
@@ -42,7 +54,7 @@ This runbook focuses on the immediate containment actions based on confirmed mal
         *   **Document Action:** Execute `common_steps/document_in_soar.md` with `${CASE_ID}` and `COMMENT_TEXT="Containment action aborted by analyst for IOC: ${IOC_VALUE} (Type: ${IOC_TYPE})."`. Obtain `${COMMENT_POST_STATUS}`.
 5.  **Completion:** Conclude the runbook execution.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant Cline as Cline (MCP Client)

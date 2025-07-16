@@ -1,3 +1,15 @@
+---
+title: "Case Event Timeline & Process Analysis Workflow"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - timeline_analysis
+  - process_analysis
+  - case_investigation
+  - event_correlation
+---
+
 ## Case Event Timeline & Process Analysis Workflow
 
 Objective: Generate a detailed timeline of events for a specific SOAR case (`${CASE_ID}`), including the **full process execution chain** leading to the alerted activity. Classify relevant processes as legitimate, LOLBIN, or malicious using GTI enrichment. Optionally enrich with MITRE TACTICs and generate a markdown report summarizing the findings. Optionally convert the report to PDF and attempt to attach it to the SOAR case.
@@ -60,7 +72,7 @@ Uses Tools:
 17. (Optional, based on user feedback) Execute selected SOAR actions.
 18. **Conclude runbook** and present the final summary.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant User
     participant Cline as Cline (MCP Client)

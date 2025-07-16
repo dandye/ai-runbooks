@@ -1,3 +1,15 @@
+---
+title: "Persona: SOC Manager"
+type: "persona"
+category: "security_operations"
+status: "active"
+tags:
+  - soc_manager
+  - management
+  - operations
+  - strategy
+---
+
 # Persona: SOC Manager
 
 ## Overview

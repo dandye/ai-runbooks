@@ -1,3 +1,15 @@
+---
+title: "Report Writing Guidelines & Template"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - guidelines
+  - report_writing
+  - documentation
+  - templates
+---
+
 # Runbook: Report Writing Guidelines & Template
 
 ## Objective
@@ -33,7 +45,7 @@ These guidelines apply to various report types (e.g., investigation summaries, t
 5.  **Review & Refine:** Proofread the report for clarity, accuracy, and completeness.
 6.  **Save Report:** **Generate report file** with a standardized filename (e.g., `<report_type>_<report_name>_${CASE_ID}_${timestamp}.md`).
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst/Agent
     participant Cline as Cline (MCP Client)

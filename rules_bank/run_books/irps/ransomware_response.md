@@ -1,3 +1,15 @@
+---
+title: "Ransomware Incident Response Plan (IRP) / Runbook"
+type: "irp"
+category: "security_operations"
+status: "active"
+tags:
+  - ransomware
+  - incident_response
+  - containment
+  - irp
+---
+
 # Ransomware Incident Response Plan (IRP) / Runbook
 
 ## Objective
@@ -42,7 +54,7 @@ This runbook covers the end-to-end response lifecycle for ransomware incidents, 
 
 ## Workflow Steps & Diagram
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant IRP as ransomware_response.md (This Runbook)

@@ -1,3 +1,15 @@
+---
+title: "Agent Tool Mapping"
+type: "guideline"
+category: "security_operations"
+status: "active"
+tags:
+  - agent_tools
+  - mapping
+  - automation
+  - tool_reference
+---
+
 # Agent Tool Mapping
 
 This document maps the conceptual, agent-agnostic actions used in the runbooks to the specific tool implementations available to the Cline agent. This serves as a reference for understanding how procedural steps are executed and can be used as a guide for adapting the runbooks to other automation agents.

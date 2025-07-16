@@ -1,12 +1,24 @@
-# Runbook: Alert Triage (Placeholder)
+---
+title: "Runbook: Alert Triage"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - alert_triage
+  - tier_1
+  - initial_assessment
+  - soc_operations
+---
+
+# Runbook: Alert Triage
 
 ## Objective
 
-*(Define the goal, e.g., To provide a standardized process for the initial assessment and triage of incoming security alerts, determining if they represent a potential threat requiring further investigation or if they can be closed as false positives/duplicates.)*
+To provide a standardized process for the initial assessment and triage of incoming security alerts, determining if they represent a potential threat requiring further investigation or if they can be closed as false positives/duplicates. This runbook enables consistent, efficient decision-making for Tier 1 SOC analysts during initial alert assessment.
 
 ## Scope
 
-*(Define what is included/excluded, e.g., Covers initial alert review, basic entity enrichment, and decision-making based on predefined criteria. Excludes deep investigation or containment actions.)*
+Covers initial alert review, basic entity enrichment, duplicate detection, and decision-making based on predefined criteria. Includes alert-specific SIEM searches for immediate context and proper documentation of findings. Excludes deep investigation, containment actions, or advanced forensics - these are handled by escalation to appropriate specialized runbooks.
 
 ## Inputs
 
@@ -62,7 +74,7 @@
         *   Execute `common_steps/document_in_soar.md` with `${CASE_ID}` and comment summarizing initial findings and assessment.
         *   Escalate/assign to the appropriate next tier or trigger a relevant investigation runbook (e.g., `deep_dive_ioc_analysis.md`, `suspicious_login_triage.md`).
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Analyst
     participant Cline as Cline (MCP Client)
@@ -127,9 +139,26 @@ sequenceDiagram
         Note over Cline: Escalate / Assign / Trigger Next Runbook
         Cline->>Analyst: Conclude runbook (Escalated)
     end
->>>>>>> REPLACE
 ```
 
 ## Completion Criteria
 
-*(Define how successful completion is determined, e.g., Alert assessed, documented, and either closed or escalated appropriately.)*
+- Alert has been thoroughly assessed using available enrichment data
+- Duplicate check completed and documented
+- Alert-specific SIEM search performed for immediate context
+- Basic enrichment completed for all key entities
+- Assessment decision made (FP/BTP/TP/Suspicious) with clear rationale
+- Findings properly documented in SOAR with detailed comments
+- Alert either closed with appropriate reason/root cause or escalated to next tier
+- If escalated, relevant investigation runbook triggered or analyst assigned
+- All actions and decisions logged in case comments for audit trail
+
+## Expected Outputs
+
+- **Alert Status**: Closed (with reason) or escalated for further investigation
+- **Assessment Classification**: False Positive (FP), Benign True Positive (BTP), True Positive (TP), or Suspicious
+- **Documentation**: Comprehensive case comments including enrichment findings, duplicate check results, assessment rationale, and next steps
+- **Escalation Info** (if applicable): Priority adjustment, assignment details, triggered runbook references
+- **Audit Trail**: Complete record of all tools used, searches performed, and decisions made during triage process
+- **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
+- **Runbook Reference**: Clear identification of which runbook was executed to generate the report

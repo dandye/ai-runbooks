@@ -1,12 +1,24 @@
-# Runbook: Detection-as-Code Workflow (Placeholder)
+---
+title: "Detection-as-Code Workflow (Placeholder)"
+type: "runbook"
+category: "security_operations"
+status: "active"
+tags:
+  - detection_engineering
+  - automation
+  - rule_development
+  - detection_as_code
+---
+
+# Runbook: Detection-as-Code Workflows
 
 ## Objective
 
-*(Define the goal, e.g., To outline the process for developing, testing, reviewing, and deploying new detection rules using a Detection-as-Code methodology, potentially involving version control and CI/CD pipelines.)*
+To outline the standardized process for developing, testing, reviewing, and deploying new detection rules using a Detection-as-Code methodology with version control and automated validation. This runbook ensures consistent, high-quality detection rule development that minimizes false positives, maintains documentation standards, and enables collaborative development practices across security teams.
 
 ## Scope
 
-*(Define what is included/excluded, e.g., Covers rule creation in a specific format (YARA-L, Sigma), testing procedures, peer review process, and deployment mechanism. Excludes infrastructure setup for the pipeline.)*
+Covers rule creation in YARA-L format, testing procedures against historical data, peer review processes, and deployment mechanisms through automated pipelines. Includes rule validation, performance testing, and post-deployment monitoring. Encompasses the complete lifecycle from rule conception through production deployment and ongoing maintenance. Excludes infrastructure setup for CI/CD pipelines, SIEM administration, or detection platform configuration.
 
 ## Inputs
 
@@ -32,7 +44,7 @@
 5.  **Deployment:** Merge the rule to the main branch and trigger the deployment pipeline (or manually deploy using appropriate tools like `create_detection_rule`).
 6.  **Monitoring:** Monitor the rule's performance post-deployment.
 
-```{mermaid}
+```mermaid
 sequenceDiagram
     participant Developer/Engineer
     participant Cline as Cline (MCP Client)
@@ -81,4 +93,27 @@ sequenceDiagram
 
 ## Completion Criteria
 
-*(Define how successful completion is determined, e.g., Rule successfully deployed to production environment, monitoring initiated.)*
+- Detection rule logic developed based on threat requirements and log source analysis
+- Rule syntax validated using available SIEM tools and validation frameworks
+- Testing completed against historical data with documented true/false positive rates
+- Rule performance metrics captured including execution time and resource usage
+- Peer review process completed with security team approval and documentation
+- Version control integration completed with proper branching and merge procedures
+- Rule deployed to production environment through automated deployment pipeline
+- Post-deployment monitoring configured with appropriate alerting thresholds
+- Rule documentation updated including detection logic, test results, and maintenance notes
+- Performance baseline established for ongoing tuning and optimization
+- Rollback procedures tested and documented for emergency rule disabling
+
+## Expected Outputs
+
+- **Detection Rule**: Validated YARA-L rule ready for production deployment
+- **Test Results**: Comprehensive validation report including performance metrics
+- **Documentation**: Rule logic explanation, maintenance notes, and troubleshooting guide
+- **Version Control**: Rule stored in repository with proper versioning and metadata
+- **Deployment Record**: Tracking of rule deployment status and configuration
+- **Monitoring Dashboard**: Performance metrics and alerting configuration
+- **Peer Review Record**: Documentation of review process and approval decisions
+- **Rollback Plan**: Procedures for emergency rule disabling or modification
+- **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
+- **Runbook Reference**: Clear identification of which runbook was executed to generate the report
