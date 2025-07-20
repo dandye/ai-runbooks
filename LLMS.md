@@ -70,6 +70,19 @@ When writing Python scripts:
 - Line length: 88 characters
 - Indentation: 2 or 4 spaces (be consistent within files)
 
+## Report Generation
+
+When executing security runbooks that generate reports (triage, investigations, hunts, etc.):
+
+- **ALWAYS write reports to the `./reports/` directory**
+- Use standardized naming convention: `<report_type>_<identifier>_<timestamp>.md`
+- Examples:
+  - `./reports/alert_triage_report_2194_20250504_1807.md`
+  - `./reports/rule_triage_report_ru_99d1f620_20250720_0215.md`
+  - `./reports/ioc_enrichment_report_scarfponcho.com_20250503_1856.md`
+- Follow the reporting templates in `rules_bank/reporting_templates.md`
+- Include proper metadata, findings, and recommendations in all reports
+
 ## Important Notes
 
 - This is primarily a documentation repository - there are no build, test, or lint commands
