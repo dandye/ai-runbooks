@@ -3,4 +3,4 @@
 	url = https://github.com/google/mcp-security.git
 [submodule "SuperClaude_Framework"]
 	path = SuperClaude_Framework
-	url = https://github.com/SuperClaude-Org/SuperClaude_Framework.git
+	url = https://github.com/dandye/SuperClaude_Framework.git
