@@ -16,6 +16,9 @@ This file outlines standard formats and required elements for common reports gen
 
 ## General Report Metadata Requirements
 
+*   **File Location:** All reports **must** be saved to the `./reports/` directory
+*   **File Naming Convention:** Use the format: `<report_type>_<identifier>_<YYYYMMDD_HHMM>.md`
+    *   Examples: `alert_triage_report_2194_20250504_1807.md`, `rule_triage_report_ru_99d1f620_20250720_0215.md`
 *   **Runbook Reference:** All reports generated via runbook execution **must** clearly state which runbook was used at the beginning of the report.
     *   *Example:* `**Runbook Used:** Alert Investigation Summary Report Runbook`
 *   **Timestamp:** Include a generation timestamp in a consistent format (e.g., YYYY-MM-DD HH:MM Timezone).
