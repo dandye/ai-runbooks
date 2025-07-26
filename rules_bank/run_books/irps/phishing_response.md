@@ -216,25 +216,23 @@ sequenceDiagram
 ### Phase 6: Lessons Learned (Post-Incident)
 
 *   **Objective:** Review the incident and response to identify areas for improvement in prevention, detection, and response.
-*   **Sub-Runbooks/Steps:** *(Consider creating a dedicated Post-Incident Review runbook)*
-    1.  **Incident Review Meeting:** Convene relevant stakeholders (SOC, IR, Email Security, potentially affected user's manager) to discuss the incident timeline, root cause (how the phish bypassed defenses, why the user clicked/reported), response actions, and their effectiveness.
-    2.  **Analyze Response & Identify Gaps:**
-        *   Review the timeline: Was detection timely? Was response initiated promptly? Were containment actions effective?
-        *   Review tool effectiveness: Did email filters miss the phish? Did SIEM/EDR alerts trigger appropriately? Were enrichment tools helpful?
-        *   Review runbook adherence and effectiveness: Was the IRP followed? Were there gaps or unclear steps?
-        *   Identify gaps in prevention (filtering, user awareness), detection (rules, IOC feeds), and response procedures.
-    3.  **Develop Recommendations:** Based on identified gaps, formulate specific, actionable recommendations:
-        *   **Prevention:** Update email filter rules, block sender domains/IPs permanently if warranted, improve DMARC/DKIM/SPF checks, enhance user awareness training (potentially targeted based on affected users/departments).
-        *   **Detection:** Develop new SIEM/EDR rules based on observed TTPs or IOC patterns, update IOC feeds, tune existing rules that may have missed activity.
-        *   **Response:** Update this IRP or related runbooks, improve tool integrations, clarify escalation paths.
-    4.  **Update Defenses & Documentation:**
-        *   Implement approved technical recommendations (e.g., update email filters, SIEM rules).
-        *   Update relevant runbooks, policies, and procedures based on lessons learned.
-    5.  **User Awareness Follow-up:**
-        *   Ensure affected users receive appropriate follow-up and potentially targeted phishing awareness training.
-    6.  **Track Recommendations:** Assign owners and deadlines for implementing recommendations and track them to completion.
-    7.  **Final Report:** Generate a comprehensive post-incident report using guidelines from `.clinerules/reporting_templates.md` and `../report_writing.md`.
-    8.  **Document Review:** Document the review meeting, findings, and recommendations using `../common_steps/document_in_soar.md` or a dedicated reporting system.
+*   **Sub-Runbooks/Steps:**
+    1.  **Generate Incident Report:** Execute `../common_steps/generate_report_file.md` with comprehensive phishing incident findings, response timeline, containment actions, eradication results, and initial analysis using guidelines from `.clinerules/reporting_templates.md` and `../report_writing.md`.
+    2.  **Conduct Post-Incident Review:** Execute `../post_incident_review.md` with `${CASE_ID}` and the generated incident report, including:
+        *   **Incident Review Meeting:** Convene relevant stakeholders (SOC, IR, Email Security, potentially affected user's manager) to discuss the incident timeline, root cause (how the phish bypassed defenses, why the user clicked/reported), response actions, and their effectiveness.
+        *   **Analyze Response & Identify Gaps:**
+            *   Review the timeline: Was detection timely? Was response initiated promptly? Were containment actions effective?
+            *   Review tool effectiveness: Did email filters miss the phish? Did SIEM/EDR alerts trigger appropriately? Were enrichment tools helpful?
+            *   Review runbook adherence and effectiveness: Was the IRP followed? Were there gaps or unclear steps?
+            *   Identify gaps in prevention (filtering, user awareness), detection (rules, IOC feeds), and response procedures.
+        *   **Develop Recommendations:** Based on identified gaps, formulate specific, actionable recommendations:
+            *   **Prevention:** Update email filter rules, block sender domains/IPs permanently if warranted, improve DMARC/DKIM/SPF checks, enhance user awareness training (potentially targeted based on affected users/departments).
+            *   **Detection:** Develop new SIEM/EDR rules based on observed TTPs or IOC patterns, update IOC feeds, tune existing rules that may have missed activity.
+            *   **Response:** Update this IRP or related runbooks, improve tool integrations, clarify escalation paths.
+        *   **Update Defenses & Documentation:** Implement approved technical recommendations (e.g., update email filters, SIEM rules). Update relevant runbooks, policies, and procedures based on lessons learned.
+        *   **User Awareness Follow-up:** Ensure affected users receive appropriate follow-up and potentially targeted phishing awareness training.
+        *   **Track Recommendations:** Assign owners and deadlines for implementing recommendations and track them to completion.
+    3.  **Document Review:** Document the PIR meeting, findings, and recommendations using `../common_steps/document_in_soar.md` or a dedicated reporting system.
 
 ---
 

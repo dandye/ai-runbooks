@@ -184,15 +184,16 @@ sequenceDiagram
 ### Phase 6: Lessons Learned (Post-Incident)
 
 *   **Objective:** Review the incident and response to identify areas for improvement.
-*   **Sub-Runbooks/Steps:** *(Placeholder - Requires dedicated Post-Incident Runbook)*
-    1.  **Incident Review Meeting:** Conduct a post-mortem meeting. Discuss initial access, spread, impact, response effectiveness, recovery success.
-    2.  **Analyze Response:** Review timeline, tool effectiveness, runbook adherence.
-    3.  **Identify Gaps:** Focus on prevention (how did it get in?), detection (was it detected quickly?), and response gaps.
-    4.  **Develop Recommendations:** Suggest improvements (e.g., security control changes, new detections, backup strategy review, user training).
-    5.  **Update Documentation:** Update runbooks, policies, etc.
-    6.  **Track Recommendations:** Assign and track implementation.
-    7.  **Final Report:** Generate using guidelines from `.clinerules/reporting_templates.md` and `../report_writing.md`.
-    8.  **Document Review:** Document outcomes using `../common_steps/document_in_soar.md`.
+*   **Sub-Runbooks/Steps:**
+    1.  **Generate Incident Report:** Execute `../common_steps/generate_report_file.md` with comprehensive ransomware incident findings, strain analysis, response timeline, containment actions, recovery results, and initial analysis using guidelines from `.clinerules/reporting_templates.md` and `../report_writing.md`.
+    2.  **Conduct Post-Incident Review:** Execute `../post_incident_review.md` with `${CASE_ID}` and the generated incident report, including:
+        *   **Incident Review Meeting:** Conduct a post-mortem meeting. Discuss initial access, spread, impact, response effectiveness, recovery success.
+        *   **Analyze Response:** Review timeline, tool effectiveness, runbook adherence.
+        *   **Identify Gaps:** Focus on prevention (how did it get in?), detection (was it detected quickly?), and response gaps.
+        *   **Develop Recommendations:** Suggest improvements (e.g., security control changes, new detections, backup strategy review, user training).
+        *   **Update Documentation:** Update runbooks, policies, etc.
+        *   **Track Recommendations:** Assign and track implementation.
+    3.  **Document Review:** Document PIR outcomes using `../common_steps/document_in_soar.md`.
 
 ---
 
