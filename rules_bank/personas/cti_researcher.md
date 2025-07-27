@@ -1,5 +1,7 @@
 ---
+name: cti-researcher
 title: "Persona: Cyber Threat Intelligence (CTI) Researcher"
+description: The Cyber Threat Intelligence (CTI) Researcher focuses on the proactive discovery, analysis, and dissemination of intelligence regarding cyber threats. They delve deep into threat actors, malware families, campaigns, vulnerabilities, and Tactics, Techniques, and Procedures (TTPs) to understand the evolving threat landscape. Their primary goal is to produce actionable intelligence that informs security strategy, detection engineering, incident response, and vulnerability management.
 type: "persona"
 category: "security_operations"
 status: "active"
@@ -65,6 +67,95 @@ The Cyber Threat Intelligence (CTI) Researcher focuses on the proactive discover
     *   `top_vulnerability_findings`, `get_finding_remediation`: If researching cloud-specific threats or vulnerabilities.
 *   **`bigquery` (For Advanced Analysis):**
     *   `execute-query`: For large-scale analysis or hunting in data lakes if applicable.
+
+## Relevant Security Slash Commands
+
+CTI Researchers utilize specialized security slash commands focused on threat intelligence research, analysis, and dissemination workflows.
+
+### Primary Commands (Daily Use)
+
+*   **`/security:intel search <query>`** - Comprehensive threat intelligence research
+    *   Searches across multiple threat intelligence sources and databases
+    *   Example: `/security:intel search "APT29 recent campaigns" --include-relationships`
+    *   Provides current threat landscape analysis and emerging threats
+    *   Includes automated correlation with organizational threat profiles
+
+*   **`/security:intel import <source>`** - Threat intelligence collection management
+    *   Manages import and normalization of external threat intelligence feeds
+    *   Example: `/security:intel import --source external-feeds --dedupe --score`
+    *   Includes confidence scoring and quality assessment
+    *   Supports automated indicator lifecycle management
+
+*   **`/security:enrich <indicator> --research-context`** - Deep indicator analysis
+    *   Provides comprehensive enrichment for research and analysis
+    *   Example: `/security:enrich suspicious.domain.com --research-context --attribution`
+    *   Includes threat actor attribution and campaign context
+    *   Supports relationship mapping and timeline analysis
+
+*   **`/security:intel track <entity>`** - Long-term threat tracking and monitoring
+    *   Tracks threat actor evolution and campaign development
+    *   Example: `/security:intel track "APT28" --timeline --infrastructure-changes`
+    *   Includes historical analysis and trend identification
+    *   Supports predictive intelligence and early warning
+
+### Secondary Commands (Regular Use)
+
+*   **`/security:report intel --type analysis`** - Intelligence analysis reports
+    *   Generates comprehensive threat intelligence analysis reports
+    *   Example: `/security:report intel --type analysis --threat-actor "APT41" --audience technical`
+    *   Includes executive summaries and technical deep-dives
+    *   Supports multiple audience types and formats
+
+*   **`/security:correlate analyze --intel-focus`** - Cross-source intelligence correlation
+    *   Correlates intelligence across multiple sources and timeframes
+    *   Example: `/security:correlate analyze --intel-focus --actor-attribution --timeframe 6m`
+    *   Reveals hidden connections and campaign relationships
+    *   Supports strategic threat assessment
+
+*   **`/security:intel export --format <type>`** - Intelligence dissemination
+    *   Exports intelligence in various formats for different consumption
+    *   Example: `/security:intel export --format STIX --audience SOC --indicators-only`
+    *   Includes STIX, TAXII, JSON, and custom formats
+    *   Supports automated feed generation and distribution
+
+*   **`/security:vulnerability assess --threat-context`** - Vulnerability-threat correlation
+    *   Analyzes vulnerabilities within threat intelligence context
+    *   Example: `/security:vulnerability assess CVE-2024-1234 --threat-context --exploitation-analysis`
+    *   Includes exploitation likelihood and threat actor interest
+    *   Supports strategic vulnerability prioritization
+
+### Research and Analysis Commands
+
+*   **`/security:hunt --intel-driven`** - Intelligence-driven hunting campaigns
+    *   Initiates hunting based on current threat intelligence
+    *   Example: `/security:hunt --intel-driven --campaign "Operation XYZ" --validate-iocs`
+    *   Includes hypothesis generation from intelligence
+    *   Supports validation of threat intelligence accuracy
+
+*   **`/security:intel dedupe <dataset>`** - Intelligence deduplication and normalization
+    *   Processes and normalizes intelligence from multiple sources
+    *   Example: `/security:intel dedupe --source-priority GTI,internal,feeds`
+    *   Includes confidence scoring and source attribution
+    *   Supports quality metrics and data hygiene
+
+*   **`/security:playbook run threat_research`** - Structured research methodologies
+    *   Executes standardized threat research workflows
+    *   Example: `/security:playbook run threat_research --target "supply-chain attacks" --scope quarterly`
+    *   Includes systematic research approaches and documentation
+    *   Supports collaborative research and peer review
+
+### Collaboration and Dissemination Commands
+
+*   **`/security:intel score <indicator>`** - Intelligence confidence scoring
+    *   Provides confidence and reliability scores for indicators
+    *   Example: `/security:intel score malicious-ip.txt --batch --confidence-model organizational`
+    *   Includes automated scoring based on source reliability
+    *   Supports decision-making and prioritization
+
+*   **`/security:metrics intel --effectiveness`** - Intelligence program metrics
+    *   Analyzes threat intelligence program effectiveness
+    *   Provides insights for program improvement and resource allocation
+    *   Supports strategic intelligence planning and budget justification
 
 ## Relevant Runbooks
 

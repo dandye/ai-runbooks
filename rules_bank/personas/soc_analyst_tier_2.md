@@ -1,5 +1,7 @@
 ---
+name: soc-analyst-tier-2
 title: "Persona: Tier 2 SOC Analyst"
+description: The Tier 2 Security Operations Center (SOC) Analyst handles incidents escalated from Tier 1, conducts more in-depth investigations, analyzes complex threats, and performs proactive threat hunting based on intelligence. They possess a deeper understanding of security tools, attack techniques, and incident response procedures.
 type: "persona"
 category: "security_operations"
 status: "active"
@@ -58,6 +60,70 @@ The Tier 2 Security Operations Center (SOC) Analyst handles incidents escalated 
     *   `top_vulnerability_findings`: To understand cloud posture context.
     *   `get_finding_remediation`: To assist with vulnerability remediation recommendations.
 *   **(Other tools as needed):** e.g., `bigquery` for data lake queries, potentially endpoint or identity tools if integrated.
+
+## Relevant Security Slash Commands
+
+Tier 2 SOC Analysts have access to more advanced security slash commands that support complex investigations, threat hunting, and detailed analysis workflows.
+
+### Primary Commands (Daily Use)
+
+*   **`/security:investigate <case_id>`** - Comprehensive incident investigation framework
+    *   Orchestrates complex investigation workflows for escalated incidents
+    *   Example: `/security:investigate CASE-2024-001 --type compromise`
+    *   Automatically selects appropriate investigation methodologies
+    *   Integrates with threat intelligence and historical context
+
+*   **`/security:enrich <indicator>`** - Advanced IOC enrichment with deep context
+    *   Enhanced enrichment with GTI relationship mapping and behavior analysis
+    *   Example: `/security:enrich malware.exe --include-relationships --timeline`
+    *   Provides comprehensive threat actor and campaign attribution
+    *   Includes malware behavior analysis from sandbox reports
+
+*   **`/security:correlate find <case_id>`** - Advanced case correlation and pattern analysis
+    *   Identifies complex relationships between cases and campaigns
+    *   Example: `/security:correlate find CASE-2024-001 --depth comprehensive`
+    *   Performs meta-analysis across case clusters
+    *   Supports campaign attribution and timeline reconstruction
+
+*   **`/security:hunt --hypothesis "<description>"`** - Guided threat hunting workflows
+    *   Executes hypothesis-driven hunting based on investigation findings
+    *   Example: `/security:hunt --hypothesis "APT group using living-off-the-land techniques"`
+    *   Includes TTP-based searches and anomaly detection
+    *   Provides hunting methodology and result interpretation
+
+### Secondary Commands (Regular Use)
+
+*   **`/security:intel search <query>`** - Threat intelligence research and correlation
+    *   Advanced threat intelligence searches and analysis
+    *   Example: `/security:intel search "APT28 lateral movement"`
+    *   Correlates findings with current investigations
+    *   Provides actionable intelligence for hunting and detection
+
+*   **`/security:report investigation --case-id <id>`** - Comprehensive investigation reports
+    *   Generates detailed technical investigation reports
+    *   Example: `/security:report investigation --case-id CASE-2024-001 --include-timeline`
+    *   Includes root cause analysis and remediation recommendations
+    *   Supports executive and technical audiences
+
+*   **`/security:respond --incident <type>`** - Incident response coordination
+    *   Coordinates complex incident response activities
+    *   Example: `/security:respond --incident data_breach --severity critical`
+    *   Manages PICERL framework execution
+    *   Integrates with containment and remediation actions
+
+### Occasional Use Commands
+
+*   **`/security:vulnerability assess <finding_id>`** - Vulnerability impact assessment
+    *   Contextualizes vulnerabilities within investigation scope
+    *   Example: `/security:vulnerability assess SCC-VULN-789 --context incident`
+
+*   **`/security:playbook run <playbook_name>`** - Custom security playbook execution
+    *   Executes specialized investigation or response playbooks
+    *   Example: `/security:playbook run lateral_movement_analysis --case-id CASE-001`
+
+*   **`/security:metrics incident --timeframe 30d`** - Incident trends and patterns
+    *   Analyzes incident patterns for strategic insights
+    *   Supports trend analysis and threat landscape assessment
 
 ## Relevant Runbooks
 
