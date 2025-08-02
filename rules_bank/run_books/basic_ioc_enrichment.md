@@ -26,7 +26,7 @@ This runbook covers fundamental enrichment steps using readily available GTI and
 *   `${IOC_TYPE}`: The type of IOC (e.g., "IP Address", "Domain", "File Hash", "URL").
 *   *(Optional) `${ALERT_GROUP_IDENTIFIERS}`: Relevant alert group identifiers if needed for context in SOAR actions.*
 *   *(Optional) `${CASE_ID}`: Relevant case ID if documentation is desired.*
-*   *(Optional) `${SIEM_SEARCH_HOURS}`: Lookback period for SIEM event search (default: 24).*
+*   *(Optional) `${SIEM_SEARCH_HOURS}`: Lookback period for SIEM event search (default: 96).*
 
 ## Outputs
 
@@ -52,7 +52,7 @@ This runbook covers fundamental enrichment steps using readily available GTI and
 
 ## Workflow Steps & Diagram
 
-1.  **Receive Input:** Obtain `${IOC_VALUE}`, `${IOC_TYPE}`, and optional inputs like `${CASE_ID}`, `${ALERT_GROUP_IDENTIFIERS}`, `${SIEM_SEARCH_HOURS}` (default 24).
+1.  **Receive Input:** Obtain `${IOC_VALUE}`, `${IOC_TYPE}`, and optional inputs like `${CASE_ID}`, `${ALERT_GROUP_IDENTIFIERS}`, `${SIEM_SEARCH_HOURS}` (default 96).
 2.  **Enrich IOC (GTI + SIEM Lookup):** Execute `common_steps/enrich_ioc.md` with `${IOC_VALUE}` and `${IOC_TYPE}`. Obtain `${GTI_FINDINGS}`, `${SIEM_ENTITY_SUMMARY}`, `${SIEM_IOC_MATCH_STATUS}`.
 3.  **Fetch Key GTI Relationships:**
     *   Determine relevant relationships based on `${IOC_TYPE}` (e.g., for File Hash: `["contacted_domains", "contacted_ips"]`; for Domain: `["resolutions"]`). Let this be `REL_LIST`.

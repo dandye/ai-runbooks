@@ -37,14 +37,15 @@ This runbook covers the analysis of a single detection rule's historical perform
 ## Workflow Steps & Diagram
 
 1.  **Define Scope & Context:** Obtain `${RULE_ID}`, `${ANALYSIS_TIMEFRAME_DAYS}`, `${REASON_FOR_REVIEW}`, and `${REVIEW_CASE_ID}`. Document the rule's intended purpose and the TTPs/threats it aims to detect.
-2.  **Retrieve Rule Logic:**
+2.  **Create Validation Todo List:** Given the multi-phase nature of rule validation and tuning, create a todo list following `common_steps/todo_list_generation.md`. Include tasks for rule analysis, detection review, false positive investigation, and tuning recommendations. Display the list to track progress.
+3.  **Retrieve Rule Logic:**
     *   Use `secops-mcp.list_security_rules` filtering by `${RULE_ID}` (or similar mechanism) to get the current rule definition (e.g., YARA-L code).
     *   *(Alternatively, use `secops-soar.google_chronicle_get_rule_details` if applicable and provides more detailed logic).*
     *   Analyze the logic: understand the event fields, conditions, thresholds, and exceptions.
-3.  **Analyze Historical Alerts:**
+4.  **Analyze Historical Alerts:**
     *   Use `secops-mcp.get_security_alerts` or `secops-mcp.search_security_events` (querying for `metadata.rule_id = "${RULE_ID}"` or similar) covering the `${ANALYSIS_TIMEFRAME_DAYS}`.
     *   Gather statistics: total alert count, alert severity distribution, associated SOAR case statuses (True Positive, False Positive, Benign Positive, etc. - requires analyzing linked cases).
-4.  **Analyze Underlying Events (Sampling):**
+5.  **Analyze Underlying Events (Sampling):**
     *   **False Positives:** Select a representative sample of alerts closed as False Positive (FP). For each, retrieve associated events (`secops-soar.list_events_by_alert` or `secops-mcp.search_security_events`). Analyze why the rule triggered incorrectly. Look for common patterns in FPs (specific applications, user groups, network segments).
     *   **True Positives:** Select a sample of confirmed True Positive (TP) alerts. Retrieve associated events. Verify the rule logic correctly identified the malicious activity.
     *   **Benign Positives (Optional):** Analyze alerts closed as Benign Positive (e.g., authorized vulnerability scan triggering a rule). Determine if exceptions are needed.
@@ -65,9 +66,14 @@ This runbook covers the analysis of a single detection rule's historical perform
         *   Changing or adding event fields/conditions.
         *   Splitting the rule into multiple, more specific rules.
 8.  **Document Recommendations:**
-    *   Record the complete analysis, findings, and specific tuning recommendations in the `${REVIEW_CASE_ID}` using `secops-soar.post_case_comment` or in a dedicated report. Clearly state the expected impact of the proposed changes.
-9.  **Handover:** Assign the case/report to the Security Engineering team for implementation and testing of the proposed tuning changes.
-10. **Completion:** Conclude the runbook execution.
+    *   Record the complete analysis, findings, and specific tuning recommendations in the `${REVIEW_CASE_ID}` using `secops-soar.post_case_comment`.
+    *   Update todo list to show all completed analysis tasks and any pending items.
+9.  **Generate Validation Report:**
+    *   Create a comprehensive rule validation report in `./reports/` following the naming convention: `rule_validation_report_${RULE_ID}_YYYYMMDD_HHMM.md`
+    *   Include: Rule metadata, performance statistics, false positive analysis, true positive validation, tuning recommendations, expected impact assessment
+    *   Include the todo list tracking information showing all completed validation tasks
+10. **Handover:** Assign the case/report to the Security Engineering team for implementation and testing of the proposed tuning changes.
+11. **Completion:** Conclude the runbook execution.
 
 ```mermaid
 sequenceDiagram
@@ -89,7 +95,7 @@ sequenceDiagram
     Note over Cline: Analyze rule logic
 
     %% Step 3: Analyze Historical Alerts
-    Cline->>SIEM: get_security_alerts(rule_id=RULE_ID, hours_back=TIMEFRAME_DAYS*24)
+    Cline->>SIEM: get_security_alerts(rule_id=RULE_ID, hours_back=TIMEFRAME_DAYS*96)
     SIEM-->>Cline: Historical Alerts List
     Note over Cline: Analyze alert volume, severity, associated case statuses (TP/FP)
 

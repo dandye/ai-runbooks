@@ -24,7 +24,9 @@ Use the tools:
  * Get rule logic
  * Evaluate Alert/Event against rule logic
  * UDM search for activity from principal or target
- * **Common Steps:** `common_steps/find_relevant_soar_case.md`
+ * Generate investigation report
+ * Conduct post-investigation review (if significant findings)
+ * **Common Steps:** `common_steps/find_relevant_soar_case.md`, `common_steps/generate_report_file.md`
 
 ```mermaid
 sequenceDiagram
@@ -65,8 +67,14 @@ sequenceDiagram
     Cline->>FindCase: Execute(Input: SEARCH_TERMS=list(ALL_CASE_ENTITIES), CASE_STATUS_FILTER="Opened")
     FindCase-->>Cline: Results: RELATED_SOAR_CASES
     Note over Cline: Synthesize findings, correlate rule logic with events/entities, include related cases
+    Note over Cline: Generate investigation report
+    Cline->>Cline: Execute common_steps/generate_report_file.md(REPORT_CONTENT="Investigation findings...", REPORT_TYPE="case_investigation", REPORT_NAME_SUFFIX=X)
     Cline->>SOAR: post_case_comment(case_id=X, comment="Investigation Summary: Case X involves rule [Rule Name] triggered by events [...]. Entities [...] investigated. Related Cases: ${RELATED_SOAR_CASES}. Findings: [...]")
     SOAR-->>Cline: Comment confirmation
-    Cline->>Cline: Conclude runbook (result="Completed investigation for Case X. Summary posted as comment.")
+    opt If significant findings warrant review
+        Note over Cline: Conduct post-investigation review
+        Cline->>Cline: Execute post_incident_review.md(${CASE_ID}=X, ${INCIDENT_REPORT_PATH}=generated report)
+    end
+    Cline->>Cline: Conclude runbook (result="Completed investigation for Case X. Summary posted as comment and report generated.")
 
 ```

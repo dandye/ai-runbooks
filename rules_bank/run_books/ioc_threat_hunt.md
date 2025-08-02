@@ -24,7 +24,7 @@ Focuses on searching SIEM and data lake sources for specific IOC values (IPs, do
 
 *   `${IOC_LIST}`: Comma-separated list of IOC values to hunt for.
 *   `${IOC_TYPES}`: Corresponding comma-separated list of IOC types (e.g., "IP Address, Domain, File Hash").
-*   `${HUNT_TIMEFRAME_HOURS}`: Lookback period in hours (e.g., 72, 168).
+*   `${HUNT_TIMEFRAME_HOURS}`: Lookback period in hours (e.g., 72, 168; Use 96 as default).
 *   *(Optional) `${HUNT_CASE_ID}`: SOAR case ID for tracking.*
 *   *(Optional) `${REASON_FOR_HUNT}`: Brief description why these IOCs are being hunted.*
 
@@ -37,20 +37,21 @@ Focuses on searching SIEM and data lake sources for specific IOC values (IPs, do
 ## Workflow Steps & Diagram
 
 1.  **Receive Inputs:** Obtain `${IOC_LIST}`, `${IOC_TYPES}`, `${HUNT_TIMEFRAME_HOURS}`, etc.
-2.  **Initial Check (Optional):** Use `secops-mcp.get_ioc_matches` to see if any IOCs in the list have recent matches in the SIEM's integrated feeds.
-3.  **Iterative SIEM Search:**
+2.  **Create Hunt Todo List:** For systematic tracking, create a todo list following `common_steps/todo_list_generation.md`. Include tasks for each IOC to be hunted, enrichment steps, and reporting. Display the initial list to show hunt scope.
+3.  **Initial Check (Optional):** Use `secops-mcp.get_ioc_matches` to see if any IOCs in the list have recent matches in the SIEM's integrated feeds.
+4.  **Iterative SIEM Search:**
     *   For each IOC in `${IOC_LIST}`:
         *   Construct appropriate UDM queries for `secops-mcp.search_security_events` based on the IOC value and type.
-        *   Execute the search over `${HUNT_TIMEFRAME_HOURS}`.
+        *   Execute the search over `${HUNT_TIMEFRAME_HOURS}` (or use 96 by default).
         *   Analyze results for any hits (e.g., network connections, file executions, DNS lookups).
-4.  **Enrich Findings:**
+5.  **Enrich Findings:**
     *   If hits are found for an IOC:
         *   Use `secops-mcp.lookup_entity` for the IOC and any involved entities (hosts, users).
         *   Use relevant `gti-mcp` tools to enrich the IOC itself.
-5.  **Document Hunt & Findings:**
+6.  **Document Hunt & Findings:**
     *   Use `secops-soar.post_case_comment` in `${HUNT_CASE_ID}` (if provided) or a dedicated hunt case.
     *   Document: IOCs Hunted, Timeframe, Queries Used, Summary of Findings (including IOCs with no hits), Details of any confirmed hits and enrichment data.
-6.  **Escalate or Conclude:**
+7.  **Escalate or Conclude:**
     *   If confirmed malicious activity related to the hunted IOCs is found, escalate by creating/updating an incident case.
     *   If no significant findings, conclude the hunt and document it.
 
@@ -130,3 +131,4 @@ sequenceDiagram
 - **Detection Gaps**: Recommendations for improved monitoring or detection rules
 - **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
 - **Runbook Reference**: Clear identification of which runbook was executed to generate the report
+- **Todo List Tracking**: Final status of all hunt tasks with completion percentage

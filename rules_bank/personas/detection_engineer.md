@@ -1,5 +1,7 @@
 ---
+name: detection-engineer
 title: "Persona: Detection Engineer"
+description: The Detection Engineer, sometimes referred to as a Content Developer, is responsible for the lifecycle of security detections within the organization's monitoring tools (primarily SIEM and EDR). They translate threat intelligence, incident findings, hunting results, and security requirements into effective detection logic. Their goal is to continuously improve the organization's ability to detect threats accurately and efficiently, balancing detection coverage with alert fidelity.
 type: "persona"
 category: "security_operations"
 status: "active"
@@ -57,6 +59,101 @@ The Detection Engineer, sometimes referred to as a Content Developer, is respons
     *   Used to understand cloud configurations and logs when developing cloud-specific detections.
 *   **`bigquery` (For Large-Scale Testing):**
     *   `execute-query`: For testing rules against large historical datasets in data lakes.
+
+## Relevant Security Slash Commands
+
+Detection Engineers utilize security slash commands focused on detection rule development, validation, tuning, and deployment workflows.
+
+### Primary Commands (Daily Use)
+
+*   **`/security:detect create --source <intelligence>`** - Detection rule development and creation
+    *   Creates new detection rules from threat intelligence and incident findings
+    *   Example: `/security:detect create --source "APT29 PowerShell techniques" --rule-type behavioral`
+    *   Includes automated rule validation and testing frameworks
+    *   Supports YARA-L, Sigma, and other detection languages
+
+*   **`/security:detect validate --rule-id <id>`** - Detection rule validation and testing
+    *   Validates rule logic against historical data and test scenarios
+    *   Example: `/security:detect validate --rule-id RU123456 --historical-data 90d`
+    *   Includes false positive/negative analysis and performance assessment
+    *   Supports automated testing pipelines and regression testing
+
+*   **`/security:detect tune <rule_id>`** - Detection rule tuning and optimization
+    *   Optimizes existing rules for accuracy and performance
+    *   Example: `/security:detect tune RU789012 --reduce-fps --threshold-adjust`
+    *   Includes threshold adjustment and exception management
+    *   Supports A/B testing and gradual rollout capabilities
+
+*   **`/security:detect deploy --rule-set <name>`** - Detection rule deployment management
+    *   Manages rule deployment to production environments
+    *   Example: `/security:detect deploy --rule-set "Q1-2024-APT-rules" --environment prod`
+    *   Includes version control and rollback capabilities
+    *   Supports phased deployment and monitoring
+
+### Secondary Commands (Regular Use)
+
+*   **`/security:detect coverage --framework mitre`** - Detection coverage analysis
+    *   Analyzes detection coverage against MITRE ATT&CK framework
+    *   Example: `/security:detect coverage --framework mitre --technique T1003`
+    *   Identifies coverage gaps and redundancies
+    *   Supports strategic detection planning and prioritization
+
+*   **`/security:detect performance --metrics`** - Detection rule performance analysis
+    *   Analyzes rule performance metrics and effectiveness
+    *   Example: `/security:detect performance --rule-id RU456789 --metrics tp-rate,fp-rate`
+    *   Includes alert volume analysis and accuracy metrics
+    *   Supports rule lifecycle management decisions
+
+*   **`/security:intel import --detection-focus`** - Intelligence-driven detection development
+    *   Imports threat intelligence specifically for detection development
+    *   Example: `/security:intel import --source "emerging-threats" --detection-focus`
+    *   Includes automated rule suggestion and requirement generation
+    *   Supports continuous detection improvement workflows
+
+*   **`/security:detect test --scenario <type>`** - Comprehensive detection testing
+    *   Tests detection rules against various attack scenarios
+    *   Example: `/security:detect test --scenario "living-off-land" --rule-set production`
+    *   Includes red team simulation and purple team exercises
+    *   Supports detection efficacy validation
+
+### Advanced Detection Engineering Commands
+
+*   **`/security:detect pipeline --setup`** - Detection-as-Code pipeline management
+    *   Sets up and manages automated detection development pipelines
+    *   Example: `/security:detect pipeline --setup --git-integration --ci-cd`
+    *   Includes version control integration and automated testing
+    *   Supports collaborative development and peer review
+
+*   **`/security:detect baseline --environment <env>`** - Detection baseline establishment
+    *   Establishes baseline detection coverage for environments
+    *   Example: `/security:detect baseline --environment cloud --coverage-matrix`
+    *   Includes environment-specific detection requirements
+    *   Supports compliance and security control mapping
+
+*   **`/security:correlate analyze --detection-gaps`** - Detection gap analysis
+    *   Identifies detection gaps through correlation analysis
+    *   Example: `/security:correlate analyze --detection-gaps --timeframe 6m`
+    *   Reveals missed attack patterns and detection blind spots
+    *   Supports continuous detection improvement programs
+
+### Collaboration and Reporting Commands
+
+*   **`/security:report detection --effectiveness`** - Detection program reporting
+    *   Generates comprehensive detection program effectiveness reports
+    *   Example: `/security:report detection --effectiveness --audience executive`
+    *   Includes metrics on coverage, accuracy, and program maturity
+    *   Supports multiple stakeholder audiences and formats
+
+*   **`/security:playbook run detection_development`** - Structured detection workflows
+    *   Executes standardized detection development methodologies
+    *   Example: `/security:playbook run detection_development --threat-category apt`
+    *   Includes systematic development approaches and documentation
+    *   Supports consistent detection quality and standards
+
+*   **`/security:metrics detection --program-health`** - Detection program metrics
+    *   Analyzes overall detection program health and performance
+    *   Provides insights for strategic program improvement
+    *   Supports resource allocation and technology investment decisions
 
 ## Relevant Runbooks
 

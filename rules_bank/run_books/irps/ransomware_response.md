@@ -50,7 +50,7 @@ This runbook covers the end-to-end response lifecycle for ransomware incidents, 
 *   **Compromised User Account Response Runbook:** `../compromised_user_account_response.md` (If initial access vector involves user).
 *   **Action:** Request user input (e.g., using `ask_followup_question` to confirm actions, especially isolation)
 *   *(External Resources: Ransomware identification sites, known decryptor databases - manual step)*.
-*   **Common Steps:** `common_steps/check_duplicate_cases.md`, `common_steps/find_relevant_soar_case.md`, `common_steps/document_in_soar.md`
+*   **Common Steps:** `common_steps/check_duplicate_cases.md`, `common_steps/find_relevant_soar_case.md`, `common_steps/document_in_soar.md`, `common_steps/todo_list_generation.md`
 
 ## Workflow Steps & Diagram
 
@@ -107,25 +107,26 @@ sequenceDiagram
 *   **Objective:** Detect the incident, identify the ransomware strain, determine initial scope, and investigate initial access/lateral movement.
 *   **Sub-Runbooks/Steps:**
     1.  **Receive Input & Context:** Obtain initial indicators, `${CASE_ID}`, `${ALERT_GROUP_IDENTIFIERS}`. Get case details via `secops-soar.get_case_full_details`. Check for duplicates (`../common_steps/check_duplicate_cases.md`).
-    2.  **Identify Ransomware Strain:**
+    2.  **Create Investigation Todo List:** Given the complexity of ransomware response, create a comprehensive todo list following `../common_steps/todo_list_generation.md`. Include all PICERL phases and track progress throughout the incident. Display the initial todo list to the analyst for visibility.
+    3.  **Identify Ransomware Strain:**
         *   If a file hash (`${FILE_HASH}`) is available, use `gti-mcp.get_file_report` to identify the malware family/ransomware name.
         *   If EDR alert name or ransom note details provide a name, use `gti-mcp.search_threats` (e.g., `query="LockBit ransomware" collection_type:"malware-family"`) or `get_collection_report` if a specific GTI ID is known.
         *   *(Manual Step: Use external resources like ID Ransomware if GTI doesn't yield results).*
         *   Document the identified (or suspected) strain (`IDENTIFIED_STRAIN`).
-    3.  **Investigate Initial Access & Lateral Movement (SIEM):**
+    4.  **Investigate Initial Access & Lateral Movement (SIEM):**
         *   Use `secops-mcp.search_security_events` focusing on the time *before* and *during* the initial encryption activity on the affected endpoints:
             *   Search for suspicious logins, RDP activity, or exploit attempts targeting the initially affected endpoints.
             *   Search for execution of suspicious tools (PsExec, Cobalt Strike beacons, etc.).
             *   Search for activity related to the user logged into the endpoint at the time of infection (potentially trigger `../compromised_user_account_response.md`).
             *   Trace network connections *from* the affected endpoints to identify potential lateral movement targets.
         *   Identify potential initial access vector (`INITIAL_ACCESS_VECTOR`) and other potentially affected systems (`POTENTIAL_ADDITIONAL_SYSTEMS`).
-    4.  **Initial Scope Assessment:**
+    5.  **Initial Scope Assessment:**
         *   Combine initial indicators with findings from step 3 to create a list of initially identified affected endpoints (`AFFECTED_ENDPOINTS`) and potentially malicious network IOCs (`MALICIOUS_IOCs`).
-    5.  **Check Related SOAR Cases:**
+    6.  **Check Related SOAR Cases:**
         *   Prepare list of key entities: `SEARCH_TERMS = AFFECTED_ENDPOINTS + MALICIOUS_IOCs`.
         *   Execute `../common_steps/find_relevant_soar_case.md` with `SEARCH_TERMS` and `CASE_STATUS_FILTER="Opened"`.
         *   Obtain `${RELATED_SOAR_CASES}` (list of potentially relevant open case summaries/IDs).
-    6.  **Document Identification Phase:**
+    7.  **Document Identification Phase:**
         *   Document findings (`IDENTIFIED_STRAIN`, `INITIAL_ACCESS_VECTOR`, `AFFECTED_ENDPOINTS`, `MALICIOUS_IOCs`, `${RELATED_SOAR_CASES}`) using `../common_steps/document_in_soar.md`.
 
 ---
@@ -184,15 +185,17 @@ sequenceDiagram
 ### Phase 6: Lessons Learned (Post-Incident)
 
 *   **Objective:** Review the incident and response to identify areas for improvement.
-*   **Sub-Runbooks/Steps:** *(Placeholder - Requires dedicated Post-Incident Runbook)*
-    1.  **Incident Review Meeting:** Conduct a post-mortem meeting. Discuss initial access, spread, impact, response effectiveness, recovery success.
-    2.  **Analyze Response:** Review timeline, tool effectiveness, runbook adherence.
-    3.  **Identify Gaps:** Focus on prevention (how did it get in?), detection (was it detected quickly?), and response gaps.
-    4.  **Develop Recommendations:** Suggest improvements (e.g., security control changes, new detections, backup strategy review, user training).
-    5.  **Update Documentation:** Update runbooks, policies, etc.
-    6.  **Track Recommendations:** Assign and track implementation.
-    7.  **Final Report:** Generate using guidelines from `.clinerules/reporting_templates.md` and `../report_writing.md`.
-    8.  **Document Review:** Document outcomes using `../common_steps/document_in_soar.md`.
+*   **Sub-Runbooks/Steps:**
+    1.  **Update Todo List:** Display final todo list status showing all completed tasks and any remaining items. Calculate and report overall completion percentage. This provides an audit trail of the response activities.
+    2.  **Generate Incident Report:** Execute `../common_steps/generate_report_file.md` with comprehensive ransomware incident findings, strain analysis, response timeline, containment actions, recovery results, and initial analysis using guidelines from `.clinerules/reporting_templates.md` and `../report_writing.md`. Include the todo list tracking information in the report methodology section.
+    3.  **Conduct Post-Incident Review:** Execute `../post_incident_review.md` with `${CASE_ID}` and the generated incident report, including:
+        *   **Incident Review Meeting:** Conduct a post-mortem meeting. Discuss initial access, spread, impact, response effectiveness, recovery success.
+        *   **Analyze Response:** Review timeline, tool effectiveness, runbook adherence.
+        *   **Identify Gaps:** Focus on prevention (how did it get in?), detection (was it detected quickly?), and response gaps.
+        *   **Develop Recommendations:** Suggest improvements (e.g., security control changes, new detections, backup strategy review, user training).
+        *   **Update Documentation:** Update runbooks, policies, etc.
+        *   **Track Recommendations:** Assign and track implementation.
+    4.  **Document Review:** Document PIR outcomes using `../common_steps/document_in_soar.md`.
 
 ---
 

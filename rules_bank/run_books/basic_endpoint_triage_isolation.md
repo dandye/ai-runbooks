@@ -44,7 +44,7 @@ This runbook covers the initial assessment and potential network isolation of an
     *   Retrieve full case details using `secops-soar.get_case_full_details` for `${CASE_ID}`.
     *   Use `secops-mcp.lookup_entity` for `${ENDPOINT_ID}` to get a SIEM activity summary.
 3.  **Check Endpoint Posture & Activity:**
-    *   Search SIEM using `secops-mcp.search_security_events` for recent activity related to `${ENDPOINT_ID}` (e.g., last 24-72 hours). Look for:
+    *   Search SIEM using `secops-mcp.search_security_events` for recent activity related to `${ENDPOINT_ID}` (e.g., last 24-72 hours; use 96 hours as default). Look for:
         *   Suspicious process executions.
         *   Anomalous network connections (especially outbound to known bad IPs/domains).
         *   Significant alert volume associated with the endpoint.

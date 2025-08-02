@@ -104,7 +104,7 @@ sequenceDiagram
         *   Use `secops-mcp.lookup_entity` for `${USER_ID}` to get a quick summary of recent activity in SIEM.
         *   *(Optional: Use `okta-mcp.lookup_okta_user` or similar identity tool for `${USER_ID}` to get account status, recent logins, MFA details etc.)*
     3.  **Analyze User Activity:**
-        *   Perform detailed searches in SIEM using `secops-mcp.search_security_events` for `${USER_ID}` covering the relevant timeframe (e.g., last 24-72 hours). Look for:
+        *   Perform detailed searches in SIEM using `secops-mcp.search_security_events` for `${USER_ID}` covering the relevant timeframe (e.g., last 24-96 hours; use 96 as default). Look for:
             *   Anomalous login locations/times/IPs/User Agents.
             *   Suspicious command-line activity on associated endpoints.
             *   Access to sensitive resources (files, applications, databases).
@@ -168,15 +168,16 @@ sequenceDiagram
 ### Phase 6: Lessons Learned (Post-Incident)
 
 *   **Objective:** Review the incident and response to identify areas for improvement.
-*   **Sub-Runbooks/Steps:** *(Placeholder - Requires dedicated Post-Incident Runbook)*
-    1.  **Incident Review Meeting:** Discuss the initial access vector (if known), detection method, response effectiveness, and recovery process.
-    2.  **Analyze Response:** Review timeline, tool effectiveness, runbook adherence.
-    3.  **Identify Gaps:** Focus on prevention (e.g., MFA effectiveness, phishing awareness), detection (e.g., login anomaly tuning), and response gaps.
-    4.  **Develop Recommendations:** Suggest improvements (e.g., security control changes, new detections, user training).
-    5.  **Update Documentation:** Update runbooks, policies, etc.
-    6.  **Track Recommendations:** Assign and track implementation.
-    7.  **Final Report:** Generate using guidelines from `.clinerules/reporting_templates.md` and `../report_writing.md`.
-    8.  **Document Review:** Document outcomes using `../common_steps/document_in_soar.md`.
+*   **Sub-Runbooks/Steps:**
+    1.  **Generate Incident Report:** Execute `../common_steps/generate_report_file.md` with comprehensive incident findings, response timeline, actions taken, and initial analysis using guidelines from `.clinerules/reporting_templates.md`.
+    2.  **Conduct Post-Incident Review:** Execute `../post_incident_review.md` with `${CASE_ID}` and the generated incident report, including:
+        *   **Incident Review Meeting:** Discuss the initial access vector (if known), detection method, response effectiveness, and recovery process.
+        *   **Analyze Response:** Review timeline, tool effectiveness, runbook adherence.
+        *   **Identify Gaps:** Focus on prevention (e.g., MFA effectiveness, phishing awareness), detection (e.g., login anomaly tuning), and response gaps.
+        *   **Develop Recommendations:** Suggest improvements (e.g., security control changes, new detections, user training).
+        *   **Update Documentation:** Update runbooks, policies, etc.
+        *   **Track Recommendations:** Assign and track implementation.
+    3.  **Document Review:** Document PIR outcomes using `../common_steps/document_in_soar.md`.
 
 ---
 

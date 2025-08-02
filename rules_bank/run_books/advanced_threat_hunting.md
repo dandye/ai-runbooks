@@ -61,12 +61,14 @@ This runbook outlines a flexible framework for advanced threat hunting, emphasiz
 6.  **Synthesize & Document:**
     *   Continuously document the hunt process, queries used, analysis steps, findings (positive and negative), and enrichment results within the `${HUNT_CASE_ID}` using `secops-soar.post_case_comment`.
     *   Structure findings clearly, linking evidence back to the hypothesis.
-7.  **Action / Handover / Conclude:**
+7.  **Generate Hunt Report:** Execute `common_steps/generate_report_file.md` with comprehensive hunt findings, hypothesis, queries used, analysis steps, and conclusions structured according to guidelines from `.clinerules/reporting_templates.md`.
+8.  **Action / Handover / Conclude:**
     *   **If a confirmed threat is found:** Escalate immediately. Create a new incident case or link findings to an existing one. Hand over details to the Incident Response team.
     *   **If suspicious activity requires further monitoring:** Document recommendations and potentially configure specific monitoring alerts.
     *   **If hunt yields valuable insights but no active threat:** Document findings and propose new detection rules or improvements to Security Engineering.
     *   **If hunt is inconclusive:** Document the process, negative findings, and any limitations encountered. Conclude the hunt.
-8.  **Completion:** Finalize documentation in the `${HUNT_CASE_ID}` and conclude the runbook execution.
+9.  **Post-Hunt Review:** Execute `post_incident_review.md` with `${HUNT_CASE_ID}` and the generated hunt report to capture lessons learned and improve future hunting processes.
+10. **Completion:** Finalize documentation in the `${HUNT_CASE_ID}` and conclude the runbook execution.
 
 ```mermaid
 sequenceDiagram
