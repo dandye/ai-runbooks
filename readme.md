@@ -1,10 +1,10 @@
 # AI Runbooks for Security Operations
 
-This repository contains a comprehensive security operations (SOC) runbook and persona system designed to guide LLM agents through standardized security workflows.
+This repository provides security operations runbooks and role-based guides for AI-assisted cybersecurity workflows.
 
 ## Overview
 
-The project provides structured documentation, procedural guides, and configuration scripts that enable AI assistants to effectively assist with security operations tasks.
+Built by and for enterprise security teams, this project standardizes incident  response procedures and threat analysis workflows across multiple AI platforms including Claude, Gemini, and Cline. It equips LLMs with specialized context and cognitive tools to perform complex security investigations with the same rigor and consistency as experienced analysts.
 
 ## Key Components
 
@@ -36,7 +36,7 @@ Comprehensive end-to-end strategies for:
 ## Repository Structure
 
 ```
-dandye_ai_runbooks/
+ai_runbooks/
 ├── rules_bank/                    # Master source directory for all content
 │   ├── personas/                  # Security role definitions
 │   ├── run_books/                 # Procedural guides for security tasks
