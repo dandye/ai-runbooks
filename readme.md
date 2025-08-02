@@ -213,16 +213,15 @@ This is related to case 2194 with multiple failed followed by successful logins.
 
 ### Incident Response
 ```
-Initiate the compromised user account IRP for user LISAWALKER'
+Initiate incident response for compromised user account in case 3480.
 ```
-Evidence includes PowerShell execution with obfuscation techniques on host WINS-D19 and potential privilege escalation attempts.
+Multiple indicators suggest account compromise including PowerShell obfuscation and potential data exfiltration.
 
 ### Cloud Security Analysis
 ```
 Run the cloud vulnerability triage runbook for the BigQuery exfiltration alerts in case 3480.
 ```
 Focus on the DLP context and Google Drive data movement patterns detected by SCC.
-
 
 ### Endpoint Isolation
 ```
@@ -235,7 +234,6 @@ This system was compromised in case 3480 with PowerShell attacks and potential m
 Perform a deep dive IOC analysis on domain scarfponcho.com using GTI collections.
 ```
 Include malware family associations, campaign attribution, and infrastructure analysis.
-
 
 ### Summary
 These examples demonstrate how to invoke runbooks with specific, actionable intelligence that mirrors real security operations scenarios.
