@@ -41,21 +41,22 @@ This runbook covers the initial investigation steps to gather context about a su
 ## Workflow Steps & Diagram
 
 1.  **Receive Input & Context:** Obtain `${CASE_ID}`, `${ALERT_GROUP_IDENTIFIERS}` (or `${ALERT_ID}`), and other optional inputs. Get full case details using `secops-soar.get_case_full_details`.
-2.  **Extract Key Entities:**
+2.  **Create Triage Todo List:** For systematic tracking, create a todo list following `common_steps/todo_list_generation.md`. Include tasks for user analysis, IP enrichment, historical pattern review, and triage decision. Display the list to track progress.
+3.  **Extract Key Entities:**
     *   Use `secops-soar.list_events_by_alert` for the primary alert(s) in the case.
     *   Parse events to reliably extract the primary `${USER_ID}`, `${SOURCE_IP}`, and relevant `${HOSTNAME}`(s). Handle cases where these might be missing.
-3.  **User Context (SIEM):**
+4.  **User Context (SIEM):**
     *   Use `secops-mcp.lookup_entity` with `entity_value=${USER_ID}`.
     *   Record summary of user's recent activity, first/last seen, related alerts (`USER_SIEM_SUMMARY`).
-4.  **Source IP Enrichment:**
+5.  **Source IP Enrichment:**
     *   Execute `common_steps/enrich_ioc.md` with `IOC_VALUE=${SOURCE_IP}` and `IOC_TYPE="IP Address"`.
     *   Obtain `${GTI_FINDINGS}`, `${SIEM_ENTITY_SUMMARY}` (for IP), `${SIEM_IOC_MATCH_STATUS}`. Let's call these `IP_GTI_FINDINGS`, `IP_SIEM_SUMMARY`, `IP_SIEM_MATCH`.
-5.  **Hostname Context (SIEM):**
+6.  **Hostname Context (SIEM):**
     *   If `${HOSTNAME}` was extracted:
         *   Use `secops-mcp.lookup_entity` with `entity_value=${HOSTNAME}`.
         *   Record summary (`HOSTNAME_SIEM_SUMMARY`).
-6.  **Recent Login Activity (SIEM):**
-    *   Use `secops-mcp.search_security_events` with a refined UDM query focusing on the last 24-72 hours:
+7.  **Recent Login Activity (SIEM):**
+    *   Use `secops-mcp.search_security_events` with a refined UDM query focusing on the last 24-96 hours (use 96 as deffault):
         ```udm
         metadata.event_type IN ("USER_LOGIN", "AUTH_ATTEMPT") AND (
           principal.user.userid = "${USER_ID}" OR
@@ -64,23 +65,23 @@ This runbook covers the initial investigation steps to gather context about a su
         )
         ```
     *   Look for patterns: logins from other unusual IPs, successful logins after failures, frequency of logins from `${SOURCE_IP}` vs. others (`LOGIN_ACTIVITY_SUMMARY`).
-7.  **Check Related SOAR Cases:**
+8.  **Check Related SOAR Cases:**
     *   Execute `common_steps/find_relevant_soar_case.md` with `SEARCH_TERMS=["${USER_ID}", "${SOURCE_IP}", "${HOSTNAME}"]` (include hostname if available) and `CASE_STATUS_FILTER="Opened"`.
     *   Obtain `${RELATED_SOAR_CASES}` (list of potentially relevant open case summaries/IDs).
     *   *Note: `list_cases` filtering by entity is limited; review results carefully.*
-8.  **(Optional) Identity Provider Check:**
+9.  **(Optional) Identity Provider Check:**
     *   *(If `okta-mcp` or similar tool is available, use `okta-mcp.lookup_okta_user` with `${USER_ID}` to check account status, recent legitimate logins, MFA methods, etc. (`IDP_SUMMARY`))*
-9.  **Synthesize & Document:**
+10.  **Synthesize & Document:**
     *   Combine findings: User context (`USER_SIEM_SUMMARY`), Source IP context (`IP_GTI_FINDINGS`, `IP_SIEM_SUMMARY`, `IP_SIEM_MATCH`), Hostname context (`HOSTNAME_SIEM_SUMMARY`), Login patterns (`LOGIN_ACTIVITY_SUMMARY`), Related cases (`${RELATED_SOAR_CASES}`), IDP check (`IDP_SUMMARY`).
     *   Prepare comment text: `COMMENT_TEXT = "Suspicious Login Triage for ${USER_ID} from ${SOURCE_IP} (Host: ${HOSTNAME}): User SIEM Summary: ${USER_SIEM_SUMMARY}. Source IP GTI: ${IP_GTI_FINDINGS}. Source IP SIEM: ${IP_SIEM_SUMMARY}. Source IP IOC Match: ${IP_SIEM_MATCH}. Hostname SIEM: ${HOSTNAME_SIEM_SUMMARY}. Recent Login Pattern: ${LOGIN_ACTIVITY_SUMMARY}. Related Open Cases: ${RELATED_SOAR_CASES}. Optional IDP Check: ${IDP_SUMMARY}. Recommendation: [Close as FP/Known Activity | Escalate to Tier 2 for further investigation]"`
     *   Execute `common_steps/document_in_soar.md` with `${CASE_ID}` and `${COMMENT_TEXT}`. Obtain `${COMMENT_POST_STATUS}`.
-10. **(Optional) Generate Report:**
+11. **(Optional) Generate Report:**
     *   **Request user input** to ask the user: "Generate a markdown report file for this triage?". Obtain `${REPORT_CHOICE}`.
     *   **If `${REPORT_CHOICE}` is "Yes":**
-        *   Prepare `REPORT_CONTENT` summarizing findings (similar to `${COMMENT_TEXT}` but formatted for a report, including the Mermaid diagram below).
+        *   Prepare `REPORT_CONTENT` summarizing findings (similar to `${COMMENT_TEXT}` but formatted for a report, including the Mermaid diagram below and the completed triage todo list for audit trail).
         *   Execute `common_steps/generate_report_file.md` with `REPORT_CONTENT`, `REPORT_TYPE="suspicious_login_triage"`, `REPORT_NAME_SUFFIX=${CASE_ID}`. Obtain `${REPORT_GENERATION_STATUS}`.
     *   **Else:** Set `${REPORT_GENERATION_STATUS}` = "Skipped".
-11. **Completion:** **Conclude runbook** execution. Tier 1 analyst acts on the recommendation in the comment. Report generation status provided if applicable.
+12. **Completion:** **Conclude runbook** execution. Display final todo list status. Tier 1 analyst acts on the recommendation in the comment. Report generation status provided if applicable.
 
 ```mermaid
 sequenceDiagram

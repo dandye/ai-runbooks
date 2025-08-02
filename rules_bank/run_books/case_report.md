@@ -36,12 +36,13 @@ Summarizes key alerts, events, entity analysis, enrichment data, actions taken, 
 ## Workflow Steps & Diagram
 
 1.  **Gather Case Data:** Retrieve all relevant data for `${CASE_ID}` using `get_case_full_details` (includes basic case info, alerts, comments). Potentially re-run `list_events_by_alert` for key alerts if needed.
-2.  **Synthesize Findings:** Review case comments, alert details, event summaries, and previous enrichment data associated with the case.
-3.  **Structure Report:** Organize the information according to a standard template (referencing `.clinerules/reporting_templates.md`). Key sections might include: Executive Summary, Timeline of Key Events, Involved Entities & Enrichment, Analysis/Root Cause (if determined), Actions Taken, Recommendations/Lessons Learned.
-4.  **Generate Mermaid Diagram:** Create a Mermaid sequence diagram summarizing the *investigation workflow* that was performed for this case (which tools were used in what order).
-5.  **Format Report:** Compile the synthesized information and the Mermaid diagram into a final Markdown report.
-6.  **Generate report file:** Save the report with a standardized name (e.g., `./reports/case_report_${CASE_ID}_${timestamp}.md`).
-7.  **(Optional) Update Case:** Add a comment to the SOAR case indicating the report has been generated and its location using `post_case_comment`.
+2.  **Create Report Generation Todo List:** For complex cases, create a todo list following `common_steps/todo_list_generation.md` to track report sections and ensure comprehensive coverage. Include tasks for each major section of the report.
+3.  **Synthesize Findings:** Review case comments, alert details, event summaries, and previous enrichment data associated with the case.
+4.  **Structure Report:** Organize the information according to a standard template (referencing `.clinerules/reporting_templates.md`). Key sections might include: Executive Summary, Timeline of Key Events, Involved Entities & Enrichment, Analysis/Root Cause (if determined), Actions Taken, Recommendations/Lessons Learned. **Include the investigation todo list tracking as part of the methodology section.**
+5.  **Generate Mermaid Diagram:** Create a Mermaid sequence diagram summarizing the *investigation workflow* that was performed for this case (which tools were used in what order).
+6.  **Format Report:** Compile the synthesized information and the Mermaid diagram into a final Markdown report.
+7.  **Generate report file:** Save the report with a standardized name (e.g., `./reports/case_report_${CASE_ID}_${timestamp}.md`).
+8.  **(Optional) Update Case:** Add a comment to the SOAR case indicating the report has been generated and its location using `post_case_comment`.
 
 ```mermaid
 sequenceDiagram
@@ -97,7 +98,7 @@ sequenceDiagram
 - Report ready for stakeholder distribution and archival
 
 ## Expected Outputs
-
+- **YAML Frontmatter**: Report metadata
 - **Investigation Report File**: Comprehensive Markdown report (saved as `./reports/case_report_${CASE_ID}_${timestamp}.md`)
 - **Executive Summary**: High-level overview suitable for management
 - **Technical Timeline**: Detailed sequence of events and investigative actions

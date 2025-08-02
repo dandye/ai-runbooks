@@ -104,7 +104,7 @@ sequenceDiagram
         *   Use `secops-mcp.lookup_entity` for `${USER_ID}` to get a quick summary of recent activity in SIEM.
         *   *(Optional: Use `okta-mcp.lookup_okta_user` or similar identity tool for `${USER_ID}` to get account status, recent logins, MFA details etc.)*
     3.  **Analyze User Activity:**
-        *   Perform detailed searches in SIEM using `secops-mcp.search_security_events` for `${USER_ID}` covering the relevant timeframe (e.g., last 24-72 hours). Look for:
+        *   Perform detailed searches in SIEM using `secops-mcp.search_security_events` for `${USER_ID}` covering the relevant timeframe (e.g., last 24-96 hours; use 96 as default). Look for:
             *   Anomalous login locations/times/IPs/User Agents.
             *   Suspicious command-line activity on associated endpoints.
             *   Access to sensitive resources (files, applications, databases).
