@@ -37,6 +37,7 @@ This runbook covers the initial investigation steps to gather context about a su
 *   *(Optional: Identity Provider tools like `okta-mcp.lookup_okta_user`)*
 *   **Action:** Request user input (e.g., using `ask_followup_question`)
 *   **Common Steps:** `common_steps/enrich_ioc.md`, `common_steps/find_relevant_soar_case.md`, `common_steps/document_in_soar.md`, `common_steps/generate_report_file.md`
+*   **Memory-Enhanced Steps:** `common_steps/query_memories.md`, `common_steps/apply_memory_procedure.md`, `common_steps/log_memory_outcome.md`
 
 ## Workflow Steps & Diagram
 
@@ -45,6 +46,17 @@ This runbook covers the initial investigation steps to gather context about a su
 3.  **Extract Key Entities:**
     *   Use `secops-soar.list_events_by_alert` for the primary alert(s) in the case.
     *   Parse events to reliably extract the primary `${USER_ID}`, `${SOURCE_IP}`, and relevant `${HOSTNAME}`(s). Handle cases where these might be missing.
+
+3.5. **Memory-Enhanced Pattern Check:**
+    *   Execute `common_steps/query_memories.md` with:
+        *   `CURRENT_RUNBOOK` = "run_books/suspicious_login_triage.md"
+        *   `CURRENT_PERSONA` = [Current analyst persona]
+        *   `CURRENT_STEP` = "Login Pattern Analysis"
+        *   `STEP_CONTEXT` = "login_analysis, ${USER_ID}, ${SOURCE_IP}, suspicious_login"
+    *   Query `institutional_memory/patterns/false_positive_login_patterns.md` for organizational false positive patterns
+    *   If pattern match found with high confidence (≥0.9), apply pattern classification automatically
+    *   If medium confidence (0.7-0.89), present pattern match for analyst review
+    *   Store pattern matching results in `${PATTERN_MATCH_RESULTS}`
 4.  **User Context (SIEM):**
     *   Use `secops-mcp.lookup_entity` with `entity_value=${USER_ID}`.
     *   Record summary of user's recent activity, first/last seen, related alerts (`USER_SIEM_SUMMARY`).
@@ -71,10 +83,19 @@ This runbook covers the initial investigation steps to gather context about a su
     *   *Note: `list_cases` filtering by entity is limited; review results carefully.*
 9.  **(Optional) Identity Provider Check:**
     *   *(If `okta-mcp` or similar tool is available, use `okta-mcp.lookup_okta_user` with `${USER_ID}` to check account status, recent legitimate logins, MFA methods, etc. (`IDP_SUMMARY`))*
-10.  **Synthesize & Document:**
-    *   Combine findings: User context (`USER_SIEM_SUMMARY`), Source IP context (`IP_GTI_FINDINGS`, `IP_SIEM_SUMMARY`, `IP_SIEM_MATCH`), Hostname context (`HOSTNAME_SIEM_SUMMARY`), Login patterns (`LOGIN_ACTIVITY_SUMMARY`), Related cases (`${RELATED_SOAR_CASES}`), IDP check (`IDP_SUMMARY`).
-    *   Prepare comment text: `COMMENT_TEXT = "Suspicious Login Triage for ${USER_ID} from ${SOURCE_IP} (Host: ${HOSTNAME}): User SIEM Summary: ${USER_SIEM_SUMMARY}. Source IP GTI: ${IP_GTI_FINDINGS}. Source IP SIEM: ${IP_SIEM_SUMMARY}. Source IP IOC Match: ${IP_SIEM_MATCH}. Hostname SIEM: ${HOSTNAME_SIEM_SUMMARY}. Recent Login Pattern: ${LOGIN_ACTIVITY_SUMMARY}. Related Open Cases: ${RELATED_SOAR_CASES}. Optional IDP Check: ${IDP_SUMMARY}. Recommendation: [Close as FP/Known Activity | Escalate to Tier 2 for further investigation]"`
+10.  **Memory-Enhanced Synthesis & Decision:**
+    *   **Decision Enhancement:** Apply institutional memory to triage decision:
+        *   If `${PATTERN_MATCH_RESULTS}` indicates high-confidence false positive pattern → Recommend closure
+        *   Check memory adaptations for VIP user handling (from feedback queue item QUEUE-003)
+        *   Apply persona-specific decision frameworks from `institutional_memory/adaptations/`
+    
+    *   **Synthesis:** Combine findings: User context (`USER_SIEM_SUMMARY`), Source IP context (`IP_GTI_FINDINGS`, `IP_SIEM_SUMMARY`, `IP_SIEM_MATCH`), Hostname context (`HOSTNAME_SIEM_SUMMARY`), Login patterns (`LOGIN_ACTIVITY_SUMMARY`), Related cases (`${RELATED_SOAR_CASES}`), IDP check (`IDP_SUMMARY`), Pattern matching (`${PATTERN_MATCH_RESULTS}`).
+    
+    *   **Enhanced Documentation:** Prepare comment text: `COMMENT_TEXT = "Memory-Enhanced Suspicious Login Triage for ${USER_ID} from ${SOURCE_IP} (Host: ${HOSTNAME}): User SIEM Summary: ${USER_SIEM_SUMMARY}. Source IP GTI: ${IP_GTI_FINDINGS}. Source IP SIEM: ${IP_SIEM_SUMMARY}. Source IP IOC Match: ${IP_SIEM_MATCH}. Hostname SIEM: ${HOSTNAME_SIEM_SUMMARY}. Recent Login Pattern: ${LOGIN_ACTIVITY_SUMMARY}. Pattern Analysis: ${PATTERN_MATCH_RESULTS}. Related Open Cases: ${RELATED_SOAR_CASES}. Optional IDP Check: ${IDP_SUMMARY}. Memory-Enhanced Recommendation: [Close as FP/Known Activity | Escalate to Tier 2 for further investigation] - Applied institutional knowledge"`
+    
     *   Execute `common_steps/document_in_soar.md` with `${CASE_ID}` and `${COMMENT_TEXT}`. Obtain `${COMMENT_POST_STATUS}`.
+    
+    *   **Log Memory Application:** If any memories were applied, execute `common_steps/log_memory_outcome.md` to record effectiveness
 11. **(Optional) Generate Report:**
     *   **Request user input** to ask the user: "Generate a markdown report file for this triage?". Obtain `${REPORT_CHOICE}`.
     *   **If `${REPORT_CHOICE}` is "Yes":**
