@@ -210,3 +210,6 @@ Here are some references and projects that might be helpful when looking for ins
  1. Microsoft Phishing Triage Agent
     * "The Phishing Triage Agent continuously improves its decision-making based on feedback tailored to your organization’s needs."[URL](https://learn.microsoft.com/en-us/defender-xdr/phishing-triage-agent#teach-the-agent-your-organizations-context-through-feedback)
     * URL: https://learn.microsoft.com/en-us/defender-xdr/phishing-triage-agent
+ 1. Microsoft Threat Intelligence Briefing Agent
+    * "Threat Intelligence Briefing Agent in the Microsoft Security Copilot standalone portal generates threat intelligence briefings based on the latest threat actor activity and both internal and external vulnerability information"
+    * URL: https://learn.microsoft.com/en-us/copilot/security/threat-intel-briefing-agent
