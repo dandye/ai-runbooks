@@ -81,7 +81,11 @@ This runbook covers the initial investigation steps to gather context about a su
         *   Prepare `REPORT_CONTENT` summarizing findings (similar to `${COMMENT_TEXT}` but formatted for a report, including the Mermaid diagram below and the completed triage todo list for audit trail).
         *   Execute `common_steps/generate_report_file.md` with `REPORT_CONTENT`, `REPORT_TYPE="suspicious_login_triage"`, `REPORT_NAME_SUFFIX=${CASE_ID}`. Obtain `${REPORT_GENERATION_STATUS}`.
     *   **Else:** Set `${REPORT_GENERATION_STATUS}` = "Skipped".
-12. **Completion:** **Conclude runbook** execution. Display final todo list status. Tier 1 analyst acts on the recommendation in the comment. Report generation status provided if applicable.
+12. **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   **Conclude runbook** execution. Display final todo list status. Tier 1 analyst acts on the recommendation in the comment. Report generation status provided if applicable.
 
 ```mermaid
 sequenceDiagram
@@ -154,3 +158,38 @@ sequenceDiagram
 
     %% Step 11: Completion
     Cline->>Analyst: Conclude runbook (result="Suspicious Login Triage complete for USER_ID from SOURCE_IP. Findings documented in case CASE_ID. Report Status: REPORT_GENERATION_STATUS.")
+
+## Rubric
+
+### 1. Entity Extraction (15 Points)
+*   **Key Entities (15 Points):** Did the agent correctly extract the `${USER_ID}` and `${SOURCE_IP}` from the alert data? (Bonus points for handling `${HOSTNAME}` if present).
+
+### 2. Context Gathering (20 Points)
+*   **User History (10 Points):** Did the agent lookup the user's recent history using `secops-mcp.lookup_entity`?
+*   **IP Enrichment (10 Points):** Did the agent properly enrich the source IP (e.g., using `common_steps/enrich_ioc.md` or direct GTI/SIEM lookups)?
+
+### 3. Activity Analysis (20 Points)
+*   **Recent Logins (10 Points):** Did the agent search for recent login activity (`secops-mcp.search_security_events`) for the user?
+*   **Pattern Recognition (10 Points):** Did the agent analyze the results for patterns (e.g., impossible travel, concurrent sessions) rather than just dumping logs?
+
+### 4. Correlation (10 Points)
+*   **Related Cases (10 Points):** Did the agent check for other open cases related to the User or IP?
+
+### 5. Documentation (10 Points)
+*   **SOAR Comment (10 Points):** Did the agent post a clear summary of findings and a recommendation to the SOAR case?
+
+### 6. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 7. Operational Metadata (5 Points)
+*   **Date/Time (3 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (2 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 8. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured, using Markdown correctly, and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to identify the User ID or Source IP from the inputs.
+*   Hallucinating events or tool outputs.
+*   Closing a case without documenting the findings in the system.
