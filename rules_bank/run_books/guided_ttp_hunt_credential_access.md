@@ -60,7 +60,11 @@ This runbook provides a template for hunting specific TTPs. This example focuses
 8.  **Escalate or Conclude:**
     *   If confirmed malicious activity is found, escalate by creating a new incident case or linking findings to an existing one.
     *   If no significant findings, conclude the hunt and document it.
-9.  **Completion:** Conclude the runbook execution.
+9.  **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   Conclude the runbook execution.
 
 ```mermaid
 sequenceDiagram
@@ -115,3 +119,32 @@ sequenceDiagram
     else No Significant Findings
         Cline->>Analyst: Conclude runbook (result="Guided TTP Hunt complete. No significant findings. Hunt documented.")
     end
+
+## Rubric
+
+### 1. Technique Understanding (20 Points)
+*   **Research (20 Points):** Did the agent correctly lookup the MITRE technique details (`get_threat_intel`) before hunting?
+
+### 2. Search Strategy (30 Points)
+*   **Query Formulation (15 Points):** Did the agent translate the technique details into valid SIEM queries (e.g., looking for `lsass.exe` access or browser file access)?
+*   **Execution (15 Points):** Did the agent execute the queries over the specified timeframe?
+
+### 3. Analysis (20 Points)
+*   **Result Review (10 Points):** Did the agent analyze the results for anomalies (e.g., unusual parent processes)?
+*   **Enrichment (10 Points):** Did the agent enrich suspicious findings?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Searching for the wrong technique.
+*   Executing generic queries that do not map to the specific credential access method.
+*   Failing to document the hypothesis or findings.

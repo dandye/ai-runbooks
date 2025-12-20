@@ -162,3 +162,33 @@ sequenceDiagram
 - **Audit Trail**: Complete record of all tools used, searches performed, and decisions made during triage process
 - **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
 - **Runbook Reference**: Clear identification of which runbook was executed to generate the report
+
+## Rubric
+
+### 1. Context & Duplicates (20 Points)
+*   **Initial Context (10 Points):** Did the agent retrieve full details for the case/alert?
+*   **Duplicate Check (10 Points):** Did the agent correctly check for and handle duplicates (`common_steps/check_duplicate_cases.md`)?
+
+### 2. Analysis & Enrichment (30 Points)
+*   **SIEM Context (15 Points):** Did the agent perform a targeted SIEM search (`secops-mcp.search_security_events`) relevant to the specific alert type?
+*   **Entity Enrichment (15 Points):** Did the agent enrich key entities using GTI and/or SIEM lookups?
+
+### 3. Assessment & Decision (20 Points)
+*   **Classification (10 Points):** Did the agent make a clear determination (FP/BTP/TP) supported by the evidence?
+*   **Documentation (10 Points):** Did the agent document the findings and rationale in the SOAR case comments?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Closing a True Positive alert as False Positive.
+*   Failing to check for duplicates before deep analysis.
+*   Hallucinating evidence to support a closure decision.

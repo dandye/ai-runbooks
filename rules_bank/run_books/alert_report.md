@@ -69,7 +69,11 @@ This runbook covers gathering essential details about the alert(s), associated e
     *   **Generate report file** with the path and formatted Markdown content.
 8.  **(Optional) Update SOAR Case:**
     *   Use `secops-soar.post_case_comment` to add a comment to `${CASE_ID}` stating that the report has been generated and providing the filename, or pasting a concise summary directly.
-9.  **Completion:** **Conclude runbook** execution.
+9.  **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   **Conclude runbook** execution.
 
 ```mermaid
 sequenceDiagram
@@ -136,3 +140,33 @@ sequenceDiagram
 
     %% Step 9: Completion
     Cline->>Analyst/User: Conclude runbook (result="Alert investigation summary report generated for Case CASE_ID.")
+
+## Rubric
+
+### 1. Data Collection (20 Points)
+*   **Context Gathering (10 Points):** Did the agent retrieve the full case/alert details?
+*   **Entity Identification (10 Points):** Did the agent correctly identify the key entities involved?
+
+### 2. Enrichment & Analysis (30 Points)
+*   **Enrichment (15 Points):** Did the agent enrich the key entities using GTI/SIEM?
+*   **Event Summary (15 Points):** Did the agent summarize the key alert events accurately?
+
+### 3. Report Generation (20 Points)
+*   **Formatting (10 Points):** Did the agent create a valid Markdown report file?
+*   **Content (10 Points):** Does the report include all required sections (Summary, Entities, Assessment)?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to generate the report file.
+*   Hallucinating entities or findings in the report.
+*   Reporting on the wrong Case ID.

@@ -70,7 +70,11 @@ Uses Tools:
 15. (Optional, based on user feedback) Attempt to attach the PDF to the SOAR case. *Note: Direct PDF attachment might require specific SOAR tools not always available. If attachment fails, post a comment with the local path to the MD/PDF report.*
 16. (Optional, based on user feedback) **Request user input** to confirm if they want to perform additional SOAR actions (tagging, priority change, insight, description update, assignment, incident declaration).
 17. (Optional, based on user feedback) Execute selected SOAR actions.
-18. **Conclude runbook** and present the final summary.
+18. **Conclude runbook**:
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   Present the final summary.
 
 ```mermaid
 sequenceDiagram
@@ -190,3 +194,33 @@ sequenceDiagram
         Cline->>Cline: Conclude runbook (result="Timeline analysis complete. No report generated.")
     end
 ```
+
+## Rubric
+
+### 1. Process Analysis (30 Points)
+*   **Parent Chaining (15 Points):** Did the agent successfully trace the parent process chain (`PROCESS_LAUNCH` searches) as far back as possible?
+*   **Classification (15 Points):** Did the agent correctly classify processes (Legitimate, LOLBIN, Malicious) using GTI?
+
+### 2. Timeline Construction (20 Points)
+*   **Data Aggregation (10 Points):** Did the agent aggregate events from multiple sources (Alerts, SIEM, Asset events)?
+*   **Chronology (10 Points):** Is the resulting timeline chronologically accurate?
+
+### 3. Report Generation (20 Points)
+*   **Formatting (10 Points):** Did the Markdown report include the required Process Trees (Text & Diagram) and Event Table?
+*   **Delivery (10 Points):** Did the agent follow the user's preference for PDF conversion/attachment?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to attempt parent process tracing.
+*   Generating a timeline with gross chronological errors.
+*   Missing the required Process Tree visualization in the report.

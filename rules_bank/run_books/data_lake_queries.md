@@ -42,6 +42,11 @@ Focuses on constructing and executing BigQuery SQL queries against security data
 3.  **Analyze Results:** Review the query results.
 4.  **Format/Save Results (Optional):** If needed, format the results and save them to a file using the "Generate report file" action.
 5.  **Document (Optional):** Document the query executed and a summary of the results in a relevant SOAR case using `post_case_comment`.
+6.  **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   Conclude the runbook execution.
 
 ```mermaid
 sequenceDiagram
@@ -109,3 +114,32 @@ sequenceDiagram
 - **Recommendations**: Suggestions for query optimization or additional analysis
 - **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
 - **Runbook Reference**: Clear identification of which runbook was executed to generate the report
+
+## Rubric
+
+### 1. Query Construction (25 Points)
+*   **Syntax (15 Points):** Did the agent construct a valid BigQuery SQL statement?
+*   **Optimization (10 Points):** Did the agent apply filters (time, fields) to optimize the query?
+
+### 2. Execution & Handling (25 Points)
+*   **Execution (15 Points):** Did the agent successfully run the query (`execute-query`)?
+*   **Result Handling (10 Points):** Did the agent handle the results appropriately (e.g., saving large results to a file)?
+
+### 3. Documentation (20 Points)
+*   **Logging (20 Points):** Did the agent document the query and a summary of the findings in the case?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Executing an unbounded query (no time limit) on a massive dataset.
+*   Failing to save or display the query results.
+*   Generating invalid SQL syntax without attempting correction.

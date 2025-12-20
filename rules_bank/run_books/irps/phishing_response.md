@@ -254,6 +254,40 @@ sequenceDiagram
         *   Suggestions for new detection rules or tuning existing ones.
         *   Recommendations for tool configuration changes or new tool requirements.
     5.  **Documentation:** Record this feedback within the SOAR case (`${CASE_ID}`) using `common_steps/document_in_soar.md` or a dedicated lessons learned repository.
+    6.  **Completion:**
+        *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+        *   **Action:** Record the current date and time of execution.
+        *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+
+## Rubric
+
+### 1. Artifact Analysis (20 Points)
+*   **Extraction (10 Points):** Did the agent extract all key artifacts (Sender, URLs, Attachments)?
+*   **Analysis (10 Points):** Did the agent enrich the artifacts to determine malice?
+
+### 2. Impact Assessment (20 Points)
+*   **Recipients (10 Points):** Did the agent identify who received/clicked the email?
+*   **Categorization (10 Points):** Did the agent categorize the phish (e.g., Credential, Malware)?
+
+### 3. Containment & Eradication (20 Points)
+*   **Blocking (10 Points):** Did the agent attempt to block malicious IOCs?
+*   **Cleanup (10 Points):** Did the agent attempt to delete/quarantine the emails?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to identify the scope (who else received it).
+*   Leaving malicious emails in user inboxes without attempting removal.
+*   Blocking legitimate business domains (FP) without checking.
 
 
 ## References

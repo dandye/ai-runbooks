@@ -61,7 +61,11 @@ This runbook outlines the process for conducting a PIR meeting, analyzing incide
 7.  **Finalize PIR Documentation:**
     *   Add the PIR summary and recommendations to the SOAR case (`${CASE_ID}`) using `secops-soar.post_case_comment`.
     *   Store any formal PIR report in the designated repository.
-8.  **Completion:** Conclude the runbook execution.
+8.  **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   Conclude the runbook execution.
 
 ```mermaid
 sequenceDiagram
@@ -109,3 +113,36 @@ sequenceDiagram
 ## Completion Criteria
 
 PIR meeting conducted, findings and recommendations documented, recommendations assigned and tracked, relevant documentation updates initiated, and PIR summary added to the SOAR case.
+
+## Rubric
+
+### 1. Data Gathering (20 Points)
+*   **Case Details (10 Points):** Did the agent retrieve the full case details?
+*   **Timeline Construction (10 Points):** Did the agent construct/review the incident timeline?
+
+### 2. Analysis (20 Points)
+*   **Root Cause (10 Points):** Did the agent identify/document the root cause?
+*   **Gap Analysis (10 Points):** Did the agent document specific gaps or failures?
+
+### 3. Action Items (20 Points)
+*   **Recommendations (10 Points):** Did the agent list SMART recommendations?
+*   **Tracking (10 Points):** Did the agent propose/initiate a tracking mechanism for the action items?
+
+### 4. Documentation (10 Points)
+*   **SOAR Update (10 Points):** Did the agent post the PIR summary to the case?
+
+### 5. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 6. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 7. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Conducting a PIR without reviewing the incident timeline.
+*   Failing to document any recommendations.
+*   Ignoring the root cause of the incident.

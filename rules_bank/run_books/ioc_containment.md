@@ -122,3 +122,37 @@ sequenceDiagram
          DocumentInSOAR-->>Cline: Results: COMMENT_POST_STATUS
          Cline->>Analyst: Conclude runbook (result="IOC Containment runbook aborted for IOC_VALUE.")
     end
+
+## Runbook Conclusion
+*   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+*   **Action:** Record the current date and time of execution.
+*   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+*   Conclude the runbook execution.
+
+## Rubric
+
+### 1. Reputation Verification (20 Points)
+*   **Check (20 Points):** Did the agent perform a final reputation check (GTI) before containment?
+
+### 2. Containment Logic (30 Points)
+*   **Confirmation (15 Points):** Did the agent explicitly ask the user for confirmation?
+*   **Execution (15 Points):** Did the agent execute the correct containment action (e.g., blocklist add) only *after* confirmation?
+
+### 3. Documentation (20 Points)
+*   **Log (20 Points):** Did the agent document the action taken (or aborted) in the case?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Blocking an IOC without user confirmation.
+*   Failing to document the containment action.
+*   Blocking the wrong IOC type (e.g., treating a hash as an IP).

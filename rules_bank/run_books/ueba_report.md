@@ -93,6 +93,9 @@ sequenceDiagram
     Cline->>SOAR: post_case_comment(case_id=CASE_ID, comment="UEBA Analysis Summary... Assessment: [...]. Recommendation: [Close/Monitor/Escalate]")
     SOAR-->>Cline: Comment Confirmation
 
+    Note over Cline: Generate visual summary and metadata
+    Cline->>Cline: Generate Mermaid sequence diagram
+    Cline->>Cline: Record execution date/time & cost
     Cline->>Analyst/User: Conclude runbook (result="UEBA analysis complete. Findings documented.")
 ```
 
@@ -123,3 +126,33 @@ sequenceDiagram
 - **Response Recommendations**: Specific next steps based on threat assessment
 - **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
 - **Runbook Reference**: Clear identification of which runbook was executed to generate the report
+
+## Rubric
+
+### 1. Context Gathering (20 Points)
+*   **User/Entity Context (10 Points):** Did the agent retrieve SIEM context (`lookup_entity`) for the user/entity involved?
+*   **Log Retrieval (10 Points):** Did the agent search for specific logs (`search_security_events`) related to the anomaly?
+
+### 2. Analysis (30 Points)
+*   **Baseline Comparison (15 Points):** Did the agent compare observed activity to a baseline or historical patterns?
+*   **Enrichment (15 Points):** Did the agent enrich associated indicators (IPs, files)?
+
+### 3. Synthesis & Conclusion (20 Points)
+*   **Assessment (10 Points):** Did the agent make a clear determination (Benign vs. Malicious)?
+*   **Documentation (10 Points):** Did the agent document the findings and recommendation in the SOAR case?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Closing a UEBA alert without checking raw logs.
+*   Failing to check the user's historical/baseline activity.
+*   Hallucinating explanations for the anomaly.

@@ -199,3 +199,36 @@ sequenceDiagram
         *   Suggestions for new detection rules or tuning existing ones.
         *   Recommendations for tool configuration changes or new tool requirements.
     5.  **Documentation:** Record this feedback within the SOAR case (`${CASE_ID}`) using `common_steps/document_in_soar.md` or a dedicated lessons learned repository.
+    6.  **Completion:**
+        *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+        *   **Action:** Record the current date and time of execution.
+        *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+
+## Rubric
+
+### 1. Preparation (10 Points)
+*   **Readiness (10 Points):** Did the agent verify or acknowledge the prerequisites (e.g., tool connectivity)?
+
+### 2. Identification (20 Points)
+*   **Activity Analysis (10 Points):** Did the agent search for specific anomalous activities (e.g., logins, data transfer)?
+*   **Likelihood Assessment (10 Points):** Did the agent explicitly assess the compromise likelihood?
+
+### 3. Containment (30 Points)
+*   **Confirmation (15 Points):** Did the agent confirm containment actions (disable/reset/terminate) with the user?
+*   **Execution (15 Points):** Did the agent attempt to execute the confirmed actions?
+
+### 4. Eradication & Recovery (20 Points)
+*   **Persistence Check (10 Points):** Did the agent check for persistence mechanisms (e.g., forwarding rules, OAuth)?
+*   **Recovery Confirmation (10 Points):** Did the agent verify the account was secured before re-enabling?
+
+### 5. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 6. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### Critical Failures (Automatic Failure)
+*   Executing containment (e.g., disabling an account) without explicit confirmation.
+*   Restoring an account without checking for persistence.
+*   Failing to document the findings in the SOAR case.

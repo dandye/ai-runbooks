@@ -54,6 +54,9 @@ Focuses on searching SIEM and data lake sources for specific IOC values (IPs, do
 7.  **Escalate or Conclude:**
     *   If confirmed malicious activity related to the hunted IOCs is found, escalate by creating/updating an incident case.
     *   If no significant findings, conclude the hunt and document it.
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
 
 ```mermaid
 sequenceDiagram
@@ -132,3 +135,36 @@ sequenceDiagram
 - **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
 - **Runbook Reference**: Clear identification of which runbook was executed to generate the report
 - **Todo List Tracking**: Final status of all hunt tasks with completion percentage
+
+## Rubric
+
+### 1. Scope & Strategy (15 Points)
+*   **IOC Parsing (5 Points):** Did the agent correctly parse and list all IOCs to be hunted?
+*   **Initial Check (10 Points):** Did the agent perform a preliminary check (`get_ioc_matches`)?
+
+### 2. Search Execution (25 Points)
+*   **Query Construction (15 Points):** Did the agent construct valid UDM queries for each IOC?
+*   **Iterative Search (10 Points):** Did the agent loop through the IOC list and execute searches for all targets?
+
+### 3. Analysis & Enrichment (20 Points)
+*   **Hit Analysis (10 Points):** Did the agent analyze search hits for validity (TP/FP)?
+*   **Enrichment (10 Points):** Did the agent enrich confirmed hits?
+
+### 4. Reporting (10 Points)
+*   **Documentation (10 Points):** Did the agent document the hunt results, including negative findings, in the case?
+
+### 5. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 6. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 7. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to search for all provided IOCs.
+*   Documenting a "clean" hunt when there were obvious search hits.
+*   Searching over an incorrect timeframe (e.g., 1 hour instead of 72).

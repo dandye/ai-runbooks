@@ -183,7 +183,37 @@ digraph CaseAnalysisFlow {
     // Step 7: Generate Report
     GenerateReport [label="Step 7: Generate Final Report"]; // Uses default style
     RelatedEvents_Result -> GenerateReport;
-    FinalReport [label="Final Markdown Report\n(Conclude runbook)", shape=note, style=filled, fillcolor=lightgrey]; // Explicit style for report
+    FinalReport [label="Final Markdown Report\n(Conclude runbook)\n+ Sequence Diagram\n+ Date/Time/Cost", shape=note, style=filled, fillcolor=lightgrey]; // Explicit style for report
     GenerateReport -> FinalReport;
 }
 ```
+
+## Rubric
+
+### 1. Analysis Strategy (20 Points)
+*   **Planning (10 Points):** Did the agent outline a clear analysis plan (Plan Mode) before executing?
+*   **Data Gathering (10 Points):** Did the agent retrieve full details (`get_case_full_details`) for the target cases?
+
+### 2. Grouping & Prioritization (30 Points)
+*   **Logical Grouping (15 Points):** Did the agent group cases based on shared entities, alert types, or logical patterns (e.g., CVEs, Phishing)?
+*   **Prioritization (15 Points):** Did the agent assign priorities to the groups based on severity/impact?
+
+### 3. Enrichment & Correlation (20 Points)
+*   **Indicator Enrichment (10 Points):** Did the agent enrich key indicators for the high-priority groups?
+*   **Event Search (10 Points):** Did the agent search for related events (e.g., based on hostname)?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to retrieve case details before grouping.
+*   Grouping unrelated cases together without justification.
+*   Hallucinating entities that are not present in the cases.

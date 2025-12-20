@@ -217,3 +217,37 @@ sequenceDiagram
         *   Suggestions for new detection rules or tuning existing ones.
         *   Recommendations for tool configuration changes or new tool requirements.
     5.  **Documentation:** Record this feedback within the SOAR case (`${CASE_ID}`) using `common_steps/document_in_soar.md` or a dedicated lessons learned repository.
+    6.  **Completion:**
+        *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+        *   **Action:** Record the current date and time of execution.
+        *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+
+## Rubric
+
+### 1. Preparation & Identification (20 Points)
+*   **Strain ID (10 Points):** Did the agent identify the ransomware strain?
+*   **Access Vector (10 Points):** Did the agent investigate how the ransomware entered?
+
+### 2. Containment (30 Points)
+*   **Isolation (15 Points):** Did the agent immediately pursue endpoint isolation?
+*   **Network (15 Points):** Did the agent contain network IOCs?
+
+### 3. Eradication & Recovery (20 Points)
+*   **Strategy (10 Points):** Did the agent evaluate recovery options (Decryptor vs. Backup vs. Rebuild)?
+*   **Verification (10 Points):** Did the agent ensure systems were clean before reconnecting?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Delaying containment to perform deep analysis.
+*   Failing to check for lateral movement.
+*   Restoring systems without verifying backups or cleaning.

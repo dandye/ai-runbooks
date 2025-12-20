@@ -43,6 +43,11 @@ Summarizes key alerts, events, entity analysis, enrichment data, actions taken, 
 6.  **Format Report:** Compile the synthesized information and the Mermaid diagram into a final Markdown report.
 7.  **Generate report file:** Save the report with a standardized name (e.g., `./reports/case_report_${CASE_ID}_${timestamp}.md`).
 8.  **(Optional) Update Case:** Add a comment to the SOAR case indicating the report has been generated and its location using `post_case_comment`.
+9.  **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   Conclude the runbook execution.
 
 ```mermaid
 sequenceDiagram
@@ -106,3 +111,33 @@ sequenceDiagram
 - **Workflow Diagram**: Mermaid visualization of investigation process
 - **SOAR Documentation**: Case comment indicating report completion and location
 - **Recommendations**: Actionable items for process or security improvements
+
+## Rubric
+
+### 1. Data Synthesis (20 Points)
+*   **Comprehensive Review (10 Points):** Did the agent review alerts, comments, and events?
+*   **Methodology (10 Points):** Did the agent document the investigation steps taken?
+
+### 2. Report Structure (30 Points)
+*   **Completeness (15 Points):** Does the report contain all required sections (Executive Summary, Timeline, Findings)?
+*   **Diagram (15 Points):** Did the agent generate a Mermaid diagram of the investigation workflow?
+
+### 3. Output (20 Points)
+*   **File Generation (10 Points):** Was the report file created correctly?
+*   **Case Update (10 Points):** Was the SOAR case updated with the report location?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Creating a report with empty sections.
+*   Failing to create the report file.
+*   Misrepresenting the investigation findings.

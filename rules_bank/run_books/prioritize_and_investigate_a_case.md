@@ -75,6 +75,40 @@ sequenceDiagram
         Note over Cline: Conduct post-investigation review
         Cline->>Cline: Execute post_incident_review.md(${CASE_ID}=X, ${INCIDENT_REPORT_PATH}=generated report)
     end
+    Note over Cline: Generate visual summary and metadata
+    Cline->>Cline: Generate Mermaid sequence diagram
+    Cline->>Cline: Record execution date/time & cost
     Cline->>Cline: Conclude runbook (result="Completed investigation for Case X. Summary posted as comment and report generated.")
 
 ```
+
+## Rubric
+
+### 1. Case Prioritization (20 Points)
+*   **Listing & Filtering (10 Points):** Did the agent list cases and identify a high-priority candidate based on alerts/severity?
+*   **Verification (10 Points):** Did the agent retrieve full details (`get_case_full_details`) to confirm the priority?
+
+### 2. Investigation Execution (30 Points)
+*   **Rule Analysis (10 Points):** Did the agent retrieve and analyze the rule logic (`list_security_rules`) corresponding to the alerts?
+*   **Entity Context (10 Points):** Did the agent lookup key entities and search for broader activity (`search_security_events`)?
+*   **Correlation (10 Points):** Did the agent check for related open cases?
+
+### 3. Reporting & Output (20 Points)
+*   **Investigation Report (10 Points):** Did the agent generate a structured investigation report file?
+*   **SOAR Comment (10 Points):** Did the agent post a summary of the investigation to the SOAR case?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Investigating the wrong case ID.
+*   Failing to analyze the underlying rule logic.
+*   Hallucinating events or rule definitions.

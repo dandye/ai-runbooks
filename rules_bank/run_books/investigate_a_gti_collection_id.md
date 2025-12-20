@@ -123,4 +123,36 @@ sequenceDiagram
     Cline->>Cline: Generate report file (path="./reports/enhanced_report_${COLLECTION_ID}_${timestamp}.md", content=...)
     Note over Cline: Report file created
 
+    Cline->>Cline: Generate Mermaid sequence diagram
+    Cline->>Cline: Record execution date/time & cost
     Cline->>User: Conclude runbook (result="Enhanced investigation complete. Report generated.")
+
+## Rubric
+
+### 1. Collection Analysis (20 Points)
+*   **Initial Retrieval (10 Points):** Did the agent successfully retrieve the collection report (`get_collection_report`)?
+*   **Relationship Expansion (10 Points):** Did the agent investigate relevant relationships (`get_entities_related_to_a_collection`)?
+
+### 2. Enrichment & Correlation (30 Points)
+*   **Entity Enrichment (15 Points):** Did the agent enrich the entities found in the collection using GTI tools?
+*   **Local Correlation (15 Points):** Did the agent search the local SIEM (`search_security_events`) for any of the identified indicators?
+
+### 3. Reporting (20 Points)
+*   **Report Generation (10 Points):** Did the agent generate a Markdown report file with a timestamped filename?
+*   **Synthesis (10 Points):** Does the report clearly synthesize GTI findings with local environmental context?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to correlate GTI findings with the local environment.
+*   Reporting a "hit" without verifying the timeframe or directionality of the traffic.
+*   Hallucinating entities that were not returned by the GTI tools.

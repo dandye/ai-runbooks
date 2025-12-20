@@ -41,6 +41,11 @@ Focuses on analyzing existing information about detection rules including alert 
 5.  **Generate Mermaid Diagram:** Create a Mermaid sequence diagram summarizing the *tools used to gather data for this report*.
 6.  **Format Report:** Compile the synthesized information and the Mermaid diagram into a final Markdown report.
 7.  **Generate report file:** Save the report with a standardized name (e.g., `./reports/detection_report_${RULE_ID}_${timestamp}.md`).
+8.  **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   Conclude the runbook execution.
 
 ```mermaid
 sequenceDiagram
@@ -106,3 +111,33 @@ sequenceDiagram
 - **Comparative Analysis**: Benchmarking against similar rules or industry standards
 - **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
 - **Runbook Reference**: Clear identification of which runbook was executed to generate the report
+
+## Rubric
+
+### 1. Data Gathering (20 Points)
+*   **Logic Retrieval (10 Points):** Did the agent retrieve the rule definition?
+*   **Performance Data (10 Points):** Did the agent gather historical alert data?
+
+### 2. Analysis (20 Points)
+*   **Metric Analysis (10 Points):** Did the agent analyze alert volume and TP/FP trends?
+*   **Effectiveness (10 Points):** Did the agent assess rule effectiveness based on the data?
+
+### 3. Reporting (20 Points)
+*   **Format (10 Points):** Did the agent use the standard reporting template?
+*   **Recommendations (10 Points):** Did the agent provide tuning or optimization recommendations?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to retrieve historical data.
+*   Generating a report with empty metrics sections.
+*   Reporting on the wrong Rule ID.

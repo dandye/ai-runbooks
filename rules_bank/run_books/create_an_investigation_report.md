@@ -68,7 +68,11 @@ Consolidate findings from a completed or ongoing investigation involving various
     *   If `${UPLOAD_CHOICE}` is "Yes, Drive" *(and Drive tool exists)*: Execute `google-drive-mcp.upload_to_drive` with `${REPORT_FILE_PATH}`.
     *   If `${UPLOAD_CHOICE}` is "Yes, GCS" *(and GCS tool exists)*: Execute `gcs-mcp.upload_to_gcs` with `${REPORT_FILE_PATH}`.
     *   Document upload status/location via `common_steps/document_in_soar.md`.
-11. **Completion:** **Conclude runbook** execution.
+11. **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   **Conclude runbook** execution.
 
 ```mermaid
 sequenceDiagram
@@ -122,3 +126,30 @@ sequenceDiagram
 ## Completion Criteria
 
 Investigation findings synthesized, report structured according to guidelines, content reviewed/redacted by analyst, report file generated locally, and SOAR case updated with attachment status or fallback comment. Optional external upload handled if requested and possible.
+
+## Rubric
+
+### 1. Data Synthesis (20 Points)
+*   **Context Gathering (10 Points):** Did the agent gather sufficient context from the case?
+*   **Synthesis (10 Points):** Did the agent combine findings from multiple tools (SIEM, GTI, etc.)?
+
+### 2. Reporting Workflow (30 Points)
+*   **Redaction (10 Points):** Did the agent explicitly prompt for redaction/review?
+*   **Attachment (10 Points):** Did the agent attempt to attach the report to the SOAR case?
+*   **Upload (10 Points):** Did the agent offer external upload options (if applicable)?
+
+### 3. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 4. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 5. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Skipping the redaction review step.
+*   Failing to generate the report file.
+*   Uploading sensitive data to external storage without confirmation.

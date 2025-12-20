@@ -95,3 +95,39 @@ sequenceDiagram
         Cline->>Cline: Generate report file (path="./reports/...", content=ReportMarkdown)
         Cline->>Cline: Conclude runbook (result="Environment sweep based on GTI Collection 'GTI-XYZ' complete. Report generated locally. Recommend manual case creation if needed.")
     end
+
+## Runbook Conclusion
+*   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+*   **Action:** Record the current date and time of execution.
+*   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+*   Conclude the runbook execution.
+
+## Rubric
+
+### 1. Collection Analysis (20 Points)
+*   **Retrieval (10 Points):** Did the agent retrieve the GTI collection details?
+*   **Parsing (10 Points):** Did the agent extract IOCs and TTPs from the collection?
+
+### 2. Environmental Sweep (30 Points)
+*   **IOC Sweep (15 Points):** Did the agent search for the specific IOCs in the SIEM?
+*   **TTP Sweep (15 Points):** Did the agent search for relevant TTPs/patterns in the SIEM?
+
+### 3. Reporting (20 Points)
+*   **Synthesis (10 Points):** Did the agent synthesize the findings into a coherent report?
+*   **Delivery (10 Points):** Did the agent post the report to the case (if found) or save it locally?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to check the local environment.
+*   Reporting a match without verifying it in the SIEM.
+*   Ignoring TTPs in favor of just IOCs (if TTPs were available).
