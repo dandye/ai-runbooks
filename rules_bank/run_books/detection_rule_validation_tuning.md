@@ -73,7 +73,11 @@ This runbook covers the analysis of a single detection rule's historical perform
     *   Include: Rule metadata, performance statistics, false positive analysis, true positive validation, tuning recommendations, expected impact assessment
     *   Include the todo list tracking information showing all completed validation tasks
 10. **Handover:** Assign the case/report to the Security Engineering team for implementation and testing of the proposed tuning changes.
-11. **Completion:** Conclude the runbook execution.
+11. **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   Conclude the runbook execution.
 
 ```mermaid
 sequenceDiagram
@@ -142,3 +146,33 @@ sequenceDiagram
 
     %% Step 10: Completion
     Cline->>Analyst/Engineer: Conclude runbook (result="Detection Rule Validation & Tuning complete for RULE_ID. Recommendations documented and handed over.")
+
+## Rubric
+
+### 1. Analysis Logic (20 Points)
+*   **Rule Retrieval (10 Points):** Did the agent retrieve the current rule definition?
+*   **Alert Statistics (10 Points):** Did the agent gather statistical data on the rule's performance (alert counts, severity)?
+
+### 2. Validation Sampling (30 Points)
+*   **FP Analysis (15 Points):** Did the agent sample and analyze False Positive alerts to understand the root cause?
+*   **TP Verification (15 Points):** Did the agent sample and verify True Positive alerts?
+
+### 3. Tuning & Reporting (20 Points)
+*   **Recommendations (10 Points):** Did the agent propose specific logic changes based on the analysis?
+*   **Documentation (10 Points):** Did the agent document the findings and recommendations in the case/report?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Proposing logic changes without analyzing historical alerts.
+*   Failing to distinguish between False Positives and True Positives.
+*   Ignoring the rule's original intent.

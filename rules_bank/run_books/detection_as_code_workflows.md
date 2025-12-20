@@ -43,6 +43,11 @@ Covers rule creation in YARA-L format, testing procedures against historical dat
 4.  **Peer Review:** Initiate a code review process for the new rule.
 5.  **Deployment:** Merge the rule to the main branch and trigger the deployment pipeline (or manually deploy using appropriate tools like `create_detection_rule`).
 6.  **Monitoring:** Monitor the rule's performance post-deployment.
+7.  **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   Conclude the runbook execution.
 
 ```mermaid
 sequenceDiagram
@@ -117,3 +122,33 @@ sequenceDiagram
 - **Rollback Plan**: Procedures for emergency rule disabling or modification
 - **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
 - **Runbook Reference**: Clear identification of which runbook was executed to generate the report
+
+## Rubric
+
+### 1. Rule Development (20 Points)
+*   **Logic Creation (10 Points):** Did the agent draft reasonable detection logic based on the input?
+*   **Syntax Check (10 Points):** Did the agent attempt to validate the query syntax (if tools available)?
+
+### 2. Testing (30 Points)
+*   **Query Execution (15 Points):** Did the agent test the rule against historical data?
+*   **Result Analysis (15 Points):** Did the agent analyze the test results (e.g., volume, false positives)?
+
+### 3. Pipeline Integration (20 Points)
+*   **Commit/Merge (10 Points):** Did the agent simulate or perform the version control steps?
+*   **Documentation (10 Points):** Did the agent document the deployment/testing status?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Deploying a rule without testing it.
+*   Ignoring syntax errors in the detection logic.
+*   Failing to document the rule's purpose.

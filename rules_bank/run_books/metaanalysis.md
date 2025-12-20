@@ -42,6 +42,11 @@ Focuses on analyzing aggregated data from SIEM, SOAR, threat intelligence, and s
 4.  **Synthesize Findings:** Summarize the key findings and insights derived from the analysis.
 5.  **Develop Recommendations:** Based on the findings, formulate actionable recommendations (e.g., tune specific detection rules, update runbooks, implement new security controls, focus threat hunting efforts).
 6.  **Generate Report:** Create a comprehensive report detailing the analysis objective, methodology, data sources, findings, and recommendations using the "Generate report file" action. Include visualizations (e.g., Mermaid diagrams summarizing data flow or findings) if applicable.
+7.  **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   Conclude the runbook execution.
 
 ```mermaid
 sequenceDiagram
@@ -118,3 +123,33 @@ sequenceDiagram
 - **Technical Appendix**: Detailed methodology, data sources, and analysis procedures
 - **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
 - **Runbook Reference**: Clear identification of which runbook was executed to generate the report
+
+## Rubric
+
+### 1. Scope & Collection (20 Points)
+*   **Definition (10 Points):** Did the agent clearly define the analysis scope?
+*   **Data Gathering (10 Points):** Did the agent collect data from multiple sources (SIEM, SOAR) over the defined timeframe?
+
+### 2. Analysis (30 Points)
+*   **Aggregation (15 Points):** Did the agent aggregate the data effectively?
+*   **Pattern Recognition (15 Points):** Did the agent identify trends, outliers, or correlations?
+
+### 3. Reporting (20 Points)
+*   **Findings (10 Points):** Did the agent clearly summarize the key findings?
+*   **Recommendations (10 Points):** Did the agent provide actionable recommendations based on the analysis?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to collect data from the specified sources.
+*   Drawing conclusions not supported by the collected data.
+*   Generating a report with no actionable insights.

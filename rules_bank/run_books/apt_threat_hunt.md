@@ -85,7 +85,11 @@ Focuses on SIEM log analysis and GTI correlation for specific TTPs and IOCs rela
         *   Recommendations/Escalation (if applicable).
         *   Workflow Diagram (Mermaid).
     *   **Execute Report Generation:** Call `common_steps/generate_report_file.md` with the synthesized report content, `REPORT_TYPE="apt_hunt_report"`, and `REPORT_NAME_SUFFIX=${THREAT_ACTOR_ID}`.
-9.  **Escalation/Conclusion:** Escalate confirmed threats or conclude the hunt based on findings. Update `${HUNT_CASE_ID}` status if applicable.
+9.  **Escalation/Conclusion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   Escalate confirmed threats or conclude the hunt based on findings. Update `${HUNT_CASE_ID}` status if applicable.
 
 ```mermaid
 sequenceDiagram
@@ -177,3 +181,33 @@ sequenceDiagram
 ## Completion Criteria
 
 Intelligence gathered, IOCs and TTPs searched in SIEM, findings analyzed and enriched (if applicable), results documented in SOAR (optional), and a final report generated. Appropriate escalation or conclusion based on findings.
+
+## Rubric
+
+### 1. Intelligence Gathering (25 Points)
+*   **Actor Identification (10 Points):** Did the agent correctly identify and retrieve details for the target APT?
+*   **TTP/IOC Extraction (15 Points):** Did the agent extract relevant TTPs and IOCs from GTI for the hunt?
+
+### 2. Search Strategy (25 Points)
+*   **IOC Search (10 Points):** Did the agent check for both IOC matches (`get_ioc_matches`) and perform raw log searches?
+*   **TTP Search (15 Points):** Did the agent formulate and execute queries based on the actor's known TTPs?
+
+### 3. Analysis & Findings (20 Points)
+*   **Enrichment (10 Points):** Did the agent enrich any hits found during the search?
+*   **Negative Findings (10 Points):** Did the agent correctly document negative findings (searches with no results)?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Hunting for the wrong actor.
+*   Failing to translate MITRE TTPs into SIEM queries.
+*   Reporting false positives as confirmed threats without verification.

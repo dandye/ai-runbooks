@@ -72,7 +72,11 @@ This runbook covers in-depth analysis of a single IOC (IP, Domain, Hash, URL) us
     *   **Else (No CASE_ID or SKIP_SOAR is true):**
         *   Prepare `REPORT_CONTENT` similar to `COMMENT_TEXT` but formatted for a standalone Markdown report, including a Mermaid diagram of the workflow performed.
         *   Execute `common_steps/generate_report_file.md` with `REPORT_CONTENT`, `REPORT_TYPE="deep_dive_ioc"`, `REPORT_NAME_SUFFIX=${IOC_VALUE}`. Obtain `${REPORT_FILE_PATH}` and `${WRITE_STATUS}`.
-8.  **Completion:** Conclude the runbook execution. Inform analyst of completion status and report location (SOAR comment or local file path).
+8.  **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   **Conclude runbook** execution. Inform analyst of completion status and report location.
 
 ```mermaid
 sequenceDiagram
@@ -150,3 +154,33 @@ sequenceDiagram
         GenerateReport-->>Cline: Results: REPORT_FILE_PATH, WRITE_STATUS
         Cline->>Analyst: Conclude runbook (result="Deep Dive IOC Analysis complete for IOC_VALUE. Report generated at REPORT_FILE_PATH.")
     end
+
+## Rubric
+
+### 1. Advanced Enrichment (25 Points)
+*   **GTI Depth (10 Points):** Did the agent retrieve the detailed GTI report and identify associated threats?
+*   **Pivoting (15 Points):** Did the agent correctly pivot to find related entities (`common_steps/pivot_on_ioc_gti.md`)?
+
+### 2. SIEM Investigation (25 Points)
+*   **Deep Search (10 Points):** Did the agent perform a comprehensive SIEM search for the IOC and its related entities?
+*   **Contextualization (15 Points):** Did the agent prioritize observed related IOCs for further enrichment?
+
+### 3. Synthesis & Reporting (20 Points)
+*   **Correlation (10 Points):** Did the agent correlate findings with existing alerts and cases?
+*   **Report Quality (10 Points):** Did the agent produce a detailed report or SOAR comment summarizing the deep dive?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to pivot on the IOC.
+*   Only performing a basic lookup without deep SIEM search.
+*   Missing obvious connections to existing open cases.

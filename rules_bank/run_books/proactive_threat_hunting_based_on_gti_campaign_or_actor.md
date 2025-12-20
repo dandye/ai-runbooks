@@ -125,3 +125,40 @@ sequenceDiagram
              Cline->>Cline: Conclude runbook (result="Proactive threat hunt for `${GTI_COLLECTION_ID}` complete. Findings summarized. No output action taken.")
         end
     end
+
+## Runbook Conclusion
+*   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+*   **Action:** Record the current date and time of execution.
+*   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+*   Conclude the runbook execution.
+
+## Rubric
+
+### 1. Collection Intelligence (20 Points)
+*   **Retrieval (10 Points):** Did the agent successfully retrieve the campaign/actor details (`get_collection_report`)?
+*   **IOC Extraction (10 Points):** Did the agent extract all relevant IOCs from the collection?
+
+### 2. Hunting & Correlation (30 Points)
+*   **Initial Check (10 Points):** Did the agent check for IOC matches (`get_ioc_matches`)?
+*   **Deep Search (10 Points):** Did the agent perform targeted SIEM searches for confirmed IOCs?
+*   **Pivoting (10 Points):** Did the agent pivot on confirmed hits to find related infrastructure?
+
+### 3. Synthesis (20 Points)
+*   **Contextualization (10 Points):** Did the agent correlate the findings with the original campaign context?
+*   **Reporting (10 Points):** Did the agent produce a summary report or case update?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to check the local environment for the campaign's IOCs.
+*   Reporting a hit based solely on external intelligence without local verification.
+*   Hallucinating connections that do not exist in the data.

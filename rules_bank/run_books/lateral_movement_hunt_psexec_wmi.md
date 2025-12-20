@@ -72,7 +72,11 @@ This runbook provides a template for hunting specific lateral movement TTPs, foc
 10. **Escalate or Conclude:**
     *   If confirmed lateral movement or tool abuse is found, escalate by creating a new incident case or linking findings to an existing one.
     *   If no significant findings, conclude the hunt and document it thoroughly.
-11. **Completion:** Conclude the runbook execution.
+11. **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   Conclude the runbook execution.
 
 ```mermaid
 sequenceDiagram
@@ -153,3 +157,33 @@ sequenceDiagram
     else No Significant Findings
         Cline->>Analyst: Conclude runbook (result="Lateral Movement Hunt complete. No significant findings. Hunt documented.")
     end
+
+## Rubric
+
+### 1. Technique Research (15 Points)
+*   **Context Gathering (15 Points):** Did the agent research the TTPs (`get_threat_intel`) to inform the search queries?
+
+### 2. Query Development (25 Points)
+*   **PsExec Queries (10 Points):** Did the agent formulate queries targeting PsExec indicators (ServiceInstalled, etc.)?
+*   **WMI Queries (10 Points):** Did the agent formulate queries targeting WMI abuse (process spawning, command lines)?
+*   **Scope Application (5 Points):** Did the agent apply the target scope correctly?
+
+### 3. Execution & Correlation (20 Points)
+*   **Search Execution (10 Points):** Did the agent run the searches over the requested timeframe?
+*   **Network Correlation (10 Points):** Did the agent attempt to correlate process events with network connections (e.g., SMB/445)?
+
+### 4. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 5. Operational Metadata (10 Points)
+*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 6. Resilience & Quality (10 Points)
+*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to execute any searches.
+*   Searching only for "PsExec" keyword without looking for behavioral indicators (e.g., service installation).
+*   Ignoring obvious lateral movement signs in search results.
