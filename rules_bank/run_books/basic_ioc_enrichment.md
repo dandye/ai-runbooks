@@ -79,7 +79,11 @@ This runbook covers fundamental enrichment steps using readily available GTI and
         *   Prepare `REPORT_CONTENT` similar to `COMMENT_TEXT` but formatted for a standalone report.
         *   Execute `common_steps/generate_report_file.md` with `REPORT_CONTENT`, `REPORT_TYPE="ioc_enrichment"`, `REPORT_NAME_SUFFIX=${IOC_VALUE}`. Obtain `${REPORT_GENERATION_STATUS}`.
     *   **Else:** Set `${REPORT_GENERATION_STATUS}` = "Skipped".
-9.  **Completion:** **Conclude runbook** execution. Present the key findings, assessment, recommendation, documentation status, and report generation status to the analyst.
+9.  **Completion:**
+    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
+    *   **Action:** Record the current date and time of execution.
+    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
+    *   **Conclude runbook** execution. Present the key findings, assessment, recommendation, documentation status, and report generation status to the analyst.
 
 ```mermaid
 sequenceDiagram
@@ -139,3 +143,40 @@ sequenceDiagram
 
     %% Step 9: Completion
     Cline->>Analyst: Conclude runbook (result="Basic IOC enrichment v2 complete for IOC_VALUE. Assessment: ASSESSMENT. Recommendation: RECOMMENDATION. Documentation: DOCUMENTATION_STATUS. Report: REPORT_GENERATION_STATUS.")
+
+## Rubric
+
+### 1. Input Validation (5 Points)
+*   **IOC Identification (5 Points):** Did the agent correctly identify the `${IOC_VALUE}` and `${IOC_TYPE}`?
+
+### 2. Enrichment Execution (25 Points)
+*   **GTI Lookup (10 Points):** Did the agent successfully retrieve the GTI report (`common_steps/enrich_ioc.md` or direct tool)?
+*   **Relationship Pivot (10 Points):** Did the agent attempt to find relevant relationships (e.g., resolutions for domains, contacting IPs for hashes) using `common_steps/pivot_on_ioc_gti.md`?
+*   **SIEM Lookup (5 Points):** Did the agent check for local SIEM matches or entity details?
+
+### 3. Activity Analysis (20 Points)
+*   **Event Search (10 Points):** Did the agent search for recent security events (`secops-mcp.search_security_events`) involving the IOC?
+*   **Case Correlation (10 Points):** Did the agent check for existing open cases (`common_steps/find_relevant_soar_case.md`) to avoid duplication?
+
+### 4. Synthesis & Assessment (20 Points)
+*   **Risk Assessment (10 Points):** Did the agent provide a clear risk assessment (Low/High/etc.) based on the combined GTI and SIEM data?
+*   **Recommendation (10 Points):** Did the agent offer a logical next step (e.g., "Escalate to Tier 2" if malicious and active, "Close" if benign)?
+
+### 5. Documentation (10 Points)
+*   **SOAR/Report (10 Points):** Did the agent document the findings in the provided Case ID OR offer/generate a report if no case was provided?
+
+### 6. Visual Summary (10 Points)
+*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
+
+### 7. Operational Metadata (5 Points)
+*   **Date/Time (3 Points):** Did the agent record the date and time of the execution?
+*   **Cost/Runtime (2 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
+
+### 8. Resilience & Quality (5 Points)
+*   **Error Handling (3 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
+*   **Output Formatting (2 Points):** Is the final output well-structured and free of internal monologue artifacts?
+
+### Critical Failures (Automatic Failure)
+*   Failing to check GTI/Threat Intel for the IOC.
+*   Hallucinating findings that do not exist.
+*   Declaring an IOC "Clean" without checking recent internal activity (SIEM).
