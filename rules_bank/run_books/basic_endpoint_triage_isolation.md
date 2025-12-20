@@ -124,3 +124,30 @@ sequenceDiagram
 
     %% Step 9: Completion
     Cline->>Analyst: Conclude runbook (result="Basic Endpoint Triage & Isolation runbook complete for ENDPOINT_ID.")
+
+## Rubric
+
+### 1. Context Gathering (20 Points)
+*   **Case Details (10 Points):** Did the agent correctly retrieve the full case details using `secops-soar.get_case_full_details`?
+*   **Entity Summary (10 Points):** Did the agent use `secops-mcp.lookup_entity` to get an initial summary of the endpoint's activity?
+
+### 2. Activity Analysis (30 Points)
+*   **Security Event Search (15 Points):** Did the agent perform a targeted search for security events (`secops-mcp.search_security_events`) covering a reasonable timeframe (e.g., last 24-96 hours)?
+*   **Analysis of Findings (15 Points):** Did the agent analyze the search results for suspicious patterns (process executions, network connections, logins) rather than just listing raw logs?
+
+### 3. Posture Check (15 Points)
+*   **Vulnerability/EDR Check (15 Points):** Did the agent attempt to check the endpoint's vulnerability status (e.g., `scc-mcp`) OR EDR status (if available/applicable) to contextualize the risk?
+
+### 4. Assessment (15 Points)
+*   **Clear Assessment (15 Points):** Did the agent provide a clear, reasoned assessment of the likelihood of compromise and the necessity of isolation based on the gathered evidence?
+
+### 5. Execution & Confirmation (10 Points)
+*   **User Confirmation (10 Points):** Did the agent explicitly ask for user confirmation *before* attempting any isolation action (or finalized the decision not to isolate)?
+
+### 6. Documentation (10 Points)
+*   **Case Update (10 Points):** Did the agent document the findings, assessment, and outcome (isolation status) back into the SOAR case using `secops-soar.post_case_comment`?
+
+### Critical Failures (Automatic Failure)
+*   Isolating the endpoint without explicit user confirmation.
+*   Failing to identify the correct endpoint ID from the input.
+*   Hallucinating events or vulnerabilities that do not exist in the tool outputs.
