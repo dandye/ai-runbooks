@@ -1,6 +1,7 @@
 ---
 name: confirm-action
 description: "Ask the user to confirm before taking a significant action. Use before containment, remediation, or other impactful operations to ensure analyst approval. Presents options and waits for response."
+personas: [all]
 ---
 
 # Confirm Action Skill

@@ -1,6 +1,11 @@
 ---
 name: phishing-response
 description: "Respond to a reported phishing email following PICERL methodology. Use when a phishing email is reported or detected. Analyzes artifacts, identifies recipients who clicked, contains malicious IOCs, and removes emails from mailboxes."
+required_roles:
+  chronicle: roles/chronicle.editor
+  soar: roles/chronicle.soarAdmin
+  gti: GTI Enterprise
+personas: [incident-responder]
 ---
 
 # Phishing Incident Response Skill

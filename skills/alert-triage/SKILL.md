@@ -1,6 +1,11 @@
 ---
 name: alert-triage
 description: "Triage a security alert or case. Use when given an ALERT_ID or CASE_ID to assess if it's a real threat. Checks for duplicates, enriches IOCs, searches SIEM for context, and determines if the alert should be closed (false positive) or escalated for investigation."
+required_roles:
+  chronicle: roles/chronicle.viewer
+  soar: roles/chronicle.editor
+  gti: GTI Standard
+personas: [tier1-analyst, tier2-analyst, tier3-analyst, incident-responder]
 ---
 
 # Alert Triage Skill

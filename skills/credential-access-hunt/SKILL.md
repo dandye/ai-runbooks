@@ -1,6 +1,10 @@
 ---
 name: credential-access-hunt
 description: "Hunt for credential access techniques like LSASS dumping or browser credential theft. Use when searching for evidence of credential harvesting. Takes MITRE technique IDs and searches for behavioral indicators in SIEM."
+required_roles:
+  chronicle: roles/chronicle.editor
+  gti: GTI Standard
+personas: [threat-hunter]
 ---
 
 # Credential Access TTP Hunt Skill

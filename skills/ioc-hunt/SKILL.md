@@ -1,6 +1,10 @@
 ---
 name: ioc-hunt
 description: "Hunt for specific IOCs across your environment. Use when you have a list of IPs, domains, hashes, or URLs from threat intel and want to check if they appear in your SIEM. Systematic searching with enrichment and documentation."
+required_roles:
+  chronicle: roles/chronicle.editor
+  gti: GTI Enterprise
+personas: [threat-hunter, tier2-analyst]
 ---
 
 # IOC Threat Hunt Skill

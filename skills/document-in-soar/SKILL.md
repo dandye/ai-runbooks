@@ -1,6 +1,9 @@
 ---
 name: document-in-soar
 description: "Add a comment to a SOAR case to document findings, actions, or recommendations. Use to maintain audit trail during investigations. Requires CASE_ID and comment text."
+required_roles:
+  soar: roles/chronicle.editor
+personas: [tier1-analyst, tier2-analyst, tier3-analyst, threat-hunter, incident-responder]
 ---
 
 # Document in SOAR Skill

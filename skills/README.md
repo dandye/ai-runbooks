@@ -2,12 +2,41 @@
 
 Claude Code skills for security operations workflows. Converted from runbooks in `rules_bank/run_books/`.
 
+## Directory Structure
+
+```
+skills/
+├── _personas/              # Persona manifest files (YAML)
+│   ├── tier1-analyst.yaml
+│   ├── tier2-analyst.yaml
+│   ├── threat-hunter.yaml
+│   └── incident-responder.yaml
+├── _workflows/             # Composite/orchestration skills
+│   ├── full-alert-triage/
+│   └── full-investigation/
+├── _roles/                 # IAM role documentation
+│   └── iam-matrix.md
+└── <skill-name>/           # Individual atomic skills
+    └── SKILL.md
+```
+
 ## Prerequisites
 
 MCP servers required:
 - `secops-mcp` - Chronicle SIEM
 - `secops-soar` - SOAR platform
 - `gti-mcp` - Google Threat Intelligence
+
+### IAM Roles
+
+Skills require specific IAM roles. See `_roles/iam-matrix.md` for the complete mapping. Summary:
+
+| Persona | Chronicle | SOAR | GTI |
+|---------|-----------|------|-----|
+| Tier 1 Analyst | `roles/chronicle.viewer` | `roles/chronicle.editor` | GTI Standard |
+| Tier 2 Analyst | `roles/chronicle.editor` | `roles/chronicle.editor` | GTI Enterprise |
+| Threat Hunter | `roles/chronicle.editor` | `roles/chronicle.viewer` | GTI Enterprise+ |
+| Incident Responder | `roles/chronicle.admin` | `roles/chronicle.soarAdmin` | GTI Enterprise |
 
 ## Quick Reference
 
@@ -141,6 +170,74 @@ MCP servers required:
 
 ---
 
+## Persona-Based Orchestration
+
+### Available Personas
+
+| Persona | File | Primary Skills | Use Case |
+|---------|------|----------------|----------|
+| **Tier 1 Analyst** | `_personas/tier1-analyst.yaml` | alert-triage, enrich-ioc, check-duplicates | Initial alert triage |
+| **Tier 2 Analyst** | `_personas/tier2-analyst.yaml` | deep-dive-ioc, correlate-ioc, malware-triage | Escalated investigations |
+| **Threat Hunter** | `_personas/threat-hunter.yaml` | apt-hunt, ioc-hunt, threat-hunt | Proactive hunting |
+| **Incident Responder** | `_personas/incident-responder.yaml` | ransomware-response, malware-response | IR lifecycle |
+
+### Composite Workflows
+
+| Workflow | Location | Description |
+|----------|----------|-------------|
+| **Full Alert Triage** | `_workflows/full-alert-triage/` | Complete Tier 1 workflow: check-duplicates → alert-triage → enrich-ioc → close/escalate |
+| **Full Investigation** | `_workflows/full-investigation/` | Complete Tier 2 workflow: deep-dive-ioc → correlate → specialized triage → report |
+
+### Using Personas
+
+**Claude Code:**
+```
+Use Task tool with subagent_type matching the persona:
+- soc-analyst-tier-1
+- soc-analyst-tier-2
+- threat-hunter
+- incident-responder
+```
+
+**Gemini CLI:**
+```bash
+gemini -p "@skills/_personas/tier1-analyst.yaml Triage CASE-1234 following this persona workflow"
+```
+
+**Other LLMs:**
+Read the persona YAML and follow the defined workflow chains.
+
+### Persona Workflow Chains
+
+**Tier 1 (Alert Triage):**
+```
+check-duplicates → alert-triage → enrich-ioc → [close OR escalate to Tier 2]
+```
+
+**Tier 2 (Investigation):**
+```
+deep-dive-ioc → correlate-ioc → [malware-triage | suspicious-login-triage] → pivot-on-ioc → report
+```
+
+**Threat Hunter:**
+```
+threat-hunt → [apt-hunt | ioc-hunt | lateral-movement-hunt] → enrich-ioc → pivot-on-ioc → report
+```
+
+**Incident Responder (PICERL):**
+```
+[ransomware | malware | phishing | account]-response → confirm-action → [containment] → generate-report
+```
+
+---
+
 ## Source Runbooks
 
 These skills were converted from runbooks in `rules_bank/run_books/`. For detailed workflow diagrams, rubrics, and completion criteria, refer to the original runbooks.
+
+## References
+
+- `_roles/iam-matrix.md` - IAM role requirements for each skill
+- `_personas/*.yaml` - Persona definitions with workflows
+- `_workflows/*/SKILL.md` - Composite workflow documentation
+- `rules_bank/personas/` - Detailed persona descriptions

@@ -1,6 +1,12 @@
 ---
 name: ransomware-response
 description: "Respond to a ransomware incident following PICERL methodology. Use when ransomware is detected or suspected. Orchestrates identification, containment, eradication, and recovery phases. Requires CASE_ID and initial indicators."
+required_roles:
+  chronicle: roles/chronicle.admin
+  soar: roles/chronicle.soarAdmin
+  gti: GTI Enterprise
+  scc: roles/securitycenter.adminEditor
+personas: [incident-responder]
 ---
 
 # Ransomware Incident Response Skill

@@ -1,6 +1,9 @@
 ---
 name: find-relevant-case
 description: "Search for existing SOAR cases related to specific indicators or entities. Use to find correlation with other investigations before starting new analysis. Takes search terms and returns matching case IDs."
+required_roles:
+  soar: roles/chronicle.editor
+personas: [tier1-analyst, tier2-analyst, tier3-analyst, incident-responder]
 ---
 
 # Find Relevant Case Skill

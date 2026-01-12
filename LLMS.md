@@ -69,6 +69,100 @@ Run this after changing personas to ensure common steps remain accessible.
 - **Threat Intelligence**: Active integration with Google Threat Intelligence and security feeds
 - **Multi-Platform SIEM**: Chronicle, SOAR case management, and cloud security integration
 
+## Skills & Persona System
+
+The repository includes a skills-based workflow system with persona-driven orchestration.
+
+### Skills Directory Structure
+
+```
+skills/
+├── _personas/          # Persona manifest files (YAML)
+│   ├── tier1-analyst.yaml
+│   ├── tier2-analyst.yaml
+│   ├── threat-hunter.yaml
+│   └── incident-responder.yaml
+├── _workflows/         # Composite/meta-skills
+│   ├── full-alert-triage/
+│   └── full-investigation/
+├── _roles/             # IAM role documentation
+│   └── iam-matrix.md
+└── <skill-name>/       # Individual atomic skills
+    └── SKILL.md
+```
+
+### Using Personas
+
+Persona manifests define which skills each security role can use and their typical workflows.
+
+**Available Personas:**
+
+| Persona | Primary Function | Key Skills |
+|---------|-----------------|------------|
+| `tier1-analyst` | Alert triage, initial assessment | alert-triage, enrich-ioc, check-duplicates |
+| `tier2-analyst` | Deep investigation, escalated cases | deep-dive-ioc, correlate-ioc, malware-triage |
+| `threat-hunter` | Proactive hunting | apt-hunt, ioc-hunt, threat-hunt, lateral-movement-hunt |
+| `incident-responder` | PICERL lifecycle management | ransomware-response, malware-response, phishing-response |
+
+**Activating a Persona:**
+
+Each LLM platform activates personas differently:
+
+- **Claude Code**: Uses Task tool with `subagent_type` parameter matching the persona
+- **Gemini CLI**: Reference persona file directly: `gemini -p "@skills/_personas/tier1-analyst.yaml Follow this persona workflow..."`
+- **Other LLMs**: Read the persona YAML and follow the defined workflows
+
+### Persona Manifest Structure
+
+Each persona YAML defines:
+
+```yaml
+name: tier1-analyst
+subagent_type: soc-analyst-tier-1  # Maps to Claude Code agent
+
+iam_requirements:
+  chronicle:
+    roles: [roles/chronicle.viewer]
+  soar:
+    roles: [roles/chronicle.editor]
+  gti:
+    license: GTI Standard
+
+skills:
+  primary: [alert-triage, enrich-ioc, check-duplicates]
+  allowed: [correlate-ioc, generate-report]
+  forbidden: [apt-hunt, ransomware-response]
+
+workflows:
+  default_triage:
+    chain: [check-duplicates, alert-triage, enrich-ioc, close-or-escalate]
+```
+
+### IAM Role Requirements
+
+Skills require specific IAM roles to function. See `skills/_roles/iam-matrix.md` for the complete mapping.
+
+**Key Role Levels:**
+
+| Role Level | Chronicle | SOAR | GTI | Use Case |
+|------------|-----------|------|-----|----------|
+| Basic | viewer | editor | Standard | Tier 1 triage |
+| Intermediate | editor | editor | Enterprise | Tier 2 investigation, hunting |
+| Advanced | admin | soarAdmin | Enterprise+ | Incident response, admin actions |
+
+### Workflow Orchestration
+
+**Atomic Skills**: Single-purpose skills (e.g., `/enrich-ioc`, `/check-duplicates`)
+
+**Meta-Skills/Workflows**: Composite skills that chain atomic skills:
+- `/full-alert-triage` - Complete Tier 1 workflow
+- `/full-investigation` - Complete Tier 2 workflow
+
+**Skill Chaining Example (Tier 1 Triage):**
+```
+check-duplicates → alert-triage → enrich-ioc → [close OR escalate]
+```
+
 ## Working with the Codebase
 
 1. The primary content lives in `rules_bank/` - edit source files there, not in the symlinked directories

@@ -1,6 +1,10 @@
 ---
 name: correlate-ioc
 description: "Check for existing SIEM alerts and SOAR cases related to IOCs. Use to understand if an indicator has triggered previous alerts or is part of ongoing investigations. Takes IOC list and returns related alerts and cases."
+required_roles:
+  chronicle: roles/chronicle.viewer
+  soar: roles/chronicle.editor
+personas: [tier1-analyst, tier2-analyst, tier3-analyst]
 ---
 
 # Correlate IOC Skill

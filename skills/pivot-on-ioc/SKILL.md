@@ -1,6 +1,9 @@
 ---
 name: pivot-on-ioc
 description: "Explore GTI relationships for an IOC to discover related entities. Use to expand investigation by finding connected domains, IPs, files, or threat actors. Takes an IOC and relationship types to query."
+required_roles:
+  gti: GTI Enterprise+
+personas: [tier2-analyst, tier3-analyst, threat-hunter]
 ---
 
 # Pivot on IOC Skill

@@ -1,6 +1,7 @@
 ---
 name: generate-report
 description: "Save investigation findings to a markdown report file. Use after completing triage, enrichment, or investigation to create a permanent record. Generates timestamped files in ./reports/ directory."
+personas: [all]
 ---
 
 # Generate Report Skill

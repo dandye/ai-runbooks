@@ -1,6 +1,10 @@
 ---
 name: enrich-ioc
 description: "Enrich an IOC (IP, domain, hash, URL) with threat intelligence. Use when you need to look up reputation and context for an indicator using GTI and SIEM. Returns threat intel findings, SIEM entity summary, and IOC match status."
+required_roles:
+  chronicle: roles/chronicle.viewer
+  gti: GTI Standard
+personas: [tier1-analyst, tier2-analyst, tier3-analyst, threat-hunter, incident-responder]
 ---
 
 # Enrich IOC Skill
