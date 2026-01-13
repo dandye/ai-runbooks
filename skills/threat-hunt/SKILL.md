@@ -139,6 +139,19 @@ Use `/generate-report` with `REPORT_TYPE="hunt_summary"`:
 → Document process and limitations
 → Note areas for future investigation
 
+## Required Outputs
+
+**After completing this skill, you MUST report these outputs:**
+
+| Output | Description |
+|--------|-------------|
+| `HUNT_QUERIES` | UDM queries executed during the hunt |
+| `INITIAL_FINDINGS` | Raw findings from SIEM searches |
+| `FINDINGS_TYPE` | Category: `lateral_movement`, `credential_access`, `data_exfil`, or `generic` |
+| `DISCOVERED_IOCS` | IOCs extracted from findings (IPs, domains, hashes) |
+| `HIGH_CONFIDENCE_IOCS` | IOCs confirmed malicious via GTI enrichment |
+| `THREAT_CONFIRMED` | Boolean: `true` if active threat confirmed, `false` otherwise |
+
 ## Hunt Hypothesis Templates
 
 **TTP-Based:**

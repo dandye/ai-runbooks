@@ -102,9 +102,11 @@ workflows:
     trigger: "IOC value provided without case context"
     chain:
       - skill: enrich-ioc
+        outputs: [GTI_FINDINGS, THREAT_SCORE, MALICIOUS_CONFIDENCE]
       - skill: correlate-ioc
+        outputs: [RELATED_SIEM_ALERTS, RELATED_SOAR_CASES]
       - decision:
-          condition: malicious_confidence
+          condition: MALICIOUS_CONFIDENCE
           branches:
             high:
               - action: recommend_escalation

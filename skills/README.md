@@ -20,6 +20,37 @@ skills/
     └── SKILL.md
 ```
 
+## Skill Schema
+
+Each skill's `SKILL.md` file contains YAML frontmatter with the following fields:
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `name` | Yes | Skill identifier (kebab-case) |
+| `description` | Yes | Brief description for tool registration |
+| `required_roles` | Yes | IAM roles needed (chronicle, soar, gti, scc) |
+| `personas` | Yes | Which personas can use this skill |
+
+### Skill Outputs
+
+Outputs are documented in the **markdown body** of each skill under a `## Required Outputs` section, not in the YAML frontmatter. This ensures the LLM reads and follows the output instructions.
+
+Example format in skill body:
+```markdown
+## Required Outputs
+
+**After completing this skill, you MUST report these outputs:**
+
+| Output | Description |
+|--------|-------------|
+| `GTI_FINDINGS` | Summary of GTI report |
+| `MALICIOUS_CONFIDENCE` | Confidence level: high, medium, low, none |
+```
+
+**Naming Convention:** Use `UPPER_SNAKE_CASE` for all output variables.
+
+---
+
 ## Prerequisites
 
 MCP servers required:

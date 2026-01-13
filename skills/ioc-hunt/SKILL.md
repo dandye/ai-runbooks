@@ -128,6 +128,16 @@ IOC Hunt Summary:
 [Actions to take]
 ```
 
+## Required Outputs
+
+**After completing this skill, you MUST report these outputs:**
+
+| Output | Description |
+|--------|-------------|
+| `MATCHES` | IOCs found in SIEM (list of IOCs with hits) |
+| `MATCH_CONTEXT` | Context for each match (events, assets, users affected) |
+| `MATCHES_FOUND` | Boolean: `true` if any IOCs found in environment, `false` otherwise |
+
 ## Critical Requirements
 
 - Search ALL provided IOCs (don't skip any)

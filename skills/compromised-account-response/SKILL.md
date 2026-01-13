@@ -19,6 +19,37 @@ Structured workflow for responding to potentially compromised user accounts usin
 - `ALERT_GROUP_IDENTIFIERS` - Alert group identifiers from SOAR
 - *(Optional)* `INITIAL_ALERT_DETAILS` - Summary of triggering alert
 
+## Required Outputs
+
+**After completing each phase, you MUST report these outputs:**
+
+### Identification Phase
+| Output | Description |
+|--------|-------------|
+| `AFFECTED_ACCOUNTS` | User accounts confirmed or suspected compromised |
+| `SUSPICIOUS_ACTIVITY` | Summary of anomalous activity detected |
+| `ACCESS_SCOPE` | Systems/data the account had access to |
+| `COMPROMISE_LIKELIHOOD` | Assessment level: `Low`, `Medium`, `High`, `Confirmed` |
+
+### Containment Phase
+| Output | Description |
+|--------|-------------|
+| `DISABLED_ACCOUNTS` | Accounts that were disabled |
+| `RESET_PASSWORDS` | Accounts with passwords reset |
+| `REVOKED_SESSIONS` | Sessions terminated |
+
+### Eradication Phase
+| Output | Description |
+|--------|-------------|
+| `REMOVED_PERSISTENCE` | Persistence mechanisms removed (forwarding rules, OAuth apps, etc.) |
+| `CLEANED_ENDPOINTS` | Associated endpoints verified clean |
+
+### Recovery Phase
+| Output | Description |
+|--------|-------------|
+| `RESTORED_ACCOUNTS` | Accounts re-enabled with new security controls |
+| `USER_NOTIFICATIONS` | Users notified of incident and required actions |
+
 ## PICERL Phases
 
 ### Phase 2: Identification

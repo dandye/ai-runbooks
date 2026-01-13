@@ -24,6 +24,38 @@ Structured workflow for responding to reported phishing emails using the PICERL 
   - Recipient user ID(s)
   - Sender address/domain
 
+## Required Outputs
+
+**After completing each phase, you MUST report these outputs:**
+
+### Identification Phase
+| Output | Description |
+|--------|-------------|
+| `PHISHING_URLS` | URLs extracted from email body |
+| `PHISHING_IOCS` | Confirmed malicious indicators (URLs, domains, hashes) |
+| `AFFECTED_USERS` | All users who received the email |
+| `CLICKED_USERS` | Users who clicked/interacted with malicious content |
+| `PHISHING_CATEGORY` | Type: credential phish, spear phishing, BEC, malware delivery |
+
+### Containment Phase
+| Output | Description |
+|--------|-------------|
+| `BLOCKED_IOCS` | IOCs blocked at email gateway/proxy/firewall |
+| `CONTAINED_USERS` | User accounts with restrictions applied |
+| `ISOLATED_ENDPOINTS` | Endpoints isolated due to suspicious activity |
+
+### Eradication Phase
+| Output | Description |
+|--------|-------------|
+| `DELETED_EMAILS` | Count of malicious emails removed from mailboxes |
+| `QUARANTINED_EMAILS` | Emails moved to quarantine |
+
+### Recovery Phase
+| Output | Description |
+|--------|-------------|
+| `RESTORED_ACCOUNTS` | User accounts restored to normal access |
+| `USER_NOTIFICATIONS` | Users notified of incident and required actions |
+
 ## PICERL Phases
 
 ### Phase 2: Identification

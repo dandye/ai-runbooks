@@ -75,22 +75,22 @@ workflows:
     chain:
       - skill: ransomware-response
         phase: identification
-        outputs: [affected_systems, ransomware_variant, encryption_status]
+        outputs: [AFFECTED_SYSTEMS, RANSOMWARE_VARIANT, ENCRYPTION_STATUS, RANSOMWARE_IOCS]
       - skill: confirm-action
         message: "Proceed with network isolation of affected systems?"
       - skill: ransomware-response
         phase: containment
-        outputs: [isolated_systems, blocked_iocs]
+        outputs: [ISOLATED_SYSTEMS, BLOCKED_IOCS, C2_INDICATORS]
       - skill: enrich-ioc
-        for_each: ransomware_iocs
+        for_each: RANSOMWARE_IOCS
       - skill: pivot-on-ioc
-        for_each: c2_indicators
+        for_each: C2_INDICATORS
       - skill: ransomware-response
         phase: eradication
-        outputs: [cleaned_systems, removed_persistence]
+        outputs: [CLEANED_SYSTEMS, REMOVED_PERSISTENCE]
       - skill: ransomware-response
         phase: recovery
-        outputs: [restored_systems, validation_status]
+        outputs: [RESTORED_SYSTEMS, VALIDATION_STATUS]
       - skill: generate-report
         type: incident
         include: [timeline, iocs, actions, recommendations]
@@ -101,14 +101,15 @@ workflows:
     chain:
       - skill: malware-response
         phase: identification
+        outputs: [AFFECTED_HOSTS, MALWARE_SAMPLES, MALWARE_IOCS]
       - skill: malware-triage
-        for_each: malware_samples
+        for_each: MALWARE_SAMPLES
       - skill: confirm-action
         message: "Proceed with host isolation?"
       - skill: malware-response
         phase: containment
       - skill: enrich-ioc
-        for_each: malware_iocs
+        for_each: MALWARE_IOCS
       - skill: malware-response
         phase: eradication
       - skill: malware-response
@@ -122,15 +123,15 @@ workflows:
     chain:
       - skill: phishing-response
         phase: identification
-        outputs: [phishing_urls, affected_users, clicked_users]
+        outputs: [PHISHING_URLS, PHISHING_IOCS, AFFECTED_USERS, CLICKED_USERS]
       - skill: enrich-ioc
-        for_each: phishing_iocs
+        for_each: PHISHING_IOCS
       - skill: confirm-action
         message: "Block phishing domains and quarantine emails?"
       - skill: phishing-response
         phase: containment
       - skill: compromised-account-response
-        for_each: clicked_users
+        for_each: CLICKED_USERS
         condition: credentials_entered
       - skill: phishing-response
         phase: eradication
@@ -143,9 +144,9 @@ workflows:
     chain:
       - skill: compromised-account-response
         phase: identification
-        outputs: [affected_accounts, suspicious_activity, access_scope]
+        outputs: [AFFECTED_ACCOUNTS, SUSPICIOUS_ACTIVITY, ACCESS_SCOPE]
       - skill: suspicious-login-triage
-        for_each: affected_accounts
+        for_each: AFFECTED_ACCOUNTS
       - skill: confirm-action
         message: "Disable affected accounts and revoke sessions?"
       - skill: compromised-account-response

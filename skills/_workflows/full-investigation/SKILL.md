@@ -96,6 +96,22 @@ A composite skill that orchestrates comprehensive Tier 2/3 investigation of esca
 
 ### Phase 1: Deep Analysis
 
+**Step 1.0: Extract Primary IOCs (if not provided)**
+
+If `PRIMARY_IOCS` is not provided as input, extract key entities from the case:
+
+```
+secops-soar.get_case_full_details(case_id=CASE_ID)
+```
+
+From the case details, extract IOCs:
+- IP addresses from alert entities
+- Domain names from network indicators
+- File hashes from endpoint alerts
+- URLs from web security alerts
+
+Populate `PRIMARY_IOCS` with extracted IOCs.
+
 **Step 1.1: Deep Dive on Primary IOCs**
 
 For each IOC in `PRIMARY_IOCS`:
@@ -108,11 +124,21 @@ Collect:
 - `RELATED_ENTITIES` - Discovered related IOCs and entities
 - `THREAT_ATTRIBUTION` - Any threat actor/campaign links
 
+**Step 1.2: Aggregate Discovered IOCs**
+
+Combine all `RELATED_ENTITIES` collected from deep-dive steps into `ALL_DISCOVERED_IOCS`:
+
+```
+ALL_DISCOVERED_IOCS = PRIMARY_IOCS + all(RELATED_ENTITIES from each deep-dive)
+```
+
+This aggregated list is used for correlation in Phase 2.
+
 ### Phase 2: Correlation
 
 **Step 2.1: Correlate with Existing Cases**
 
-Invoke: `/correlate-ioc IOC_LIST=$all_discovered_iocs`
+Invoke: `/correlate-ioc IOC_LIST=$ALL_DISCOVERED_IOCS`
 
 Collect:
 - `RELATED_CASES` - Other cases with same IOCs

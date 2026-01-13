@@ -51,13 +51,16 @@ Store summary in `RELATED_SOAR_CASES`:
 - Case status
 - Case priority
 
-## Outputs
+## Required Outputs
+
+**After completing this skill, you MUST report these outputs:**
 
 | Output | Description |
 |--------|-------------|
 | `RELATED_SIEM_ALERTS` | Summary of SIEM alerts related to the IOC(s) |
 | `RELATED_SOAR_CASES` | Summary of SOAR cases related to the IOC(s) |
 | `CORRELATION_STATUS` | Success/failure status of the correlation |
+| `MALICIOUS_CONFIDENCE` | Derived confidence based on alert history: `high`, `medium`, `low`, or `none` |
 
 ## Use Cases
 

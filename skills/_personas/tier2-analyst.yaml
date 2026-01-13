@@ -70,27 +70,35 @@ workflows:
     name: "Escalated Case Investigation"
     trigger: "Escalated CASE_ID from Tier 1"
     description: "Complete investigation workflow for escalated cases"
+    inputs: [CASE_ID, PRIMARY_IOCS, ALERT_TYPE]
     chain:
       - skill: deep-dive-ioc
-        for_each: primary_iocs
-        outputs: [gti_deep_findings, siem_deep_context, related_entities]
+        for_each: PRIMARY_IOCS
+        outputs: [GTI_DEEP_FINDINGS, SIEM_DEEP_CONTEXT, RELATED_ENTITIES, DISCOVERED_IOCS]
       - skill: correlate-ioc
-        inputs: [primary_iocs, related_entities]
-        outputs: [related_cases, related_alerts]
+        inputs: [PRIMARY_IOCS, RELATED_ENTITIES]
+        outputs: [RELATED_SOAR_CASES, RELATED_SIEM_ALERTS]
       - decision:
-          condition: alert_type
+          condition: ALERT_TYPE
           branches:
             malware:
               - skill: malware-triage
+                outputs: [MALWARE_CLASSIFICATION, TRIAGE_VERDICT]
             authentication:
               - skill: suspicious-login-triage
+                outputs: [LOGIN_VERDICT, RISK_SCORE]
             default:
               - skill: pivot-on-ioc
+                outputs: [EXPANDED_IOCS, THREAT_CONTEXT]
       - skill: pivot-on-ioc
-        for_each: high_confidence_iocs
-        outputs: [expanded_iocs, threat_context]
+        for_each: DISCOVERED_IOCS
+        outputs: [EXPANDED_IOCS, THREAT_CONTEXT]
+      - assessment:
+          # Analyst reviews all findings and determines if incident is confirmed
+          # Based on: TRIAGE_VERDICT, THREAT_CONTEXT, MALICIOUS_CONFIDENCE
+          outputs: [CONFIRMED_INCIDENT]
       - decision:
-          condition: confirmed_incident
+          condition: CONFIRMED_INCIDENT
           branches:
             "true":
               - skill: document-in-soar
@@ -106,10 +114,13 @@ workflows:
     trigger: "Threat intelligence or hypothesis provided"
     chain:
       - skill: ioc-hunt
-        outputs: [hunt_findings]
+        outputs: [MATCHES, MATCH_CONTEXT, MATCHES_FOUND]
       - skill: deep-dive-ioc
-        for_each: hunt_findings
+        for_each: MATCHES
+        outputs: [GTI_DEEP_FINDINGS, RELATED_ENTITIES]
       - skill: correlate-ioc
+        inputs: [MATCHES, RELATED_ENTITIES]
+        outputs: [RELATED_SIEM_ALERTS, RELATED_SOAR_CASES]
       - skill: generate-report
         type: hunt
 

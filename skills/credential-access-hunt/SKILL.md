@@ -135,6 +135,16 @@ Use `/document-in-soar`:
 → Document negative results
 → Confirm detection coverage for these techniques
 
+## Required Outputs
+
+**After completing this skill, you MUST report these outputs:**
+
+| Output | Description |
+|--------|-------------|
+| `FINDINGS` | Detected credential access activity (events, processes, files accessed) |
+| `DETECTED_TECHNIQUES` | MITRE techniques observed (e.g., T1003.001, T1555.003) |
+| `AFFECTED_ACCOUNTS` | Accounts potentially compromised (users whose credentials may be exposed) |
+
 ## Detection Gaps to Note
 
 If queries return no results, consider:

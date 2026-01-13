@@ -112,6 +112,18 @@ Use `/generate-report` with `REPORT_TYPE="apt_hunt"`:
 → Document negative findings
 → Conclude hunt
 
+## Required Outputs
+
+**After completing this skill, you MUST report these outputs:**
+
+| Output | Description |
+|--------|-------------|
+| `ACTOR_IOCS` | IOCs associated with threat actor from GTI |
+| `ACTOR_TTPS` | TTPs from threat actor profile (MITRE techniques) |
+| `HUNT_RESULTS` | SIEM search results for actor indicators |
+| `DISCOVERED_INDICATORS` | IOCs found in environment matching actor profile |
+| `CONFIRMED_IOCS` | IOCs confirmed malicious via GTI enrichment |
+
 ## Key Intelligence Sources
 
 | Source | Tool |

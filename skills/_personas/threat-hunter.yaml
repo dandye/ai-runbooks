@@ -70,10 +70,10 @@ workflows:
     description: "Complete threat hunting cycle based on a hypothesis"
     chain:
       - skill: threat-hunt
-        inputs: [hypothesis, scope, timeframe]
-        outputs: [hunt_queries, initial_findings]
+        inputs: [HUNT_HYPOTHESIS, TARGET_SCOPE_QUERY, TIME_FRAME_HOURS]
+        outputs: [HUNT_QUERIES, INITIAL_FINDINGS, FINDINGS_TYPE, DISCOVERED_IOCS, HIGH_CONFIDENCE_IOCS, THREAT_CONFIRMED]
       - decision:
-          condition: findings_type
+          condition: FINDINGS_TYPE
           branches:
             lateral_movement:
               - skill: lateral-movement-hunt
@@ -82,13 +82,13 @@ workflows:
             generic:
               - continue
       - skill: enrich-ioc
-        for_each: discovered_iocs
-        outputs: [enrichment_results]
+        for_each: DISCOVERED_IOCS
+        outputs: [GTI_FINDINGS, MALICIOUS_CONFIDENCE]
       - skill: pivot-on-ioc
-        for_each: high_confidence_iocs
-        outputs: [related_infrastructure, threat_context]
+        for_each: HIGH_CONFIDENCE_IOCS
+        outputs: [RELATED_ENTITIES, THREAT_CONTEXT]
       - decision:
-          condition: threat_confirmed
+          condition: THREAT_CONFIRMED
           branches:
             "true":
               - skill: document-in-soar
@@ -103,12 +103,12 @@ workflows:
     trigger: "Threat actor name or GTI collection ID"
     chain:
       - skill: apt-hunt
-        inputs: [threat_actor_id, collection_id]
-        outputs: [actor_iocs, actor_ttps, hunt_results]
+        inputs: [THREAT_ACTOR_ID, COLLECTION_ID]
+        outputs: [ACTOR_IOCS, ACTOR_TTPS, HUNT_RESULTS, DISCOVERED_INDICATORS, CONFIRMED_IOCS]
       - skill: enrich-ioc
-        for_each: discovered_indicators
+        for_each: DISCOVERED_INDICATORS
       - skill: pivot-on-ioc
-        for_each: confirmed_iocs
+        for_each: CONFIRMED_IOCS
       - skill: correlate-ioc
       - skill: generate-report
         type: apt_hunt
@@ -118,15 +118,16 @@ workflows:
     trigger: "List of IOCs from threat intelligence"
     chain:
       - skill: ioc-hunt
-        inputs: [ioc_list, source]
-        outputs: [matches, context]
+        inputs: [IOC_LIST, IOC_TYPES]
+        outputs: [MATCHES, MATCH_CONTEXT, MATCHES_FOUND]
       - skill: enrich-ioc
-        for_each: matches
+        for_each: MATCHES
       - decision:
-          condition: matches_found
+          condition: MATCHES_FOUND
           branches:
             "true":
               - skill: deep-dive-ioc
+                for_each: MATCHES
               - skill: document-in-soar
             "false":
               - action: document_negative_hunt
@@ -136,16 +137,19 @@ workflows:
     trigger: "MITRE ATT&CK technique ID"
     chain:
       - decision:
-          condition: technique_category
+          condition: TECHNIQUE_CATEGORY
           branches:
             lateral_movement:
               - skill: lateral-movement-hunt
+                outputs: [FINDINGS, DETECTED_TECHNIQUES]
             credential_access:
               - skill: credential-access-hunt
+                outputs: [FINDINGS, DETECTED_TECHNIQUES]
             default:
               - skill: threat-hunt
+                outputs: [FINDINGS, DISCOVERED_IOCS]
       - skill: enrich-ioc
-        for_each: findings
+        for_each: FINDINGS
       - skill: generate-report
         type: ttp_hunt
 

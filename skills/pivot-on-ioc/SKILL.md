@@ -53,11 +53,15 @@ For each relationship in `RELATIONSHIP_NAMES`:
 
 Store results keyed by relationship name.
 
-## Outputs
+## Required Outputs
+
+**After completing this skill, you MUST report these outputs:**
 
 | Output | Description |
 |--------|-------------|
 | `RELATED_ENTITIES` | Dictionary of entities found per relationship |
+| `EXPANDED_IOCS` | Flattened list of all discovered IOCs (IPs, domains, hashes) |
+| `THREAT_CONTEXT` | Threat actor/campaign context if found during pivoting |
 | `PIVOT_STATUS` | Success/failure status of the pivoting |
 
 ## Example Usage

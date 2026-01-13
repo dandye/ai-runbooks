@@ -107,9 +107,19 @@ Use /document-in-soar with comprehensive findings summary
 Use /generate-report with REPORT_TYPE="deep_dive_ioc"
 ```
 
-## Outputs
+## Required Outputs
 
-- Comprehensive analysis of IOC and related infrastructure
+**After completing this skill, you MUST report these outputs:**
+
+| Output | Description |
+|--------|-------------|
+| `GTI_DEEP_FINDINGS` | Comprehensive GTI analysis (reputation, classification, behaviors) |
+| `SIEM_DEEP_CONTEXT` | Extended SIEM event context (hosts, users, timelines) |
+| `RELATED_ENTITIES` | Related IOCs from GTI pivoting (infrastructure connections) |
+| `DISCOVERED_IOCS` | All IOCs discovered during analysis |
+| `THREAT_ATTRIBUTION` | Threat actor/campaign attribution if found |
+
+Additionally provide:
 - Impact assessment and scope identification
 - Recommendations (escalate, contain, monitor)
 - Documentation in SOAR or standalone report

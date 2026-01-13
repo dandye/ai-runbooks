@@ -56,15 +56,17 @@ secops-mcp.get_ioc_matches()
 
 Check if IOC_VALUE appears in results. Store Yes/No in `SIEM_IOC_MATCH_STATUS`.
 
-## Outputs
+## Required Outputs
 
-Return these to the calling workflow:
+**After completing this skill, you MUST report these outputs:**
 
 | Output | Description |
 |--------|-------------|
 | `GTI_FINDINGS` | Summary of GTI report (reputation, classification, relationships) |
-| `SIEM_ENTITY_SUMMARY` | SIEM entity context (first/last seen, related alerts) |
-| `SIEM_IOC_MATCH_STATUS` | Yes/No - whether IOC appears in recent threat feed matches |
+| `SIEM_SUMMARY` | SIEM entity context (first/last seen, related alerts) |
+| `IOC_MATCH_STATUS` | Yes/No - whether IOC appears in recent threat feed matches |
+| `THREAT_SCORE` | Numerical threat score (0-100) based on GTI reputation |
+| `MALICIOUS_CONFIDENCE` | Confidence level: `high`, `medium`, `low`, or `none` |
 
 ## Quick Reference
 

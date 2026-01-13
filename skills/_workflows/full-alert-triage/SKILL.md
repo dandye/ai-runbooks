@@ -61,7 +61,8 @@ A composite skill that orchestrates the complete Tier 1 alert triage process fro
 │     │     │              │              │                      │
 │     │     ▼              ▼              ▼                      │
 │     │  /document     /document     /document                   │
-│     │  /close-soar   ESCALATE      Request more info           │
+│     │  /close-soar-  ESCALATE      Request more info           │
+│     │   artifact                                               │
 │     │     │              │              │                      │
 │     └─────┴──────────────┴──────────────┘                      │
 │                    │                                            │

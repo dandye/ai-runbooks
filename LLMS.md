@@ -142,13 +142,16 @@ workflows:
 
 Skills require specific IAM roles to function. See `skills/_roles/iam-matrix.md` for the complete mapping.
 
-**Key Role Levels:**
+**Key Role Levels by Persona:**
 
-| Role Level | Chronicle | SOAR | GTI | Use Case |
-|------------|-----------|------|-----|----------|
-| Basic | viewer | editor | Standard | Tier 1 triage |
-| Intermediate | editor | editor | Enterprise | Tier 2 investigation, hunting |
-| Advanced | admin | soarAdmin | Enterprise+ | Incident response, admin actions |
+| Persona | Chronicle | SOAR | GTI | Primary Use Case |
+|---------|-----------|------|-----|------------------|
+| Tier 1 SOC Analyst | viewer | editor | Standard | Alert triage |
+| Tier 2 SOC Analyst | editor | editor | Enterprise | Deep investigation |
+| Threat Hunter | editor | viewer | Enterprise+ | Proactive hunting |
+| Incident Responder | admin | soarAdmin | Enterprise | Incident response |
+
+*Note: This is a simplified view. See `skills/_roles/iam-matrix.md` for complete role mappings including Tier 3 Analyst, SOC Manager, and other personas.*
 
 ### Workflow Orchestration
 

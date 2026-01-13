@@ -1,6 +1,6 @@
 ---
 name: alert-triage
-description: "Triage a security alert or case. Use when given an ALERT_ID or CASE_ID to assess if it's a real threat. Checks for duplicates, enriches IOCs, searches SIEM for context, and determines if the alert should be closed (false positive) or escalated for investigation."
+description: "Triage a security alert or case. Use when given an ALERT_ID or CASE_ID to assess if it's a real threat. Enriches IOCs, searches SIEM for context, and determines if the alert should be closed (false positive) or escalated for investigation."
 required_roles:
   chronicle: roles/chronicle.viewer
   soar: roles/chronicle.editor
@@ -36,20 +36,11 @@ Extract and note:
 - Key entities involved (IPs, domains, hashes, users, hostnames)
 - Triggering events and timestamps
 
-### Step 2: Check for Duplicates
+> **Note:** Duplicate detection should be handled by invoking `/check-duplicates`
+> before this skill, or by using the `/full-alert-triage` workflow which
+> orchestrates both skills in the correct sequence.
 
-Before deep analysis, check if this is a duplicate of an existing case:
-
-```
-Use secops-soar.siemplify_get_similar_cases to find similar cases
-```
-
-**If duplicate confirmed:**
-1. Document in SOAR: "Closing as duplicate of [Similar Case ID]"
-2. Close with reason `NOT_MALICIOUS` and root cause `Similar case is already under investigation`
-3. End triage
-
-### Step 3: Find Related Open Cases
+### Step 2: Find Related Open Cases
 
 Search for other open cases involving the same entities:
 
@@ -61,7 +52,7 @@ Use secops-soar.list_cases with:
 
 Note any related cases for correlation.
 
-### Step 4: Alert-Specific SIEM Search
+### Step 3: Alert-Specific SIEM Search
 
 Perform a targeted SIEM search based on the alert type:
 
@@ -74,7 +65,7 @@ Use secops-mcp.search_security_events with relevant query
 - **Malware Detection**: Search process execution, file mods, network events for the hash/endpoint
 - **Network Alert**: Search network flows, DNS lookups for source/destination IPs/domains
 
-### Step 5: Enrich Key Entities
+### Step 4: Enrich Key Entities
 
 For each key entity (IP, domain, hash, URL), gather threat intelligence:
 
@@ -88,7 +79,7 @@ For each key entity (IP, domain, hash, URL), gather threat intelligence:
 - `lookup_entity(entity)` - Entity summary from SIEM
 - `get_ioc_matches(hours_back)` - Check if IOC appears in threat feeds
 
-### Step 6: Make Assessment
+### Step 5: Make Assessment
 
 Based on all gathered evidence, classify the alert:
 
@@ -99,7 +90,7 @@ Based on all gathered evidence, classify the alert:
 | **True Positive (TP)** | Confirmed malicious indicators or suspicious behavior | Escalate |
 | **Suspicious** | Inconclusive but warrants investigation | Escalate |
 
-### Step 7: Take Action
+### Step 6: Take Action
 
 **If FP or BTP:**
 1. Document findings in SOAR case comments explaining the rationale

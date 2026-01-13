@@ -23,6 +23,37 @@ Structured workflow for responding to suspected ransomware incidents using the P
   - Ransom note details (handle carefully)
   - Suspicious network connections
 
+## Required Outputs
+
+**After completing each phase, you MUST report these outputs:**
+
+### Identification Phase
+| Output | Description |
+|--------|-------------|
+| `AFFECTED_SYSTEMS` | Systems confirmed infected with ransomware |
+| `RANSOMWARE_VARIANT` | Ransomware family/variant identified |
+| `ENCRYPTION_STATUS` | Current encryption state of affected systems |
+| `RANSOMWARE_IOCS` | File hashes, ransom note patterns, malicious files |
+
+### Containment Phase
+| Output | Description |
+|--------|-------------|
+| `ISOLATED_SYSTEMS` | Systems successfully isolated from network |
+| `BLOCKED_IOCS` | IOCs blocked at firewall/proxy |
+| `C2_INDICATORS` | C2 domains/IPs discovered during containment |
+
+### Eradication Phase
+| Output | Description |
+|--------|-------------|
+| `CLEANED_SYSTEMS` | Systems with malware/persistence removed |
+| `REMOVED_PERSISTENCE` | Persistence mechanisms identified and removed |
+
+### Recovery Phase
+| Output | Description |
+|--------|-------------|
+| `RESTORED_SYSTEMS` | Systems restored to operational state |
+| `VALIDATION_STATUS` | Post-recovery validation results |
+
 ## PICERL Phases
 
 ### Phase 1: Preparation (Ongoing)

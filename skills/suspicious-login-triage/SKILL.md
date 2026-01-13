@@ -101,6 +101,17 @@ Suspicious Login Triage for USER_ID from SOURCE_IP:
 - Recommendation: [Close as FP | Escalate to Tier 2]
 ```
 
+## Required Outputs
+
+**After completing this skill, you MUST report these outputs:**
+
+| Output | Description |
+|--------|-------------|
+| `LOGIN_VERDICT` | Assessment: `legitimate`, `suspicious`, or `malicious` |
+| `ANOMALY_INDICATORS` | What made the login suspicious (impossible travel, new device, etc.) |
+| `RELATED_ACTIVITY` | Other suspicious activity from user or source IP |
+| `RISK_SCORE` | Numerical risk assessment (0-100) based on findings |
+
 ## Decision Matrix
 
 | Finding | Recommendation |
