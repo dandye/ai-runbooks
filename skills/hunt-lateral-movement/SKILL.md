@@ -1,5 +1,5 @@
 ---
-name: lateral-movement-hunt
+name: hunt-lateral-movement
 description: "Hunt for lateral movement using PsExec, WMI, or similar techniques. Use when proactively searching for attackers moving through your network using admin tools. Searches for service installations, remote process execution, and suspicious network correlations."
 required_roles:
   chronicle: roles/chronicle.editor
@@ -50,7 +50,7 @@ target.process.file.full_path CONTAINS "PSEXESVC.exe"
 ```udm
 metadata.event_type = "PROCESS_LAUNCH" AND
 principal.process.file.full_path = "C:\\Windows\\System32\\services.exe" AND
-target.process.file.full_path NOT IN (known_services)  // Replace with your Chronicle reference list
+target.process.file.full_path NOT IN @known_services  // Replace with your Chronicle reference list
 ```
 
 **WMI Process Creation:**

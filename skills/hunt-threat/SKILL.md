@@ -1,5 +1,5 @@
 ---
-name: threat-hunt
+name: hunt-threat
 description: "Conduct proactive, hypothesis-driven threat hunting. Use when performing advanced hunting based on threat intelligence, TTPs, or anomalies. For Tier 3 analysts or dedicated threat hunters. Supports iterative search, pivoting, and comprehensive documentation."
 required_roles:
   chronicle: roles/chronicle.editor
@@ -169,7 +169,7 @@ Use `/generate-report` with `REPORT_TYPE="hunt_summary"`:
 ```udm
 metadata.event_type = "NETWORK_DNS" AND
 network.dns.questions.name MATCHES ".*[a-z0-9]{30,}.*" AND
-target.hostname NOT IN (known_cdn_domains)
+target.hostname NOT IN @known_cdn_domains
 ```
 
 **Suspicious PowerShell:**
@@ -182,6 +182,6 @@ target.process.command_line MATCHES ".*(encodedcommand|bypass|hidden).*"
 **Living-off-the-Land:**
 ```udm
 metadata.event_type = "PROCESS_LAUNCH" AND
-target.process.file.full_path IN (lolbins_list) AND
-principal.user.userid NOT IN (authorized_admins)
+target.process.file.full_path IN @lolbins_list AND
+principal.user.userid NOT IN @authorized_admins
 ```

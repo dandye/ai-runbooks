@@ -1,5 +1,5 @@
 ---
-name: ransomware-response
+name: respond-ransomware
 description: "Respond to a ransomware incident following PICERL methodology. Use when ransomware is detected or suspected. Orchestrates identification, containment, eradication, and recovery phases. Requires CASE_ID and initial indicators."
 required_roles:
   chronicle: roles/chronicle.admin
@@ -146,7 +146,7 @@ If confirmed, implement blocks.
 **Step 3.3: Contain User Accounts**
 
 If compromised user identified:
-→ Trigger `/compromised-account-response`
+→ Trigger `/respond-compromised-account`
 
 **Step 3.4: Verify Containment**
 

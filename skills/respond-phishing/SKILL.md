@@ -1,5 +1,5 @@
 ---
-name: phishing-response
+name: respond-phishing
 description: "Respond to a reported phishing email following PICERL methodology. Use when a phishing email is reported or detected. Analyzes artifacts, identifies recipients who clicked, contains malicious IOCs, and removes emails from mailboxes."
 required_roles:
   chronicle: roles/chronicle.editor
@@ -146,7 +146,7 @@ If confirmed, implement blocks at:
 
 For each user in `POTENTIAL_COMPROMISED_USERS`:
 
-Trigger `/compromised-account-response`
+Trigger `/respond-compromised-account`
 
 **Step 3.3: Isolate Suspicious Endpoints**
 
@@ -180,7 +180,7 @@ Document count of emails removed.
 **Step 4.2: Address Malware (If Applicable)**
 
 If phishing led to malware execution:
-→ Trigger `/malware-response`
+→ Trigger `/respond-malware`
 
 **Step 4.3: Document Eradication**
 

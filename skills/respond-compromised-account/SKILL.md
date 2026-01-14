@@ -1,5 +1,5 @@
 ---
-name: compromised-account-response
+name: respond-compromised-account
 description: "Respond to a potentially compromised user account. Use when impossible travel, credential stuffing, successful phishing, or suspicious activity indicates account compromise. Investigates activity, contains the account, removes persistence, and restores access."
 required_roles:
   chronicle: roles/chronicle.editor

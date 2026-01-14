@@ -1,5 +1,5 @@
 ---
-name: alert-triage
+name: triage-alert
 description: "Triage a security alert or case. Use when given an ALERT_ID or CASE_ID to assess if it's a real threat. Enriches IOCs, searches SIEM for context, and determines if the alert should be closed (false positive) or escalated for investigation."
 required_roles:
   chronicle: roles/chronicle.viewer
@@ -37,7 +37,7 @@ Extract and note:
 - Triggering events and timestamps
 
 > **Note:** Duplicate detection should be handled by invoking `/check-duplicates`
-> before this skill, or by using the `/full-alert-triage` workflow which
+> before this skill, or by using the `/full-triage-alert` workflow which
 > orchestrates both skills in the correct sequence.
 
 ### Step 2: Find Related Open Cases

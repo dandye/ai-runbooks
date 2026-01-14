@@ -5,8 +5,8 @@ type: workflow
 orchestrates:
   - deep-dive-ioc
   - correlate-ioc
-  - malware-triage
-  - suspicious-login-triage
+  - triage-malware
+  - triage-suspicious-login
   - pivot-on-ioc
   - document-in-soar
   - generate-report
@@ -159,13 +159,13 @@ Based on `ALERT_TYPE`, invoke specialized triage:
 
 | Alert Type | Skill | Focus |
 |------------|-------|-------|
-| Malware | `/malware-triage` | File analysis, behavior, persistence |
-| Authentication | `/suspicious-login-triage` | User activity, login patterns |
+| Malware | `/triage-malware` | File analysis, behavior, persistence |
+| Authentication | `/triage-suspicious-login` | User activity, login patterns |
 | Network | `/pivot-on-ioc` | Network IOC relationships |
 | Other | Continue to pivoting | General IOC expansion |
 
 **For Malware:**
-Invoke: `/malware-triage FILE_HASH=$hash CASE_ID=$CASE_ID`
+Invoke: `/triage-malware FILE_HASH=$hash CASE_ID=$CASE_ID`
 
 Collect:
 - Malware family identification
@@ -174,7 +174,7 @@ Collect:
 - Containment recommendations
 
 **For Authentication:**
-Invoke: `/suspicious-login-triage USER=$user CASE_ID=$CASE_ID`
+Invoke: `/triage-suspicious-login USER=$user CASE_ID=$CASE_ID`
 
 Collect:
 - Login anomaly analysis
@@ -221,10 +221,10 @@ Assess all findings and classify:
 1. Invoke: `/document-in-soar` with full findings
 2. Output escalation recommendation:
    - Recommend specific IR skill:
-     - Ransomware indicators → `/ransomware-response`
-     - Malware persistence → `/malware-response`
-     - Phishing origin → `/phishing-response`
-     - Account compromise → `/compromised-account-response`
+     - Ransomware indicators → `/respond-ransomware`
+     - Malware persistence → `/respond-malware`
+     - Phishing origin → `/respond-phishing`
+     - Account compromise → `/respond-compromised-account`
 3. Prepare handoff package for IR team
 
 **If Resolved:**

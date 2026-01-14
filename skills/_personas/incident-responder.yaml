@@ -39,16 +39,16 @@ iam_requirements:
 
 skills:
   primary:
-    - ransomware-response           # Ransomware incident lifecycle
-    - malware-response              # Malware incident lifecycle
-    - phishing-response             # Phishing incident lifecycle
-    - compromised-account-response  # Account compromise lifecycle
+    - respond-ransomware           # Ransomware incident lifecycle
+    - respond-malware              # Malware incident lifecycle
+    - respond-phishing             # Phishing incident lifecycle
+    - respond-compromised-account  # Account compromise lifecycle
     - confirm-action                # Confirm before containment
     - generate-report               # Incident reports
 
   allowed:
     # All skills available - IR has full access
-    - alert-triage
+    - triage-alert
     - check-duplicates
     - enrich-ioc
     - deep-dive-ioc
@@ -57,13 +57,13 @@ skills:
     - find-relevant-case
     - document-in-soar
     - close-soar-artifact
-    - malware-triage
-    - suspicious-login-triage
-    - threat-hunt
-    - apt-hunt
-    - ioc-hunt
-    - lateral-movement-hunt
-    - credential-access-hunt
+    - triage-malware
+    - triage-suspicious-login
+    - hunt-threat
+    - hunt-apt
+    - hunt-ioc
+    - hunt-lateral-movement
+    - hunt-credential-access
 
   forbidden: []  # IR has access to all skills
 
@@ -73,22 +73,22 @@ workflows:
     trigger: "Ransomware detected or suspected"
     description: "Complete PICERL workflow for ransomware incidents"
     chain:
-      - skill: ransomware-response
+      - skill: respond-ransomware
         phase: identification
         outputs: [AFFECTED_SYSTEMS, RANSOMWARE_VARIANT, ENCRYPTION_STATUS, RANSOMWARE_IOCS]
       - skill: confirm-action
         message: "Proceed with network isolation of affected systems?"
-      - skill: ransomware-response
+      - skill: respond-ransomware
         phase: containment
         outputs: [ISOLATED_SYSTEMS, BLOCKED_IOCS, C2_INDICATORS]
       - skill: enrich-ioc
         for_each: RANSOMWARE_IOCS
       - skill: pivot-on-ioc
         for_each: C2_INDICATORS
-      - skill: ransomware-response
+      - skill: respond-ransomware
         phase: eradication
         outputs: [CLEANED_SYSTEMS, REMOVED_PERSISTENCE]
-      - skill: ransomware-response
+      - skill: respond-ransomware
         phase: recovery
         outputs: [RESTORED_SYSTEMS, VALIDATION_STATUS]
       - skill: generate-report
@@ -99,20 +99,20 @@ workflows:
     name: "Malware Incident Response"
     trigger: "Malware infection confirmed"
     chain:
-      - skill: malware-response
+      - skill: respond-malware
         phase: identification
         outputs: [AFFECTED_HOSTS, MALWARE_SAMPLES, MALWARE_IOCS]
-      - skill: malware-triage
+      - skill: triage-malware
         for_each: MALWARE_SAMPLES
       - skill: confirm-action
         message: "Proceed with host isolation?"
-      - skill: malware-response
+      - skill: respond-malware
         phase: containment
       - skill: enrich-ioc
         for_each: MALWARE_IOCS
-      - skill: malware-response
+      - skill: respond-malware
         phase: eradication
-      - skill: malware-response
+      - skill: respond-malware
         phase: recovery
       - skill: generate-report
         type: incident
@@ -121,19 +121,19 @@ workflows:
     name: "Phishing Incident Response"
     trigger: "Phishing campaign detected"
     chain:
-      - skill: phishing-response
+      - skill: respond-phishing
         phase: identification
         outputs: [PHISHING_URLS, PHISHING_IOCS, AFFECTED_USERS, CLICKED_USERS]
       - skill: enrich-ioc
         for_each: PHISHING_IOCS
       - skill: confirm-action
         message: "Block phishing domains and quarantine emails?"
-      - skill: phishing-response
+      - skill: respond-phishing
         phase: containment
-      - skill: compromised-account-response
+      - skill: respond-compromised-account
         for_each: CLICKED_USERS
         condition: credentials_entered
-      - skill: phishing-response
+      - skill: respond-phishing
         phase: eradication
       - skill: generate-report
         type: incident
@@ -142,20 +142,20 @@ workflows:
     name: "Compromised Account Response"
     trigger: "Account compromise confirmed"
     chain:
-      - skill: compromised-account-response
+      - skill: respond-compromised-account
         phase: identification
         outputs: [AFFECTED_ACCOUNTS, SUSPICIOUS_ACTIVITY, ACCESS_SCOPE]
-      - skill: suspicious-login-triage
+      - skill: triage-suspicious-login
         for_each: AFFECTED_ACCOUNTS
       - skill: confirm-action
         message: "Disable affected accounts and revoke sessions?"
-      - skill: compromised-account-response
+      - skill: respond-compromised-account
         phase: containment
-      - skill: lateral-movement-hunt
+      - skill: hunt-lateral-movement
         scope: affected_accounts
-      - skill: compromised-account-response
+      - skill: respond-compromised-account
         phase: eradication
-      - skill: compromised-account-response
+      - skill: respond-compromised-account
         phase: recovery
       - skill: generate-report
         type: incident

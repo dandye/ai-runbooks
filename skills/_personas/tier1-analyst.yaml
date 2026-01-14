@@ -36,7 +36,7 @@ iam_requirements:
 
 skills:
   primary:
-    - alert-triage          # Core triage workflow
+    - triage-alert          # Core triage workflow
     - check-duplicates      # Avoid duplicate investigation
     - enrich-ioc            # Basic IOC enrichment
     - close-soar-artifact   # Close FP/BTP cases
@@ -45,23 +45,23 @@ skills:
   allowed:
     - correlate-ioc         # Check related alerts/cases
     - find-relevant-case    # Search for similar cases
-    - suspicious-login-triage  # Handle auth alerts
+    - triage-suspicious-login  # Handle auth alerts
     - generate-report       # Create triage reports
     - confirm-action        # Confirm before actions
 
   forbidden:
-    - apt-hunt              # Requires Enterprise+ GTI
+    - hunt-apt              # Requires Enterprise+ GTI
     - deep-dive-ioc         # Tier 2+ only
     - pivot-on-ioc          # Requires Enterprise+ GTI
-    - threat-hunt           # Hunter role only
-    - ioc-hunt              # Hunter role only
-    - lateral-movement-hunt # Hunter role only
-    - credential-access-hunt # Hunter role only
-    - ransomware-response   # IR role, requires admin
-    - malware-response      # IR role, requires admin
-    - phishing-response     # IR role, requires soarAdmin
-    - compromised-account-response  # IR role
-    - malware-triage        # Tier 2+, requires Enterprise GTI
+    - hunt-threat           # Hunter role only
+    - hunt-ioc              # Hunter role only
+    - hunt-lateral-movement # Hunter role only
+    - hunt-credential-access # Hunter role only
+    - respond-ransomware   # IR role, requires admin
+    - respond-malware      # IR role, requires admin
+    - respond-phishing     # IR role, requires soarAdmin
+    - respond-compromised-account  # IR role
+    - triage-malware        # Tier 2+, requires Enterprise GTI
 
 workflows:
   default_triage:
@@ -74,7 +74,7 @@ workflows:
           - document-in-soar
           - close-soar-artifact
           - STOP
-      - skill: alert-triage
+      - skill: triage-alert
         outputs: [classification, key_entities, priority]
       - skill: enrich-ioc
         for_each: key_entities

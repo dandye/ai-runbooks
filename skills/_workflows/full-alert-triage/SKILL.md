@@ -1,10 +1,10 @@
 ---
-name: full-alert-triage
-description: "Complete Tier 1 triage workflow. Orchestrates the full alert triage process: check-duplicates, alert-triage, enrich-ioc for each entity, and either close (FP/BTP) or escalate (TP/Suspicious). Use for end-to-end alert processing."
+name: full-triage-alert
+description: "Complete Tier 1 triage workflow. Orchestrates the full alert triage process: check-duplicates, triage-alert, enrich-ioc for each entity, and either close (FP/BTP) or escalate (TP/Suspicious). Use for end-to-end alert processing."
 type: workflow
 orchestrates:
   - check-duplicates
-  - alert-triage
+  - triage-alert
   - enrich-ioc
   - document-in-soar
   - close-soar-artifact
@@ -43,7 +43,7 @@ A composite skill that orchestrates the complete Tier 1 alert triage process fro
 │     │               │                                          │
 │     ▼               ▼                                          │
 │  Close &      ┌─────────────────────┐                          │
-│  Document     │   /alert-triage     │                          │
+│  Document     │   /triage-alert     │                          │
 │     │         └──────────┬──────────┘                          │
 │     │                    │                                      │
 │     │         ┌──────────┴──────────┐                          │
@@ -93,7 +93,7 @@ Invoke: `/check-duplicates CASE_ID=$CASE_ID`
 
 **Step 2.1: Perform Alert Triage**
 
-Invoke: `/alert-triage CASE_ID=$CASE_ID`
+Invoke: `/triage-alert CASE_ID=$CASE_ID`
 
 Extract from results:
 - `CLASSIFICATION` - FP, BTP, TP, or Suspicious
@@ -148,8 +148,8 @@ Based on triage and enrichment, confirm classification:
 2. Output escalation recommendation:
    - Escalate to Tier 2
    - Suggest appropriate follow-up skill based on alert type:
-     - Malware → `/malware-triage`
-     - Authentication → `/suspicious-login-triage`
+     - Malware → `/triage-malware`
+     - Authentication → `/triage-suspicious-login`
      - IOC-focused → `/deep-dive-ioc`
 
 ### Phase 5: Report

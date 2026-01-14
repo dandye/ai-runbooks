@@ -1,5 +1,5 @@
 ---
-name: apt-hunt
+name: hunt-apt
 description: "Hunt for a specific APT/threat actor in your environment. Use when you have a threat actor name or GTI collection ID and want to search for their TTPs and IOCs. Gathers intelligence from GTI, searches SIEM for IOCs and TTP-based indicators, and documents findings."
 required_roles:
   chronicle: roles/chronicle.editor

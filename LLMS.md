@@ -99,10 +99,10 @@ Persona manifests define which skills each security role can use and their typic
 
 | Persona | Primary Function | Key Skills |
 |---------|-----------------|------------|
-| `tier1-analyst` | Alert triage, initial assessment | alert-triage, enrich-ioc, check-duplicates |
-| `tier2-analyst` | Deep investigation, escalated cases | deep-dive-ioc, correlate-ioc, malware-triage |
-| `threat-hunter` | Proactive hunting | apt-hunt, ioc-hunt, threat-hunt, lateral-movement-hunt |
-| `incident-responder` | PICERL lifecycle management | ransomware-response, malware-response, phishing-response |
+| `tier1-analyst` | Alert triage, initial assessment | triage-alert, enrich-ioc, check-duplicates |
+| `tier2-analyst` | Deep investigation, escalated cases | deep-dive-ioc, correlate-ioc, triage-malware |
+| `threat-hunter` | Proactive hunting | hunt-apt, hunt-ioc, hunt-threat, hunt-lateral-movement |
+| `incident-responder` | PICERL lifecycle management | respond-ransomware, respond-malware, respond-phishing |
 
 **Activating a Persona:**
 
@@ -129,13 +129,13 @@ iam_requirements:
     license: GTI Standard
 
 skills:
-  primary: [alert-triage, enrich-ioc, check-duplicates]
+  primary: [triage-alert, enrich-ioc, check-duplicates]
   allowed: [correlate-ioc, generate-report]
-  forbidden: [apt-hunt, ransomware-response]
+  forbidden: [hunt-apt, respond-ransomware]
 
 workflows:
   default_triage:
-    chain: [check-duplicates, alert-triage, enrich-ioc, close-or-escalate]
+    chain: [check-duplicates, triage-alert, enrich-ioc, close-or-escalate]
 ```
 
 ### IAM Role Requirements
@@ -163,7 +163,7 @@ Skills require specific IAM roles to function. See `skills/_roles/iam-matrix.md`
 
 **Skill Chaining Example (Tier 1 Triage):**
 ```
-check-duplicates → alert-triage → enrich-ioc → [close OR escalate]
+check-duplicates → triage-alert → enrich-ioc → [close OR escalate]
 ```
 
 ## Working with the Codebase

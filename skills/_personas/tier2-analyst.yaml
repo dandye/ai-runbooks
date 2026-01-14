@@ -40,12 +40,12 @@ skills:
   primary:
     - deep-dive-ioc         # Exhaustive IOC analysis
     - correlate-ioc         # Cross-reference alerts/cases
-    - malware-triage        # Analyze malware alerts
-    - suspicious-login-triage  # Investigate auth anomalies
+    - triage-malware        # Analyze malware alerts
+    - triage-suspicious-login  # Investigate auth anomalies
     - pivot-on-ioc          # Explore GTI relationships
 
   allowed:
-    - alert-triage          # Can assist Tier 1
+    - triage-alert          # Can assist Tier 1
     - enrich-ioc            # Basic enrichment
     - check-duplicates      # Duplicate detection
     - find-relevant-case    # Case correlation
@@ -53,17 +53,17 @@ skills:
     - close-soar-artifact   # Close investigated cases
     - generate-report       # Investigation reports
     - confirm-action        # Action confirmation
-    - threat-hunt           # Limited hunting
-    - ioc-hunt              # IOC-based hunting
+    - hunt-threat           # Limited hunting
+    - hunt-ioc              # IOC-based hunting
 
   forbidden:
-    - ransomware-response   # IR role only
-    - malware-response      # IR role only
-    - phishing-response     # IR role only
-    - compromised-account-response  # IR role only
-    - apt-hunt              # Requires Enterprise+ GTI
-    - lateral-movement-hunt # Hunter role primary
-    - credential-access-hunt # Hunter role primary
+    - respond-ransomware   # IR role only
+    - respond-malware      # IR role only
+    - respond-phishing     # IR role only
+    - respond-compromised-account  # IR role only
+    - hunt-apt              # Requires Enterprise+ GTI
+    - hunt-lateral-movement # Hunter role primary
+    - hunt-credential-access # Hunter role primary
 
 workflows:
   escalation_investigation:
@@ -82,10 +82,10 @@ workflows:
           condition: ALERT_TYPE
           branches:
             malware:
-              - skill: malware-triage
+              - skill: triage-malware
                 outputs: [MALWARE_CLASSIFICATION, TRIAGE_VERDICT]
             authentication:
-              - skill: suspicious-login-triage
+              - skill: triage-suspicious-login
                 outputs: [LOGIN_VERDICT, RISK_SCORE]
             default:
               - skill: pivot-on-ioc
@@ -113,7 +113,7 @@ workflows:
     name: "Intelligence-Driven Hunt"
     trigger: "Threat intelligence or hypothesis provided"
     chain:
-      - skill: ioc-hunt
+      - skill: hunt-ioc
         outputs: [MATCHES, MATCH_CONTEXT, MATCHES_FOUND]
       - skill: deep-dive-ioc
         for_each: MATCHES

@@ -48,26 +48,26 @@ Each skill requires specific IAM roles to function. Skills will fail or have lim
 
 | Skill | Chronicle | SOAR | GTI | SCC |
 |-------|-----------|------|-----|-----|
-| `alert-triage` | viewer | editor | Standard | - |
+| `triage-alert` | viewer | editor | Standard | - |
 | `enrich-ioc` | viewer | - | Standard | - |
 | `check-duplicates` | - | editor | - | - |
 | `document-in-soar` | - | editor | - | - |
 | `close-soar-artifact` | - | editor | - | - |
 | `find-relevant-case` | - | editor | - | - |
 | `correlate-ioc` | viewer | editor | - | - |
-| `suspicious-login-triage` | viewer | editor | Standard | - |
-| `malware-triage` | viewer | editor | Enterprise | - |
+| `triage-suspicious-login` | viewer | editor | Standard | - |
+| `triage-malware` | viewer | editor | Enterprise | - |
 | `deep-dive-ioc` | editor | editor | Enterprise | - |
 | `pivot-on-ioc` | - | - | Enterprise+ | - |
-| `threat-hunt` | editor | - | Enterprise | - |
-| `apt-hunt` | editor | - | Enterprise+ | - |
-| `ioc-hunt` | editor | - | Enterprise | - |
-| `lateral-movement-hunt` | editor | - | Standard | - |
-| `credential-access-hunt` | editor | - | Standard | - |
-| `ransomware-response` | admin | soarAdmin | Enterprise | adminEditor |
-| `malware-response` | admin | soarAdmin | Enterprise | findingsEditor |
-| `phishing-response` | editor | soarAdmin | Enterprise | - |
-| `compromised-account-response` | editor | soarAdmin | Standard | - |
+| `hunt-threat` | editor | - | Enterprise | - |
+| `hunt-apt` | editor | - | Enterprise+ | - |
+| `hunt-ioc` | editor | - | Enterprise | - |
+| `hunt-lateral-movement` | editor | - | Standard | - |
+| `hunt-credential-access` | editor | - | Standard | - |
+| `respond-ransomware` | admin | soarAdmin | Enterprise | adminEditor |
+| `respond-malware` | admin | soarAdmin | Enterprise | findingsEditor |
+| `respond-phishing` | editor | soarAdmin | Enterprise | - |
+| `respond-compromised-account` | editor | soarAdmin | Standard | - |
 | `generate-report` | - | - | - | - |
 | `confirm-action` | - | - | - | - |
 

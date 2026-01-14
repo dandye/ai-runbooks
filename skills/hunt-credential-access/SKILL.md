@@ -1,5 +1,5 @@
 ---
-name: credential-access-hunt
+name: hunt-credential-access
 description: "Hunt for credential access techniques like LSASS dumping or browser credential theft. Use when searching for evidence of credential harvesting. Takes MITRE technique IDs and searches for behavioral indicators in SIEM."
 required_roles:
   chronicle: roles/chronicle.editor
@@ -76,7 +76,7 @@ principal.process.file.full_path NOT IN ("chrome.exe", "firefox.exe", "msedge.ex
 **T1003.006 - DCSync:**
 ```udm
 metadata.event_type = "DOMAIN_CONTROLLER_REPLICATION" AND
-principal.hostname NOT IN (known_domain_controllers)
+principal.hostname NOT IN @known_domain_controllers
 ```
 
 **General - Credential Dumping Tools:**
@@ -127,7 +127,7 @@ Use `/document-in-soar`:
 ### Step 7: Escalate or Conclude
 
 **Credential theft confirmed:**
-→ Trigger `/compromised-account-response` for affected users
+→ Trigger `/respond-compromised-account` for affected users
 → Escalate to incident response
 → Consider password resets for exposed credentials
 

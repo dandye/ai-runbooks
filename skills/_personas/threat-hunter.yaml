@@ -38,11 +38,11 @@ iam_requirements:
 
 skills:
   primary:
-    - threat-hunt           # General hypothesis-driven hunting
-    - apt-hunt              # Hunt for specific threat actors
-    - ioc-hunt              # Hunt for specific IOCs
-    - lateral-movement-hunt # Hunt for lateral movement TTPs
-    - credential-access-hunt # Hunt for credential theft TTPs
+    - hunt-threat           # General hypothesis-driven hunting
+    - hunt-apt              # Hunt for specific threat actors
+    - hunt-ioc              # Hunt for specific IOCs
+    - hunt-lateral-movement # Hunt for lateral movement TTPs
+    - hunt-credential-access # Hunt for credential theft TTPs
     - pivot-on-ioc          # Explore threat intelligence graphs
 
   allowed:
@@ -55,13 +55,13 @@ skills:
     - confirm-action        # Confirm before actions
 
   forbidden:
-    - alert-triage          # Not primary function
+    - triage-alert          # Not primary function
     - check-duplicates      # SOC analyst function
     - close-soar-artifact   # SOC analyst function
-    - ransomware-response   # IR role only
-    - malware-response      # IR role only
-    - phishing-response     # IR role only
-    - compromised-account-response  # IR role only
+    - respond-ransomware   # IR role only
+    - respond-malware      # IR role only
+    - respond-phishing     # IR role only
+    - respond-compromised-account  # IR role only
 
 workflows:
   hypothesis_hunt:
@@ -69,16 +69,16 @@ workflows:
     trigger: "Hunting hypothesis provided"
     description: "Complete threat hunting cycle based on a hypothesis"
     chain:
-      - skill: threat-hunt
+      - skill: hunt-threat
         inputs: [HUNT_HYPOTHESIS, TARGET_SCOPE_QUERY, TIME_FRAME_HOURS]
         outputs: [HUNT_QUERIES, INITIAL_FINDINGS, FINDINGS_TYPE, DISCOVERED_IOCS, HIGH_CONFIDENCE_IOCS, THREAT_CONFIRMED]
       - decision:
           condition: FINDINGS_TYPE
           branches:
             lateral_movement:
-              - skill: lateral-movement-hunt
+              - skill: hunt-lateral-movement
             credential_access:
-              - skill: credential-access-hunt
+              - skill: hunt-credential-access
             generic:
               - continue
       - skill: enrich-ioc
@@ -102,7 +102,7 @@ workflows:
     name: "Threat Actor Hunt"
     trigger: "Threat actor name or GTI collection ID"
     chain:
-      - skill: apt-hunt
+      - skill: hunt-apt
         inputs: [THREAT_ACTOR_ID, COLLECTION_ID]
         outputs: [ACTOR_IOCS, ACTOR_TTPS, HUNT_RESULTS, DISCOVERED_INDICATORS, CONFIRMED_IOCS]
       - skill: enrich-ioc
@@ -117,7 +117,7 @@ workflows:
     name: "IOC Sweep Hunt"
     trigger: "List of IOCs from threat intelligence"
     chain:
-      - skill: ioc-hunt
+      - skill: hunt-ioc
         inputs: [IOC_LIST, IOC_TYPES]
         outputs: [MATCHES, MATCH_CONTEXT, MATCHES_FOUND]
       - skill: enrich-ioc
@@ -140,13 +140,13 @@ workflows:
           condition: TECHNIQUE_CATEGORY
           branches:
             lateral_movement:
-              - skill: lateral-movement-hunt
+              - skill: hunt-lateral-movement
                 outputs: [FINDINGS, DETECTED_TECHNIQUES]
             credential_access:
-              - skill: credential-access-hunt
+              - skill: hunt-credential-access
                 outputs: [FINDINGS, DETECTED_TECHNIQUES]
             default:
-              - skill: threat-hunt
+              - skill: hunt-threat
                 outputs: [FINDINGS, DISCOVERED_IOCS]
       - skill: enrich-ioc
         for_each: FINDINGS

@@ -10,7 +10,7 @@ sequenceDiagram
     participant SIEM as secops-mcp
     participant GTI as gti-mcp
 
-    Analyst->>Claude: /alert-triage CASE_ID=1234
+    Analyst->>Claude: /triage-alert CASE_ID=1234
 
     %% Step 1: Gather Initial Context
     Claude->>SOAR: get_case_full_details(case_id)
