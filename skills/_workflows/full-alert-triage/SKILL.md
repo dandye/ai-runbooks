@@ -33,38 +33,37 @@ A composite skill that orchestrates the complete Tier 1 alert triage process fro
 │  START                                                          │
 │    │                                                            │
 │    ▼                                                            │
-│  ┌─────────────────────┐                                       │
-│  │  /check-duplicates  │                                       │
-│  └──────────┬──────────┘                                       │
+│  ┌─────────────────────┐                                        │
+│  │  /check-duplicates  │                                        │
+│  └──────────┬──────────┘                                        │
 │             │                                                   │
-│     ┌───────┴───────┐                                          │
-│     ▼               ▼                                          │
+│     ┌───────┴───────┐                                           │
+│     ▼               ▼                                           │
 │  DUPLICATE       NOT DUPLICATE                                  │
-│     │               │                                          │
-│     ▼               ▼                                          │
-│  Close &      ┌─────────────────────┐                          │
-│  Document     │   /triage-alert     │                          │
-│     │         └──────────┬──────────┘                          │
-│     │                    │                                      │
-│     │         ┌──────────┴──────────┐                          │
-│     │         │  For each entity:   │                          │
-│     │         │    /enrich-ioc      │                          │
-│     │         └──────────┬──────────┘                          │
-│     │                    │                                      │
-│     │         ┌──────────┴──────────┐                          │
-│     │         │     DECISION        │                          │
-│     │         └──────────┬──────────┘                          │
-│     │                    │                                      │
-│     │     ┌──────────────┼──────────────┐                      │
-│     │     ▼              ▼              ▼                      │
-│     │   FP/BTP      TP/Suspicious    Inconclusive              │
-│     │     │              │              │                      │
-│     │     ▼              ▼              ▼                      │
-│     │  /document     /document     /document                   │
-│     │  /close-soar-  ESCALATE      Request more info           │
-│     │   artifact                                               │
-│     │     │              │              │                      │
-│     └─────┴──────────────┴──────────────┘                      │
+│     │               │                                           │
+│     ▼               ▼                                           │
+│  Close &      ┌─────────────────────┐                           │
+│  Document     │   /triage-alert     │                           │
+│     │         └───────────┬─────────┘                           │
+│     │                     │                                     │
+│     │         ┌───────────┴─────────┐                           │
+│     │         │  For each entity:   │                           │
+│     │         │    /enrich-ioc      │                           │
+│     │         └───────────┬─────────┘                           │
+│     │                     │                                     │
+│     │         ┌───────────┴─────────┐                           │
+│     │         │     DECISION        │                           │
+│     │         └───────────┬─────────┘                           │
+│     │                     │                                     │
+│     │     ┌───────────────┼────────────────┐                    │
+│     │     ▼               ▼                ▼                    │
+│     │   FP/BTP         TP/Suspicious    Inconclusive            │
+│     │     │                  │                  │               │
+│     │     ▼                  ▼                  ▼               │
+│     │  /document-in-soar    /document-in-soar /document-in-soar │
+│     │  /close-soar-artifact  ESCALATE         Request more info │
+│     │     │                  │                  │               │
+│     └─────┴──────────────────┴──────────────────┘               │
 │                    │                                            │
 │                    ▼                                            │
 │               /generate-report                                  │

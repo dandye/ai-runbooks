@@ -12,7 +12,7 @@ skills/
 │   ├── threat-hunter.yaml
 │   └── incident-responder.yaml
 ├── _workflows/             # Composite/orchestration skills
-│   ├── full-triage-alert/
+│   ├── full-alert-triage/
 │   └── full-investigation/
 ├── _roles/                 # IAM role documentation
 │   └── iam-matrix.md
@@ -216,7 +216,7 @@ Skills require specific IAM roles. See `_roles/iam-matrix.md` for the complete m
 
 | Workflow | Location | Description |
 |----------|----------|-------------|
-| **Full Alert Triage** | `_workflows/full-triage-alert/` | Complete Tier 1 workflow: check-duplicates → triage-alert → enrich-ioc → close/escalate |
+| **Full Alert Triage** | `_workflows/full-alert-triage/` | Complete Tier 1 workflow: check-duplicates → triage-alert → enrich-ioc → close/escalate |
 | **Full Investigation** | `_workflows/full-investigation/` | Complete Tier 2 workflow: deep-dive-ioc → correlate → specialized triage → report |
 
 ### Using Personas

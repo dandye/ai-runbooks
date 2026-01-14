@@ -39,55 +39,56 @@ A composite skill that orchestrates comprehensive Tier 2/3 investigation of esca
 │  ESCALATED CASE                                                 │
 │       │                                                         │
 │       ▼                                                         │
-│  ┌─────────────────────┐                                       │
-│  │   /deep-dive-ioc    │  (for each primary IOC)               │
-│  └──────────┬──────────┘                                       │
+│  ┌─────────────────────┐                                        │
+│  │   /deep-dive-ioc    │  (for each primary IOC)                │
+│  └──────────┬──────────┘                                        │
 │             │                                                   │
 │             ▼                                                   │
-│  ┌─────────────────────┐                                       │
-│  │   /correlate-ioc    │                                       │
-│  └──────────┬──────────┘                                       │
+│  ┌─────────────────────┐                                        │
+│  │   /correlate-ioc    │                                        │
+│  └──────────┬──────────┘                                        │
 │             │                                                   │
-│     ┌───────┴───────────────────┐                              │
-│     │     ALERT TYPE ROUTING    │                              │
-│     └───────────────────────────┘                              │
+│     ┌───────┴───────────────────┐                               │
+│     │     ALERT TYPE ROUTING    │                               │
+│     └───────────────────────────┘                               │
 │             │                                                   │
-│   ┌─────────┼─────────┬─────────┐                              │
-│   ▼         ▼         ▼         ▼                              │
-│ MALWARE   AUTH    NETWORK    OTHER                             │
-│   │         │         │         │                              │
-│   ▼         ▼         ▼         ▼                              │
-│ /malware  /suspicious /pivot   Continue                        │
-│ -triage   -login      -on-ioc  with pivoting                   │
-│   │       -triage       │         │                            │
-│   └─────────┴───────────┴─────────┘                            │
-│             │                                                   │
-│             ▼                                                   │
-│  ┌─────────────────────┐                                       │
-│  │   /pivot-on-ioc     │  (expand investigation)               │
-│  └──────────┬──────────┘                                       │
-│             │                                                   │
-│     ┌───────┴───────┐                                          │
-│     │   DECISION    │                                          │
-│     └───────┬───────┘                                          │
-│             │                                                   │
-│   ┌─────────┼─────────┐                                        │
-│   ▼         ▼         ▼                                        │
-│ INCIDENT  RESOLVED  ESCALATE                                   │
-│   │         │       TO IR                                      │
-│   ▼         ▼         │                                        │
-│ Create   /close       │                                        │
-│ Incident  -soar       │                                        │
-│   │         │         │                                        │
-│   └─────────┴─────────┘                                        │
+│   ┌─────────┼───────────┬─────────┐                             │
+│   ▼         ▼           ▼         ▼                             │
+│ MALWARE   AUTH      NETWORK    OTHER                            │
+│   │         │           │         │                             │
+│   ▼         ▼           ▼         ▼                             │
+│ /triage   /triage      /pivot   Continue                        │
+│ -malware  -suspicious  -on-ioc  with pivoting                   │
+│   │       -login        │         │                             │
+│   └─────────┴───────────┴─────────┘                             │
 │             │                                                   │
 │             ▼                                                   │
-│  ┌─────────────────────┐                                       │
-│  │  /generate-report   │                                       │
-│  └──────────┬──────────┘                                       │
+│  ┌─────────────────────┐                                        │
+│  │   /pivot-on-ioc     │  (expand investigation)                │
+│  └──────────┬──────────┘                                        │
+│             │                                                   │
+│     ┌───────┴───────┐                                           │
+│     │   DECISION    │                                           │
+│     └───────┬───────┘                                           │
+│             │                                                   │
+│   ┌─────────┼─────────┐                                         │
+│   ▼         ▼         ▼                                         │
+│ INCIDENT  RESOLVED  ESCALATE                                    │
+│   │         │       TO IR                                       │
+│   ▼         ▼         │                                         │
+│ Create   /close       │                                         │
+│ Incident  -soar       │                                         │
+│   │       -artifact   │                                         │
+│   │         │         │                                         │
+│   └─────────┴─────────┘                                         │
 │             │                                                   │
 │             ▼                                                   │
-│           END                                                   │
+│  ┌─────────────────────┐                                        │
+│  │  /generate-report   │                                        │
+│  └──────────┬──────────┘                                        │
+│             │                                                   │
+│             ▼                                                   │
+│            END                                                  │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
