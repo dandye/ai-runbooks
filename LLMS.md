@@ -193,7 +193,6 @@ This repository includes multiple layers of context to help AI assistants unders
 - **`TAXONOMY_[date].md`** - Hierarchical classification systems for content organization
 
 ### Specialized Enhancement Files
-- **`SuperClaude_Framework/`** - Advanced command framework with specialized security slash commands
 - **`reporting_templates.md`** - Standardized formats for security report generation
 - **`./reports/`** - Real-world examples of generated security reports and investigations
 
@@ -235,22 +234,6 @@ The repository integrates with multiple security platforms through MCP tools:
 - **`secops-soar`** - SOAR platform integration (case management, alerts, entities, workflows)
 - **`gti`** - Google Threat Intelligence (threat analysis, IOC enrichment, malware research)
 - **`scc-mcp`** - Security Command Center (cloud security posture, vulnerability management)
-
-### Slash Commands (Claude-Specific)
-Specialized security commands available in Claude for advanced workflows:
-- **`/security:investigate`** - Comprehensive incident investigation and analysis
-- **`/security:hunt`** - Proactive threat hunting and pattern detection
-- **`/security:analyze`** - Deep analysis of rules, IOCs, and security events
-- **`/security:enrich`** - Threat intelligence enrichment and contextualization
-- **`/security:correlate`** - Multi-source correlation and pattern matching
-- **`/security:detect`** - Detection rule creation and optimization
-
-### Information Architecture Commands (Claude-Specific)
-Content organization and analysis capabilities:
-- **`/thesaurus`** - Generate controlled vocabulary and terminology maps
-- **`/content-audit`** - Comprehensive content quality assessment
-- **`/sitemap`** - Create structural navigation and content maps
-- **`/taxonomy`** - Develop hierarchical classification systems
 
 ## Important Notes & Best Practices
 
