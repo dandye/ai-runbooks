@@ -37,6 +37,7 @@ This runbook covers the initial investigation steps to gather context about a su
 *   *(Optional: Identity Provider tools like `okta-mcp.lookup_okta_user`)*
 *   **Action:** Request user input (e.g., using `ask_followup_question`)
 *   **Common Steps:** `common_steps/enrich_ioc.md`, `common_steps/find_relevant_soar_case.md`, `common_steps/document_in_soar.md`, `common_steps/generate_report_file.md`
+*   **Memory-Enhanced Steps:** `common_steps/query_memories.md`, `common_steps/apply_memory_procedure.md`, `common_steps/log_memory_outcome.md`
 
 ## Workflow Steps & Diagram
 
@@ -45,6 +46,17 @@ This runbook covers the initial investigation steps to gather context about a su
 3.  **Extract Key Entities:**
     *   Use `secops-soar.list_events_by_alert` for the primary alert(s) in the case.
     *   Parse events to reliably extract the primary `${USER_ID}`, `${SOURCE_IP}`, and relevant `${HOSTNAME}`(s). Handle cases where these might be missing.
+
+3.5. **Memory-Enhanced Pattern Check:**
+    *   Execute `common_steps/query_memories.md` with:
+        *   `CURRENT_RUNBOOK` = "run_books/suspicious_login_triage.md"
+        *   `CURRENT_PERSONA` = [Current analyst persona]
+        *   `CURRENT_STEP` = "Login Pattern Analysis"
+        *   `STEP_CONTEXT` = "login_analysis, ${USER_ID}, ${SOURCE_IP}, suspicious_login"
+    *   Query `institutional_memory/patterns/false_positive_login_patterns.md` for organizational false positive patterns
+    *   If pattern match found with high confidence (≥0.9), apply pattern classification automatically
+    *   If medium confidence (0.7-0.89), present pattern match for analyst review
+    *   Store pattern matching results in `${PATTERN_MATCH_RESULTS}`
 4.  **User Context (SIEM):**
     *   Use `secops-mcp.lookup_entity` with `entity_value=${USER_ID}`.
     *   Record summary of user's recent activity, first/last seen, related alerts (`USER_SIEM_SUMMARY`).
@@ -71,21 +83,26 @@ This runbook covers the initial investigation steps to gather context about a su
     *   *Note: `list_cases` filtering by entity is limited; review results carefully.*
 9.  **(Optional) Identity Provider Check:**
     *   *(If `okta-mcp` or similar tool is available, use `okta-mcp.lookup_okta_user` with `${USER_ID}` to check account status, recent legitimate logins, MFA methods, etc. (`IDP_SUMMARY`))*
-10.  **Synthesize & Document:**
-    *   Combine findings: User context (`USER_SIEM_SUMMARY`), Source IP context (`IP_GTI_FINDINGS`, `IP_SIEM_SUMMARY`, `IP_SIEM_MATCH`), Hostname context (`HOSTNAME_SIEM_SUMMARY`), Login patterns (`LOGIN_ACTIVITY_SUMMARY`), Related cases (`${RELATED_SOAR_CASES}`), IDP check (`IDP_SUMMARY`).
-    *   Prepare comment text: `COMMENT_TEXT = "Suspicious Login Triage for ${USER_ID} from ${SOURCE_IP} (Host: ${HOSTNAME}): User SIEM Summary: ${USER_SIEM_SUMMARY}. Source IP GTI: ${IP_GTI_FINDINGS}. Source IP SIEM: ${IP_SIEM_SUMMARY}. Source IP IOC Match: ${IP_SIEM_MATCH}. Hostname SIEM: ${HOSTNAME_SIEM_SUMMARY}. Recent Login Pattern: ${LOGIN_ACTIVITY_SUMMARY}. Related Open Cases: ${RELATED_SOAR_CASES}. Optional IDP Check: ${IDP_SUMMARY}. Recommendation: [Close as FP/Known Activity | Escalate to Tier 2 for further investigation]"`
+10.  **Memory-Enhanced Synthesis & Decision:**
+    *   **Decision Enhancement:** Apply institutional memory to triage decision:
+        *   If `${PATTERN_MATCH_RESULTS}` indicates high-confidence false positive pattern → Recommend closure
+        *   Check memory adaptations for VIP user handling (from feedback queue item QUEUE-003)
+        *   Apply persona-specific decision frameworks from `institutional_memory/adaptations/`
+
+    *   **Synthesis:** Combine findings: User context (`USER_SIEM_SUMMARY`), Source IP context (`IP_GTI_FINDINGS`, `IP_SIEM_SUMMARY`, `IP_SIEM_MATCH`), Hostname context (`HOSTNAME_SIEM_SUMMARY`), Login patterns (`LOGIN_ACTIVITY_SUMMARY`), Related cases (`${RELATED_SOAR_CASES}`), IDP check (`IDP_SUMMARY`), Pattern matching (`${PATTERN_MATCH_RESULTS}`).
+
+    *   **Enhanced Documentation:** Prepare comment text: `COMMENT_TEXT = "Memory-Enhanced Suspicious Login Triage for ${USER_ID} from ${SOURCE_IP} (Host: ${HOSTNAME}): User SIEM Summary: ${USER_SIEM_SUMMARY}. Source IP GTI: ${IP_GTI_FINDINGS}. Source IP SIEM: ${IP_SIEM_SUMMARY}. Source IP IOC Match: ${IP_SIEM_MATCH}. Hostname SIEM: ${HOSTNAME_SIEM_SUMMARY}. Recent Login Pattern: ${LOGIN_ACTIVITY_SUMMARY}. Pattern Analysis: ${PATTERN_MATCH_RESULTS}. Related Open Cases: ${RELATED_SOAR_CASES}. Optional IDP Check: ${IDP_SUMMARY}. Memory-Enhanced Recommendation: [Close as FP/Known Activity | Escalate to Tier 2 for further investigation] - Applied institutional knowledge"`
+
     *   Execute `common_steps/document_in_soar.md` with `${CASE_ID}` and `${COMMENT_TEXT}`. Obtain `${COMMENT_POST_STATUS}`.
+
+    *   **Log Memory Application:** If any memories were applied, execute `common_steps/log_memory_outcome.md` to record effectiveness
 11. **(Optional) Generate Report:**
     *   **Request user input** to ask the user: "Generate a markdown report file for this triage?". Obtain `${REPORT_CHOICE}`.
     *   **If `${REPORT_CHOICE}` is "Yes":**
         *   Prepare `REPORT_CONTENT` summarizing findings (similar to `${COMMENT_TEXT}` but formatted for a report, including the Mermaid diagram below and the completed triage todo list for audit trail).
         *   Execute `common_steps/generate_report_file.md` with `REPORT_CONTENT`, `REPORT_TYPE="suspicious_login_triage"`, `REPORT_NAME_SUFFIX=${CASE_ID}`. Obtain `${REPORT_GENERATION_STATUS}`.
     *   **Else:** Set `${REPORT_GENERATION_STATUS}` = "Skipped".
-12. **Completion:**
-    *   **Action:** Generate a Mermaid sequence diagram summarizing the specific actions taken during this execution.
-    *   **Action:** Record the current date and time of execution.
-    *   **Action:** (Optional) Record the token usage and runtime duration if available from the environment.
-    *   **Conclude runbook** execution. Display final todo list status. Tier 1 analyst acts on the recommendation in the comment. Report generation status provided if applicable.
+12. **Completion:** **Conclude runbook** execution. Display final todo list status. Tier 1 analyst acts on the recommendation in the comment. Report generation status provided if applicable.
 
 ```mermaid
 sequenceDiagram
@@ -158,38 +175,3 @@ sequenceDiagram
 
     %% Step 11: Completion
     Cline->>Analyst: Conclude runbook (result="Suspicious Login Triage complete for USER_ID from SOURCE_IP. Findings documented in case CASE_ID. Report Status: REPORT_GENERATION_STATUS.")
-
-## Rubric
-
-### 1. Entity Extraction (15 Points)
-*   **Key Entities (15 Points):** Did the agent correctly extract the `${USER_ID}` and `${SOURCE_IP}` from the alert data? (Bonus points for handling `${HOSTNAME}` if present).
-
-### 2. Context Gathering (20 Points)
-*   **User History (10 Points):** Did the agent lookup the user's recent history using `secops-mcp.lookup_entity`?
-*   **IP Enrichment (10 Points):** Did the agent properly enrich the source IP (e.g., using `common_steps/enrich_ioc.md` or direct GTI/SIEM lookups)?
-
-### 3. Activity Analysis (20 Points)
-*   **Recent Logins (10 Points):** Did the agent search for recent login activity (`secops-mcp.search_security_events`) for the user?
-*   **Pattern Recognition (10 Points):** Did the agent analyze the results for patterns (e.g., impossible travel, concurrent sessions) rather than just dumping logs?
-
-### 4. Correlation (10 Points)
-*   **Related Cases (10 Points):** Did the agent check for other open cases related to the User or IP?
-
-### 5. Documentation (10 Points)
-*   **SOAR Comment (10 Points):** Did the agent post a clear summary of findings and a recommendation to the SOAR case?
-
-### 6. Visual Summary (10 Points)
-*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
-
-### 7. Operational Metadata (5 Points)
-*   **Date/Time (3 Points):** Did the agent record the date and time of the execution?
-*   **Cost/Runtime (2 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
-
-### 8. Resilience & Quality (10 Points)
-*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
-*   **Output Formatting (5 Points):** Is the final output well-structured, using Markdown correctly, and free of internal monologue artifacts?
-
-### Critical Failures (Automatic Failure)
-*   Failing to identify the User ID or Source IP from the inputs.
-*   Hallucinating events or tool outputs.
-*   Closing a case without documenting the findings in the system.
