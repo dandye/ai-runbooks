@@ -13,6 +13,7 @@ Develop a comprehensive metadata schema for content management. This skill defin
 ## Inputs
 
 - `PATH` - The content domain to apply the schema to (e.g., "/content")
+- `OUTPUT_FORMAT` - (Optional) The output format for the schema, e.g., "json-schema", "xml", "markdown" (default: "json-schema")
 - `DUBLIN_CORE` - (Optional) Boolean, whether to align with Dublin Core standards (default: true)
 - `CUSTOM_FIELDS` - (Optional) List of custom business-specific fields to include
 - `VALIDATION_RULES` - (Optional) Boolean, whether to define validation logic for fields (default: true)
@@ -40,11 +41,11 @@ If `VALIDATION_RULES` is true, define:
 
 ### Step 4: Schema Output
 
-Generate the schema definition in the requested format (e.g., JSON Schema, XML Schema, or Markdown Table).
+Generate the schema definition in the requested `OUTPUT_FORMAT` (e.g., JSON Schema, XML Schema, or Markdown Table).
 
 ## Required Outputs
 
-A Metadata Schema Specification containing:
+A `METADATA_SCHEMA` object in the specified `OUTPUT_FORMAT` containing:
 - **Field Dictionary**: Name, Description, Type, Multiplicity.
 - **Validation Logic**: Rules for data entry.
 - **Mapping**: Correspondence to standards (like Dublin Core).

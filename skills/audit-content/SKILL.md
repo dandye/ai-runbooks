@@ -45,7 +45,7 @@ If `FIX_MODE` is enabled, generate or apply suggestions for fixes.
 
 ## Required Outputs
 
-A Content Audit Report containing:
+A `CONTENT_AUDIT_REPORT` in markdown format containing:
 - **Summary**: Total files, overall quality score, critical issues count.
 - **Detailed Findings**: Table of issues per file with severity.
 - **Action Items**: Prioritized list of recommended changes.

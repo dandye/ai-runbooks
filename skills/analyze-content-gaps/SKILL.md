@@ -45,7 +45,7 @@ Prioritize gaps based on impact and effort.
 
 ## Required Outputs
 
-A Gap Analysis Report containing:
+A `GAP_ANALYSIS_REPORT` in markdown format containing:
 - **Missing Topics**: List of high-priority new content to create.
 - **Improvement Areas**: List of existing content needing expansion.
 - **Consolidation Targets**: List of redundant content to merge.

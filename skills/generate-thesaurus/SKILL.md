@@ -47,7 +47,7 @@ Format the collected terms and relationships into the requested `OUTPUT_FORMAT`.
 
 ## Required Outputs
 
-A structured thesaurus document containing:
+A `THESAURUS_DOCUMENT` in the specified `OUTPUT_FORMAT` containing:
 - List of terms
 - Relationships (BT, NT, RT)
 - Scope notes (definitions)

@@ -13,6 +13,7 @@ Create a systematic catalog of information assets within a specified path. This 
 ## Inputs
 
 - `PATH` - The directory or file path to inventory (e.g., "/documentation")
+- `OUTPUT_FORMAT` - (Optional) The output format for the inventory, e.g., "csv", "json", "markdown" (default: "json")
 - `METADATA_EXTRACTION` - (Optional) Boolean, whether to extract deep metadata (author, date, tags) (default: true)
 - `FORMAT_ANALYSIS` - (Optional) Boolean, whether to analyze file formats and types (default: true)
 
@@ -40,11 +41,11 @@ If `FORMAT_ANALYSIS` is true, analyze the structure:
 
 ### Step 4: Inventory Report Generation
 
-Compile the data into a structured inventory format (CSV, JSON, or Markdown Table).
+Compile the data into a structured inventory format (CSV, JSON, or Markdown Table) as specified by `OUTPUT_FORMAT`.
 
 ## Required Outputs
 
-A Content Inventory Report containing:
+A `CONTENT_INVENTORY_REPORT` in the specified `OUTPUT_FORMAT` containing:
 - **Asset List**: Full list of discovered assets.
 - **Metadata Table**: Columns for Title, URL/Path, Author, Last Modified, Type, Tags.
 - **Summary Statistics**: Total count by type, average age, volume by category.

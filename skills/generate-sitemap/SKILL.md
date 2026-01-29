@@ -49,7 +49,7 @@ Return the generated sitemap code or file.
 
 ## Required Outputs
 
-A Sitemap representation in the specified format.
+A `SITEMAP_OUTPUT` string containing the sitemap representation in the specified `OUTPUT_FORMAT`.
 
 **Example (Mermaid):**
 ```mermaid

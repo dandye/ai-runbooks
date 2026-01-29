@@ -41,7 +41,7 @@ Generate the clustering report.
 
 ## Required Outputs
 
-A Clustering Report containing:
+A `CLUSTERING_REPORT` object containing:
 - **Cluster List**: ID, Label, and List of Documents in each cluster.
 - **Redundancy Report**: Sets of highly similar documents (potential duplicates).
 - **Visualization Data**: (If requested) Coordinates for plotting.

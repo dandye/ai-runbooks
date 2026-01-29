@@ -42,7 +42,7 @@ Output the defined taxonomy.
 
 ## Required Outputs
 
-A Taxonomy Definition document containing:
+A `TAXONOMY_DEFINITION` document (e.g., in markdown or YAML format) containing:
 - **Taxonomy Tree**: Visual or indented list of categories.
 - **Facets** (if requested): Definitions of classification dimensions.
 - **Rules**: Guidelines for applying the taxonomy.
