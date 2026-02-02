@@ -31,6 +31,7 @@ Covers initial alert review, basic entity enrichment, duplicate detection, and d
 *   `secops-mcp`: `lookup_entity`, `get_ioc_matches`
 *   `gti-mcp`: `get_file_report`, `get_domain_report`, `get_ip_address_report`, `get_url_report`
 *   **Common Steps:** `common_steps/check_duplicate_cases.md`, `common_steps/enrich_ioc.md`, `common_steps/find_relevant_soar_case.md`, `common_steps/document_in_soar.md`, `common_steps/close_soar_artifact.md`
+*   **Memory-Enhanced Steps:** `common_steps/query_memories.md`, `common_steps/apply_memory_procedure.md`, `common_steps/log_memory_outcome.md`
 
 ## Workflow Steps & Diagram
 
@@ -55,13 +56,38 @@ Covers initial alert review, basic entity enrichment, duplicate detection, and d
         *   **Malware Detection:** Search for process execution, file modification, or network events related to the file hash/endpoint around the alert time.
         *   **Network Alert:** Search for related network flows or DNS lookups involving the source/destination IPs/domains.
     *   Store a summary of findings in `${INITIAL_SIEM_CONTEXT}`. This helps provide more specific context before broader enrichment.
-7.  **Basic Enrichment:** Initialize `ENRICHMENT_RESULTS` structure. For each entity `Ei` in `KEY_ENTITIES`:
-    *   Execute `common_steps/enrich_ioc.md` with `IOC_VALUE=Ei` and appropriate `IOC_TYPE`.
-    *   Store results (`GTI_FINDINGS`, `SIEM_ENTITY_SUMMARY`, `SIEM_IOC_MATCH_STATUS`) in `ENRICHMENT_RESULTS[Ei]`.
-8.  **Initial Assessment:** Based on alert type, `ENRICHMENT_RESULTS`, `${ENTITY_RELATED_CASES}`, `${INITIAL_SIEM_CONTEXT}`, and potential known benign patterns (referencing `.clinerules/common_benign_alerts.md` if available), make an initial assessment:
-    *   False Positive (FP)
-    *   Benign True Positive (BTP - expected/authorized activity)
-    *   Requires Further Investigation (True Positive - TP or Suspicious)
+7.  **Memory-Enhanced Basic Enrichment:** Initialize `ENRICHMENT_RESULTS` structure. For each entity `Ei` in `KEY_ENTITIES`:
+
+    **7a. Pre-Enrichment Memory Check:**
+    *   Execute `common_steps/query_memories.md` with:
+        *   `CURRENT_RUNBOOK` = "run_books/triage_alerts.md"
+        *   `CURRENT_PERSONA` = [Current analyst persona - typically "personas/soc_analyst_tier_1.md"]
+        *   `CURRENT_STEP` = "Step 7: Basic Enrichment"
+        *   `STEP_CONTEXT` = "IOC enrichment, entity lookup, ${alert_type}"
+        *   `CONFIDENCE_THRESHOLD` = 0.7
+    *   Obtain `MEMORY_QUERY_RESULTS` containing applicable memories and recommendations.
+
+    **7b. Enhanced Enrichment Execution:**
+    *   **If High-Confidence Memory Found (≥0.9):**
+        *   Execute `common_steps/apply_memory_procedure.md` with enhanced procedure automatically
+        *   Log application with `common_steps/log_memory_outcome.md`
+    *   **If Medium-Confidence Memory Found (0.7-0.89):**
+        *   Present memory recommendation to analyst for approval
+        *   If approved, execute enhanced procedure; otherwise use original
+    *   **If No Relevant Memory or Low Confidence (<0.7):**
+        *   Execute `common_steps/enrich_ioc.md` with `IOC_VALUE=Ei` and appropriate `IOC_TYPE` (original procedure)
+    *   Store results (`GTI_FINDINGS`, `SIEM_ENTITY_SUMMARY`, `SIEM_IOC_MATCH_STATUS`, `MEMORY_ENHANCEMENT_APPLIED`) in `ENRICHMENT_RESULTS[Ei]`.
+8.  **Memory-Enhanced Initial Assessment:**
+
+    **8a. Pattern Memory Check:**
+    *   Query `institutional_memory/patterns/` for false positive patterns matching current alert characteristics
+    *   Check `institutional_memory/adaptations/` for persona-specific assessment guidance
+    *   Apply pattern recognition confidence scoring to assessment decision
+
+    **8b. Assessment Decision:** Based on alert type, `ENRICHMENT_RESULTS`, `${ENTITY_RELATED_CASES}`, `${INITIAL_SIEM_CONTEXT}`, memory-enhanced patterns, and institutional knowledge, make an initial assessment:
+    *   **False Positive (FP)** - Including pattern-matched organizational false positives
+    *   **Benign True Positive (BTP)** - Expected/authorized activity per organizational context
+    *   **Requires Further Investigation (True Positive - TP or Suspicious)** - Enhanced by institutional memory insights
 9.  **Action Based on Assessment:**
     *   **If FP/BTP:**
         *   Execute `common_steps/document_in_soar.md` with `${CASE_ID}` and comment explaining FP/BTP reason.
@@ -160,35 +186,7 @@ sequenceDiagram
 - **Documentation**: Comprehensive case comments including enrichment findings, duplicate check results, assessment rationale, and next steps
 - **Escalation Info** (if applicable): Priority adjustment, assignment details, triggered runbook references
 - **Audit Trail**: Complete record of all tools used, searches performed, and decisions made during triage process
+- **Memory Enhancement Log**: Record of institutional memories applied, confidence levels, and effectiveness
+- **Pattern Matching Results**: Documentation of organizational pattern recognition and false positive identification
 - **Workflow Documentation**: Sequence diagram showing actual MCP tools and servers used during execution
 - **Runbook Reference**: Clear identification of which runbook was executed to generate the report
-
-## Rubric
-
-### 1. Context & Duplicates (20 Points)
-*   **Initial Context (10 Points):** Did the agent retrieve full details for the case/alert?
-*   **Duplicate Check (10 Points):** Did the agent correctly check for and handle duplicates (`common_steps/check_duplicate_cases.md`)?
-
-### 2. Analysis & Enrichment (30 Points)
-*   **SIEM Context (15 Points):** Did the agent perform a targeted SIEM search (`secops-mcp.search_security_events`) relevant to the specific alert type?
-*   **Entity Enrichment (15 Points):** Did the agent enrich key entities using GTI and/or SIEM lookups?
-
-### 3. Assessment & Decision (20 Points)
-*   **Classification (10 Points):** Did the agent make a clear determination (FP/BTP/TP) supported by the evidence?
-*   **Documentation (10 Points):** Did the agent document the findings and rationale in the SOAR case comments?
-
-### 4. Visual Summary (10 Points)
-*   **Sequence Diagram (10 Points):** Did the agent produce a valid Mermaid sequence diagram summarizing the actions taken during the execution?
-
-### 5. Operational Metadata (10 Points)
-*   **Date/Time (5 Points):** Did the agent record the date and time of the execution?
-*   **Cost/Runtime (5 Points):** Did the agent attempt to record token usage and runtime duration (or note if unavailable)?
-
-### 6. Resilience & Quality (10 Points)
-*   **Error Handling (5 Points):** Did the agent handle any tool failures or invalid inputs gracefully without crashing or hallucinating?
-*   **Output Formatting (5 Points):** Is the final output well-structured and free of internal monologue artifacts?
-
-### Critical Failures (Automatic Failure)
-*   Closing a True Positive alert as False Positive.
-*   Failing to check for duplicates before deep analysis.
-*   Hallucinating evidence to support a closure decision.

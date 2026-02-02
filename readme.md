@@ -1,4 +1,4 @@
-# Agentic SOC Runbooks
+# AI Runbooks for Security Operations
 
 This repository provides security operations runbooks and role-based guides for AI-assisted cybersecurity workflows.
 
