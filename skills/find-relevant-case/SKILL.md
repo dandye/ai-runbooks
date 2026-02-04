@@ -1,6 +1,6 @@
 ---
 name: find-relevant-case
-description: "Search for existing SOAR cases related to specific indicators or entities. Use to find correlation with other investigations before starting new analysis. Takes search terms and returns matching case IDs."
+description: "Search for existing cases related to specific indicators or entities. Use to find correlation with other investigations before starting new analysis. Takes search terms and returns matching case IDs."
 required_roles:
   soar: roles/chronicle.editor
 personas: [tier1-analyst, tier2-analyst, tier3-analyst, incident-responder]
@@ -8,7 +8,7 @@ personas: [tier1-analyst, tier2-analyst, tier3-analyst, incident-responder]
 
 # Find Relevant Case Skill
 
-Identify existing SOAR cases that may be related to the current investigation based on IOCs, hostnames, usernames, or other entities.
+Identify existing cases that may be related to the current investigation based on IOCs, hostnames, usernames, or other entities.
 
 ## Inputs
 
@@ -59,5 +59,5 @@ secops-soar.get_case_full_details(case_id=candidate_case_id)
 The `list_cases` tool may not support direct entity searching. Alternatives:
 
 1. **Broader filters** - Use time range, alert type, then manually review
-2. **SIEM correlation** - Search SIEM for entity, check if events belong to a SOAR case
+2. **SIEM correlation** - Search SIEM for entity, check if events belong to a case
 3. **Multiple searches** - Search each term separately, combine results

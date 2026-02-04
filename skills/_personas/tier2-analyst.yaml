@@ -49,8 +49,8 @@ skills:
     - enrich-ioc            # Basic enrichment
     - check-duplicates      # Duplicate detection
     - find-relevant-case    # Case correlation
-    - document-in-soar      # Documentation
-    - close-soar-artifact   # Close investigated cases
+    - document-in-case      # Documentation
+    - close-case-artifact   # Close investigated cases
     - generate-report       # Investigation reports
     - confirm-action        # Action confirmation
     - hunt-threat           # Limited hunting
@@ -77,7 +77,7 @@ workflows:
         outputs: [GTI_DEEP_FINDINGS, SIEM_DEEP_CONTEXT, RELATED_ENTITIES, DISCOVERED_IOCS]
       - skill: correlate-ioc
         inputs: [PRIMARY_IOCS, RELATED_ENTITIES]
-        outputs: [RELATED_SOAR_CASES, RELATED_SIEM_ALERTS]
+        outputs: [RELATED_CASES, RELATED_SIEM_ALERTS]
       - decision:
           condition: ALERT_TYPE
           branches:
@@ -101,11 +101,11 @@ workflows:
           condition: CONFIRMED_INCIDENT
           branches:
             "true":
-              - skill: document-in-soar
+              - skill: document-in-case
               - action: escalate_to_ir_or_tier3
             "false":
-              - skill: document-in-soar
-              - skill: close-soar-artifact
+              - skill: document-in-case
+              - skill: close-case-artifact
       - skill: generate-report
         type: investigation
 
@@ -120,7 +120,7 @@ workflows:
         outputs: [GTI_DEEP_FINDINGS, RELATED_ENTITIES]
       - skill: correlate-ioc
         inputs: [MATCHES, RELATED_ENTITIES]
-        outputs: [RELATED_SIEM_ALERTS, RELATED_SOAR_CASES]
+        outputs: [RELATED_SIEM_ALERTS, RELATED_CASES]
       - skill: generate-report
         type: hunt
 

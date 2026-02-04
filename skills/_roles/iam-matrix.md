@@ -14,7 +14,7 @@ This document defines the IAM role requirements for skills and personas in the s
 | `roles/chronicle.admin` | Full access including settings, data RBAC | Tier 3, IR leads, Admins |
 | `roles/chronicle.restrictedDataAccessViewer` | Scoped data visibility via data RBAC | Compartmentalized access |
 
-### Chronicle SOAR (secops-soar)
+### Case Management (Chronicle SOAR)
 
 | Role | Description | Typical Use Case |
 |------|-------------|------------------|
@@ -46,13 +46,13 @@ This document defines the IAM role requirements for skills and personas in the s
 
 Each skill requires specific IAM roles to function. Skills will fail or have limited functionality if the executing service account lacks the required roles.
 
-| Skill | Chronicle | SOAR | GTI | SCC |
+| Skill | Chronicle | Case Management | GTI | SCC |
 |-------|-----------|------|-----|-----|
 | `triage-alert` | viewer | editor | Standard | - |
 | `enrich-ioc` | viewer | - | Standard | - |
 | `check-duplicates` | - | editor | - | - |
-| `document-in-soar` | - | editor | - | - |
-| `close-soar-artifact` | - | editor | - | - |
+| `document-in-case` | - | editor | - | - |
+| `close-case-artifact` | - | editor | - | - |
 | `find-relevant-case` | - | editor | - | - |
 | `correlate-ioc` | viewer | editor | - | - |
 | `triage-suspicious-login` | viewer | editor | Standard | - |
@@ -87,7 +87,7 @@ Each skill requires specific IAM roles to function. Skills will fail or have lim
 
 Each persona operates within defined IAM boundaries based on their responsibilities.
 
-| Persona | Chronicle | SOAR | GTI | SCC |
+| Persona | Chronicle | Case Management | GTI | SCC |
 |---------|-----------|------|-----|-----|
 | Tier 1 SOC Analyst | viewer | editor | Standard | - |
 | Tier 2 SOC Analyst | editor | editor | Enterprise | findingsViewer |

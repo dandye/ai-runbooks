@@ -111,7 +111,7 @@ Document: `COMPROMISE_LIKELIHOOD`
 
 **Step 2.6: Document Identification**
 
-Use `/document-in-soar` with findings and assessment.
+Use `/document-in-case` with findings and assessment.
 
 ---
 
@@ -150,7 +150,7 @@ secops-mcp.search_security_events(
 )
 ```
 
-Use `/document-in-soar` with containment status.
+Use `/document-in-case` with containment status.
 
 ---
 
@@ -202,7 +202,7 @@ Trigger endpoint triage to check for:
 - Persistence mechanisms
 - Credential caching
 
-Use `/document-in-soar` with eradication findings.
+Use `/document-in-case` with eradication findings.
 
 ---
 
@@ -246,7 +246,7 @@ Enhanced monitoring for 30 days:
 - Alert on unusual logins
 - Track sensitive data access
 
-Use `/document-in-soar` with recovery status.
+Use `/document-in-case` with recovery status.
 
 ---
 

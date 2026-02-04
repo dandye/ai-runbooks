@@ -90,7 +90,7 @@ If IDP tools available (e.g., Okta):
 
 ### Step 9: Synthesize & Document
 
-Use `/document-in-soar` with findings summary:
+Use `/document-in-case` with findings summary:
 
 ```
 Suspicious Login Triage for USER_ID from SOURCE_IP:

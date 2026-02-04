@@ -6,8 +6,8 @@ orchestrates:
   - check-duplicates
   - triage-alert
   - enrich-ioc
-  - document-in-soar
-  - close-soar-artifact
+  - document-in-case
+  - close-case-artifact
 required_roles:
   chronicle: roles/chronicle.viewer
   soar: roles/chronicle.editor
@@ -60,8 +60,8 @@ A composite skill that orchestrates the complete Tier 1 alert triage process fro
 │     │   FP/BTP         TP/Suspicious    Inconclusive            │
 │     │     │                  │                  │               │
 │     │     ▼                  ▼                  ▼               │
-│     │  /document-in-soar    /document-in-soar /document-in-soar │
-│     │  /close-soar-artifact  ESCALATE         Request more info │
+│     │  /document-in-case    /document-in-case /document-in-case │
+│     │  /close-case-artifact  ESCALATE         Request more info │
 │     │     │                  │                  │               │
 │     └─────┴──────────────────┴──────────────────┘               │
 │                    │                                            │
@@ -83,8 +83,8 @@ A composite skill that orchestrates the complete Tier 1 alert triage process fro
 Invoke: `/check-duplicates CASE_ID=$CASE_ID`
 
 - If duplicate confirmed:
-  - Invoke: `/document-in-soar` with "Closing as duplicate of [Similar Case ID]"
-  - Invoke: `/close-soar-artifact` with reason NOT_MALICIOUS
+  - Invoke: `/document-in-case` with "Closing as duplicate of [Similar Case ID]"
+  - Invoke: `/close-case-artifact` with reason NOT_MALICIOUS
   - **END WORKFLOW**
 - If not duplicate: Continue to Phase 2
 
@@ -131,16 +131,16 @@ Based on triage and enrichment, confirm classification:
 **Step 4.2: Execute Disposition**
 
 **If FP or BTP:**
-1. Invoke: `/document-in-soar` with:
+1. Invoke: `/document-in-case` with:
    - Classification and rationale
    - Evidence summary from enrichment
    - Closure justification
-2. Invoke: `/close-soar-artifact` with:
+2. Invoke: `/close-case-artifact` with:
    - Reason: NOT_MALICIOUS
    - Root cause: Appropriate option (e.g., "Legit action", "Normal behavior")
 
 **If TP or Suspicious:**
-1. Invoke: `/document-in-soar` with:
+1. Invoke: `/document-in-case` with:
    - Classification and rationale
    - Evidence summary
    - Recommended next steps
@@ -179,7 +179,7 @@ Include:
 
 - If `/check-duplicates` fails → Log warning, continue with triage
 - If `/enrich-ioc` fails for an entity → Log warning, continue with other entities
-- If `/close-soar-artifact` fails → Log error, manual closure required
+- If `/close-case-artifact` fails → Log error, manual closure required
 - If any MCP tool unavailable → Document limitation, proceed with available data
 
 ## Performance Targets

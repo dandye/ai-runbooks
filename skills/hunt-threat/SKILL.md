@@ -20,7 +20,7 @@ Conduct proactive, hypothesis-driven threat hunts based on threat intelligence, 
 - *(Optional)* `RELEVANT_GTI_REPORTS` - GTI Collection IDs or report names
 - *(Optional)* `TARGET_SCOPE_QUERY` - UDM query to narrow initial scope
 - `TIME_FRAME_HOURS` - Lookback period (default: 168 = 7 days)
-- *(Optional)* `HUNT_CASE_ID` - SOAR case for tracking the hunt
+- *(Optional)* `HUNT_CASE_ID` - case for tracking the hunt
 
 ## Workflow
 
@@ -110,7 +110,7 @@ Document throughout in `HUNT_CASE_ID`:
 - Positive and negative findings
 - Pivots and why they were taken
 
-Use `/document-in-soar` for each significant finding.
+Use `/document-in-case` for each significant finding.
 
 ### Step 7: Hunt Report
 

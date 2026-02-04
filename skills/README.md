@@ -91,8 +91,8 @@ Skills require specific IAM roles. See `_roles/iam-matrix.md` for the complete m
 | `correlate-ioc` | `/correlate-ioc 198.51.100.10` | Find related alerts/cases |
 | `check-duplicates` | `/check-duplicates CASE_ID=X` | Find duplicate cases |
 | `find-relevant-case` | `/find-relevant-case` | Search for related cases |
-| `document-in-soar` | `/document-in-soar CASE_ID=X` | Add case comments |
-| `close-soar-artifact` | `/close-soar-artifact` | Close cases/alerts |
+| `document-in-case` | `/document-in-case CASE_ID=X` | Add case comments |
+| `close-case-artifact` | `/close-case-artifact` | Close cases/alerts |
 | `generate-report` | `/generate-report` | Save findings to file |
 | `confirm-action` | `/confirm-action` | Request user confirmation |
 
@@ -142,8 +142,8 @@ Skills require specific IAM roles. See `_roles/iam-matrix.md` for the complete m
 |-------|--------|-------------|
 | `check-duplicates` | `CASE_ID` | Before deep investigation |
 | `find-relevant-case` | `SEARCH_TERMS` | Find related investigations |
-| `document-in-soar` | `CASE_ID`, `COMMENT_TEXT` | Document findings |
-| `close-soar-artifact` | `ARTIFACT_ID`, `REASON` | Close FP/BTP cases |
+| `document-in-case` | `CASE_ID`, `COMMENT_TEXT` | Document findings |
+| `close-case-artifact` | `ARTIFACT_ID`, `REASON` | Close FP/BTP cases |
 
 ### Utility (2 skills)
 
@@ -161,8 +161,8 @@ Skills require specific IAM roles. See `_roles/iam-matrix.md` for the complete m
 /triage-alert CASE_ID=1234
   → /check-duplicates
   → /enrich-ioc (for each entity)
-  → /document-in-soar
-  → /close-soar-artifact (if FP)
+  → /document-in-case
+  → /close-case-artifact (if FP)
 ```
 
 ### Threat Hunt Flow
@@ -189,7 +189,7 @@ Skills require specific IAM roles. See `_roles/iam-matrix.md` for the complete m
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
-| `CASE_ID` | SOAR case identifier | `1234` |
+| `CASE_ID` | case identifier | `1234` |
 | `ALERT_ID` | Alert identifier | `alert-5678` |
 | `IOC_VALUE` | Indicator value | `evil.com`, `198.51.100.10` |
 | `IOC_TYPE` | Type of indicator | `Domain`, `IP Address`, `File Hash`, `URL` |

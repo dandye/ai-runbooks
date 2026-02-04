@@ -28,7 +28,7 @@ iam_requirements:
   soar:
     roles:
       - roles/chronicle.soarAdmin
-    justification: "Full SOAR control for playbook execution, case management, integrations"
+    justification: "Full case management control for playbook execution, integrations"
   gti:
     license: GTI Enterprise
     justification: "Threat actor context, malware analysis, containment IOC identification"
@@ -55,8 +55,8 @@ skills:
     - pivot-on-ioc
     - correlate-ioc
     - find-relevant-case
-    - document-in-soar
-    - close-soar-artifact
+    - document-in-case
+    - close-case-artifact
     - triage-malware
     - triage-suspicious-login
     - hunt-threat

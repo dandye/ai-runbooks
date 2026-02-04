@@ -1,6 +1,6 @@
 ---
 name: correlate-ioc
-description: "Check for existing SIEM alerts and SOAR cases related to IOCs. Use to understand if an indicator has triggered previous alerts or is part of ongoing investigations. Takes IOC list and returns related alerts and cases."
+description: "Check for existing SIEM alerts and case management entries related to IOCs. Use to understand if an indicator has triggered previous alerts or is part of ongoing investigations. Takes IOC list and returns related alerts and cases."
 required_roles:
   chronicle: roles/chronicle.viewer
   soar: roles/chronicle.editor
@@ -9,7 +9,7 @@ personas: [tier1-analyst, tier2-analyst, tier3-analyst]
 
 # Correlate IOC Skill
 
-Check for existing SIEM alerts and SOAR cases related to specific Indicators of Compromise.
+Check for existing SIEM alerts and cases related to specific Indicators of Compromise.
 
 ## Inputs
 
@@ -36,7 +36,7 @@ Store summary in `RELATED_SIEM_ALERTS`:
 - Severity distribution
 - Affected assets
 
-### Step 2: Correlate SOAR Cases
+### Step 2: Correlate Cases
 
 Search for cases containing any IOC:
 
@@ -58,7 +58,7 @@ Store summary in `RELATED_SOAR_CASES`:
 | Output | Description |
 |--------|-------------|
 | `RELATED_SIEM_ALERTS` | Summary of SIEM alerts related to the IOC(s) |
-| `RELATED_SOAR_CASES` | Summary of SOAR cases related to the IOC(s) |
+| `RELATED_CASES` | Summary of cases related to the IOC(s) |
 | `CORRELATION_STATUS` | Success/failure status of the correlation |
 | `MALICIOUS_CONFIDENCE` | Derived confidence based on alert history: `high`, `medium`, `low`, or `none` |
 
@@ -79,7 +79,7 @@ SIEM Alerts (last [TIME_FRAME_HOURS] hours):
 - Alert types: [list]
 - Affected hosts: [list]
 
-SOAR Cases:
+Related Cases:
 - Open cases: [count] - [IDs]
 - Closed cases: [count]
 - Related investigations: [summary]

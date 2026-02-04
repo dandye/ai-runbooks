@@ -50,14 +50,14 @@ skills:
     - deep-dive-ioc         # Deep analysis on findings
     - correlate-ioc         # Correlate with existing cases
     - find-relevant-case    # Find related investigations
-    - document-in-soar      # Document significant findings
+    - document-in-case      # Document significant findings
     - generate-report       # Create hunt reports
     - confirm-action        # Confirm before actions
 
   forbidden:
     - triage-alert          # Not primary function
     - check-duplicates      # SOC analyst function
-    - close-soar-artifact   # SOC analyst function
+    - close-case-artifact   # SOC analyst function
     - respond-ransomware   # IR role only
     - respond-malware      # IR role only
     - respond-phishing     # IR role only
@@ -91,7 +91,7 @@ workflows:
           condition: THREAT_CONFIRMED
           branches:
             "true":
-              - skill: document-in-soar
+              - skill: document-in-case
               - action: create_case_for_ir
             "false":
               - action: refine_hypothesis
@@ -128,7 +128,7 @@ workflows:
             "true":
               - skill: deep-dive-ioc
                 for_each: MATCHES
-              - skill: document-in-soar
+              - skill: document-in-case
             "false":
               - action: document_negative_hunt
 

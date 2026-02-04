@@ -83,7 +83,7 @@ secops-mcp.lookup_entity(entity_value=ENTITY)
 
 ### Step 6: Document Hunt
 
-Use `/document-in-soar` (if HUNT_CASE_ID provided):
+Use `/document-in-case` (if HUNT_CASE_ID provided):
 
 ```
 IOC Hunt Summary:
