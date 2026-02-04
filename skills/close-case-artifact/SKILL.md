@@ -1,14 +1,14 @@
 ---
-name: close-soar-artifact
-description: "Close a SOAR case or alert with proper reason and documentation. Use when triage determines an alert is FP/BTP or investigation is complete. Requires artifact ID, type, closure reason, and root cause."
+name: close-case-artifact
+description: "Close a case or alert with proper reason and documentation. Use when triage determines an alert is FP/BTP or investigation is complete. Requires artifact ID, type, closure reason, and root cause."
 required_roles:
   soar: roles/chronicle.editor
 personas: [tier1-analyst, tier2-analyst, tier3-analyst, incident-responder]
 ---
 
-# Close SOAR Artifact Skill
+# Close Case Artifact Skill
 
-Close a SOAR case or alert with the required reason, root cause, and justification comment.
+Close a case or alert with the required reason, root cause, and justification comment.
 
 ## Inputs
 
@@ -20,7 +20,7 @@ Close a SOAR case or alert with the required reason, root cause, and justificati
   - `MAINTENANCE` - System/maintenance activity
   - `INCONCLUSIVE` - Unable to determine
   - `UNKNOWN` - Unknown/other
-- `ROOT_CAUSE` - Must match a predefined SOAR root cause (use `get_case_settings_root_causes` to list options)
+- `ROOT_CAUSE` - Must match a predefined root cause (use `get_case_settings_root_causes` to list options)
 - `CLOSURE_COMMENT` - Detailed justification for closure
 - *(Optional)* `ALERT_GROUP_IDENTIFIERS` - Alert group identifiers
 - *(Optional, for alerts)* `ASSIGN_TO_USER` - User to assign closed alert to

@@ -1,6 +1,6 @@
 ---
 name: check-duplicates
-description: "Check for duplicate or similar SOAR cases. Use before deep analysis to avoid investigating the same incident twice. Takes a CASE_ID and returns list of similar cases."
+description: "Check for duplicate or similar cases. Use before deep analysis to avoid investigating the same incident twice. Takes a CASE_ID and returns list of similar cases."
 required_roles:
   soar: roles/chronicle.editor
 personas: [tier1-analyst, tier2-analyst, tier3-analyst]
@@ -8,7 +8,7 @@ personas: [tier1-analyst, tier2-analyst, tier3-analyst]
 
 # Check Duplicates Skill
 
-Identify potentially duplicate or similar existing SOAR cases before starting deep analysis.
+Identify potentially duplicate or similar existing cases before starting deep analysis.
 
 ## Inputs
 

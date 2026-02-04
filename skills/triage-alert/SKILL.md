@@ -16,7 +16,7 @@ Perform standardized initial assessment of security alerts to determine if they 
 
 You need one of these identifiers to begin:
 - `ALERT_ID` - The alert identifier
-- `CASE_ID` - The SOAR case identifier
+- `CASE_ID` - The case identifier
 
 ## Workflow
 
@@ -93,7 +93,7 @@ Based on all gathered evidence, classify the alert:
 ### Step 6: Take Action
 
 **If FP or BTP:**
-1. Document findings in SOAR case comments explaining the rationale
+1. Document findings in case comments explaining the rationale
 2. Close the case/alert:
    - Use `secops-soar.siemplify_close_case` or `siemplify_close_alert`
    - Closure reason: `NOT_MALICIOUS`
@@ -101,7 +101,7 @@ Based on all gathered evidence, classify the alert:
 
 **If TP or Suspicious:**
 1. Optionally adjust priority with `secops-soar.change_case_priority`
-2. Document initial findings and assessment in SOAR comments
+2. Document initial findings and assessment in case comments
 3. Escalate to Tier 2 or trigger appropriate investigation runbook:
    - Suspicious login → `suspicious_login_triage`
    - Malware → `malware_triage`

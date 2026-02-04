@@ -123,7 +123,7 @@ Look for:
 
 **Step 2.7: Document Identification**
 
-Use `/document-in-soar` with findings.
+Use `/document-in-case` with findings.
 
 ---
 
@@ -159,7 +159,7 @@ Use `/confirm-action`:
 
 Monitor for continued activity to blocked IOCs.
 
-Use `/document-in-soar` with containment status.
+Use `/document-in-case` with containment status.
 
 ---
 
@@ -184,7 +184,7 @@ If phishing led to malware execution:
 
 **Step 4.3: Document Eradication**
 
-Use `/document-in-soar` with email deletion counts and actions.
+Use `/document-in-case` with email deletion counts and actions.
 
 ---
 

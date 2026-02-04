@@ -14,7 +14,7 @@ responsibilities:
   - Monitor incoming security alerts and cases
   - Perform initial triage and classification
   - Enrich IOCs with threat intelligence
-  - Document findings in SOAR
+  - Document findings in case
   - Close false positives with proper justification
   - Escalate true positives to Tier 2
 
@@ -39,8 +39,8 @@ skills:
     - triage-alert          # Core triage workflow
     - check-duplicates      # Avoid duplicate investigation
     - enrich-ioc            # Basic IOC enrichment
-    - close-soar-artifact   # Close FP/BTP cases
-    - document-in-soar      # Document findings
+    - close-case-artifact   # Close FP/BTP cases
+    - document-in-case      # Document findings
 
   allowed:
     - correlate-ioc         # Check related alerts/cases
@@ -71,8 +71,8 @@ workflows:
     chain:
       - skill: check-duplicates
         on_duplicate:
-          - document-in-soar
-          - close-soar-artifact
+          - document-in-case
+          - close-case-artifact
           - STOP
       - skill: triage-alert
         outputs: [classification, key_entities, priority]
@@ -83,16 +83,16 @@ workflows:
           condition: classification
           branches:
             FP:
-              - document-in-soar
-              - close-soar-artifact
+              - document-in-case
+              - close-case-artifact
             BTP:
-              - document-in-soar
-              - close-soar-artifact
+              - document-in-case
+              - close-case-artifact
             TP:
-              - document-in-soar
+              - document-in-case
               - action: escalate_to_tier2
             Suspicious:
-              - document-in-soar
+              - document-in-case
               - action: escalate_to_tier2
       - skill: generate-report
         type: triage
@@ -104,7 +104,7 @@ workflows:
       - skill: enrich-ioc
         outputs: [GTI_FINDINGS, THREAT_SCORE, MALICIOUS_CONFIDENCE]
       - skill: correlate-ioc
-        outputs: [RELATED_SIEM_ALERTS, RELATED_SOAR_CASES]
+        outputs: [RELATED_SIEM_ALERTS, RELATED_CASES]
       - decision:
           condition: MALICIOUS_CONFIDENCE
           branches:

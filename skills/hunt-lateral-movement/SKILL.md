@@ -125,7 +125,7 @@ Use `/find-relevant-case` with suspicious entities.
 
 ### Step 8: Document & Conclude
 
-Use `/document-in-soar`:
+Use `/document-in-case`:
 - Hunt hypothesis
 - Techniques hunted (T1021.002, T1047, etc.)
 - Queries used (with results)

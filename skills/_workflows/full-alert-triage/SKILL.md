@@ -6,8 +6,8 @@ orchestrates:
   - check-duplicates
   - triage-alert
   - enrich-ioc
-  - document-in-soar
-  - close-soar-artifact
+  - document-in-case
+  - close-case-artifact
 required_roles:
   chronicle: roles/chronicle.viewer
   soar: roles/chronicle.editor

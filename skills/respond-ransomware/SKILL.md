@@ -117,7 +117,7 @@ Use `/find-relevant-case` with affected entities.
 
 **Step 2.6: Document**
 
-Use `/document-in-soar` with identification findings.
+Use `/document-in-case` with identification findings.
 
 ---
 
@@ -158,7 +158,7 @@ secops-mcp.search_security_events(
 )
 ```
 
-Use `/document-in-soar` with containment status.
+Use `/document-in-case` with containment status.
 
 ---
 
@@ -185,7 +185,7 @@ Common mechanisms:
 
 Perform thorough AV/EDR scans on affected systems.
 
-Use `/document-in-soar` with eradication actions.
+Use `/document-in-case` with eradication actions.
 
 ---
 
@@ -218,7 +218,7 @@ Options:
 - Gradually remove isolation measures
 - Watch for signs of residual infection
 
-Use `/document-in-soar` with recovery status.
+Use `/document-in-case` with recovery status.
 
 ---
 
@@ -247,7 +247,7 @@ Conduct post-incident review:
 | Phase | Key Actions | Skills Used |
 |-------|-------------|-------------|
 | Identification | Strain ID, scope | `/check-duplicates`, `/find-relevant-case` |
-| Containment | Isolate, block | `/confirm-action`, `/document-in-soar` |
+| Containment | Isolate, block | `/confirm-action`, `/document-in-case` |
 | Eradication | Remove persistence | EDR tools |
 | Recovery | Restore systems | IT Ops coordination |
 | Lessons Learned | Report, review | `/generate-report` |

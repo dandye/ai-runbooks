@@ -91,7 +91,7 @@ Use `/find-relevant-case` with found IOCs and entities.
 
 ### Step 7: Document & Report
 
-Use `/document-in-soar` (if HUNT_CASE_ID provided).
+Use `/document-in-case` (if HUNT_CASE_ID provided).
 
 Use `/generate-report` with `REPORT_TYPE="apt_hunt"`:
 - Hunt objective and hypothesis

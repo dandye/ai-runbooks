@@ -99,7 +99,7 @@ Combine all findings:
 
 **Document in SOAR** (if CASE_ID provided):
 ```
-Use /document-in-soar with comprehensive findings summary
+Use /document-in-case with comprehensive findings summary
 ```
 
 **Or generate standalone report:**

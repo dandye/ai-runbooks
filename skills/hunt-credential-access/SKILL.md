@@ -117,7 +117,7 @@ gti-mcp.get_file_report(hash=HASH)
 
 ### Step 6: Document Hunt
 
-Use `/document-in-soar`:
+Use `/document-in-case`:
 - Techniques hunted with descriptions
 - Queries used
 - Findings (positive AND negative)

@@ -8,7 +8,7 @@ orchestrates:
   - triage-malware
   - triage-suspicious-login
   - pivot-on-ioc
-  - document-in-soar
+  - document-in-case
   - generate-report
 required_roles:
   chronicle: roles/chronicle.editor
