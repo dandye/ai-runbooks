@@ -16,7 +16,7 @@ Perform exhaustive analysis of a single, potentially critical Indicator of Compr
 
 - `IOC_VALUE` - The IOC to analyze (IP, domain, hash, or URL)
 - `IOC_TYPE` - The type: "IP Address", "Domain", "File Hash", or "URL"
-- `CASE_ID` - SOAR case ID for documentation (optional)
+- `CASE_ID` - case ID for documentation (optional)
 - `TIME_FRAME_HOURS` - Lookback period (default: 168 = 7 days)
 
 ## Workflow
@@ -97,7 +97,7 @@ Combine all findings:
 - Related alerts and cases
 - Associated threat context
 
-**Document in SOAR** (if CASE_ID provided):
+**Document in Case** (if CASE_ID provided):
 ```
 Use /document-in-case with comprehensive findings summary
 ```
@@ -122,7 +122,7 @@ Use /generate-report with REPORT_TYPE="deep_dive_ioc"
 Additionally provide:
 - Impact assessment and scope identification
 - Recommendations (escalate, contain, monitor)
-- Documentation in SOAR or standalone report
+- Documentation in case or standalone report
 
 ## When to Use This vs Basic Enrichment
 

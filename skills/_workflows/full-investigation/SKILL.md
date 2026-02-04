@@ -77,7 +77,7 @@ A composite skill that orchestrates comprehensive Tier 2/3 investigation of esca
 │   │         │       TO IR                                       │
 │   ▼         ▼         │                                         │
 │ Create   /close       │                                         │
-│ Incident  -soar       │                                         │
+│ Incident  -case       │                                         │
 │   │       -artifact   │                                         │
 │   │         │         │                                         │
 │   └─────────┴─────────┘                                         │
@@ -219,7 +219,7 @@ Assess all findings and classify:
 **Step 5.2: Execute Disposition**
 
 **If Incident Confirmed / Requires IR:**
-1. Invoke: `/document-in-soar` with full findings
+1. Invoke: `/document-in-case` with full findings
 2. Output escalation recommendation:
    - Recommend specific IR skill:
      - Ransomware indicators → `/respond-ransomware`
@@ -229,11 +229,11 @@ Assess all findings and classify:
 3. Prepare handoff package for IR team
 
 **If Resolved:**
-1. Invoke: `/document-in-soar` with:
+1. Invoke: `/document-in-case` with:
    - Investigation summary
    - All queries and findings
    - Resolution rationale
-2. If closing: Invoke: `/close-soar-artifact` with appropriate reason
+2. If closing: Invoke: `/close-case-artifact` with appropriate reason
 
 ### Phase 6: Documentation
 

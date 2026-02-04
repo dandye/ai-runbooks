@@ -51,8 +51,8 @@ Each skill requires specific IAM roles to function. Skills will fail or have lim
 | `triage-alert` | viewer | editor | Standard | - |
 | `enrich-ioc` | viewer | - | Standard | - |
 | `check-duplicates` | - | editor | - | - |
-| `document-in-soar` | - | editor | - | - |
-| `close-soar-artifact` | - | editor | - | - |
+| `document-in-case` | - | editor | - | - |
+| `close-case-artifact` | - | editor | - | - |
 | `find-relevant-case` | - | editor | - | - |
 | `correlate-ioc` | viewer | editor | - | - |
 | `triage-suspicious-login` | viewer | editor | Standard | - |
@@ -87,7 +87,7 @@ Each skill requires specific IAM roles to function. Skills will fail or have lim
 
 Each persona operates within defined IAM boundaries based on their responsibilities.
 
-| Persona | Chronicle | SOAR | GTI | SCC |
+| Persona | Chronicle | Case Management | GTI | SCC |
 |---------|-----------|------|-----|-----|
 | Tier 1 SOC Analyst | viewer | editor | Standard | - |
 | Tier 2 SOC Analyst | editor | editor | Enterprise | findingsViewer |
