@@ -57,6 +57,7 @@ This document provides a centralized collection of external documentation refere
 - **SANS Incident Response Process**: https://www.sans.org/white-papers/incident-response-process/
 - **NIST Computer Security Incident Handling Guide**: https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final
 - **Carnegie Mellon Incident Response**: https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=7029
+- **Incident Handler's Handbook (Patrick Kral)**: https://www.sans.org/white-papers/33901
 
 ### Playbooks & Procedures
 - **SOCFortress Playbooks**: https://github.com/socfortress/Playbooks
