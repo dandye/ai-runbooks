@@ -1,0 +1,18 @@
+name: fetch-ai-runbooks-stats
+concurrency: fetch-ai-runbooks-stats
+
+on:
+  schedule:
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+
+jobs:
+  run-ghrs:
+    name: repostats-for-ai-runbooks
+    runs-on: ubuntu-latest
+    steps:
+      - name: run-ghrs
+        uses: dandye/github-repo-stats@main
+        with:
+          repository: dandye/ai-runbooks
+          ghtoken: ${{ secrets.ai_runbooks_stats }}
