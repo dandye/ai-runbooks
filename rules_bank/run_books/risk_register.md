@@ -60,9 +60,9 @@ While formats range from a simple shared spreadsheet to dedicated GRC platforms,
 
 A risk register follows a continuous loop:
 
-1.  **Identification:** Spot a new risk via threat hunting, penetration tests, vendor disclosures, or internal audits.
-2.  **Assessment:** Score the risk using a standardized framework (like NIST SP 800-30 or FAIR) to keep scoring objective.
-3.  **Treatment:** Assign and take action (Mitigate, Accept, Transfer, Avoid).
+1.  **Identification:** Spot a new risk via threat hunting, penetration tests, vendor disclosures, or internal audits. If `${NEW_RISK_DATA}` is provided, use it as the primary source for the entry.
+2.  **Assessment:** Score the risk using a standardized framework (like NIST SP 800-30 or FAIR) to keep scoring objective. If `${EXISTING_RISK_ID}` is provided, retrieve the current record for reassessment.
+3.  **Treatment:** Assign and take action (Mitigate, Accept, Transfer, Avoid). Incorporate the `${TREATMENT_PLAN}` if one has been proposed.
 4.  **Review:** Reassess risks quarterly or annually to ensure mitigation controls are still holding up.
 
 ```mermaid
