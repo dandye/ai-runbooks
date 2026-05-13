@@ -89,7 +89,7 @@ rules_bank/
     ├── [DOC] post_incident_review.md
     ├── [DOC] prioritize_and_investigate_a_case.md
     ├── [DOC] proactive_threat_hunting_based_on_gti_campain_or_actor.md
-    ├── [DOC] risk_register.md [HIGH]
+    ├── [DOC] risk_register.md [HIGH] -> references: common_steps/document_in_soar.md
     ├── [DOC] suspicious_login_triage.md -> references: common_steps/enrich_ioc.md
     ├── [DOC] triage_alerts.md [HIGH] -> references: common_steps/check_duplicate_cases.md
     └── [DOC] ueba_report.md [PLACEHOLDER]
