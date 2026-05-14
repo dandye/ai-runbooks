@@ -125,7 +125,7 @@ This document provides a centralized collection of external documentation refere
 - **OpenC2 Standard**: https://openc2.org/
 
 ### Curated SOAR Collections
-- **Cybersecurity SOAR**: https://github.com/paulveillard/cybersecurity-SOAR (Curated by Paul Veillard, M. Eng)
+- **Cybersecurity SOAR**: https://github.com/paulveillard/cybersecurity-SOAR (Curated by Paul Veillard, M.Eng.)
 
 ## Development & Coding
 
