@@ -124,6 +124,9 @@ This document provides a centralized collection of external documentation refere
 - **SOARCA Framework**: https://github.com/COSSAS/SOARCA
 - **OpenC2 Standard**: https://openc2.org/
 
+### Curated SOAR Collections
+- **Cybersecurity SOAR**: https://github.com/paulveillard/cybersecurity-SOAR (Curated by Paul Veillard, M. Eng)
+
 ## Development & Coding
 
 ### Python Security Libraries
