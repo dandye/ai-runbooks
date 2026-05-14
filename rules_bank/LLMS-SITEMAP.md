@@ -71,7 +71,7 @@ rules_bank/
     ├── [DOC] guided_ttp_hunt_credential_access.md
     ├── guidelines/
     │   ├── [DOC] report_writing.md -> references: ../reporting_templates.md
-    │   ├── [DOC] soar_learning_resources.md
+    │   ├── [DOC] soar_playbook_creation_guide.md
     │   ├── [DOC] runbook_guidelines.md [HIGH]
     │   ├── [DOC] soc_analyst_workflows.md -> references: common_steps/*.md
     │   └── [DOC] threat_intel_workflows.md [PLACEHOLDER]
