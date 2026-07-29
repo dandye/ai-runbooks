@@ -2,7 +2,7 @@
 title: "Group Cases v2 - Enhanced Workflow (Placeholder)"
 type: "runbook"
 category: "security_operations"
-status: "placeholder"
+status: "draft"
 supersedes: "group_cases.md"
 version: "2.0"
 tags:
@@ -11,6 +11,9 @@ tags:
   - workflow_automation
   - enhanced_grouping
   - version_2
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:45:01Z
 ---
 
 # Runbook: Group Cases v2 - Enhanced Workflow (Placeholder)

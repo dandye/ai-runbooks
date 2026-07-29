@@ -2,12 +2,15 @@
 title: "Agent Tool Mapping"
 type: "guideline"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - agent_tools
   - mapping
   - automation
   - tool_reference
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Agent Tool Mapping

@@ -2,12 +2,15 @@
 title: "UEBA Report Analysis (Placeholder)"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - ueba
   - behavioral_analysis
   - anomaly_detection
   - user_analytics
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Runbook: UEBA Report Analysis

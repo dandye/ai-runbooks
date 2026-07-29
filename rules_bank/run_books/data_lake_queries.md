@@ -2,12 +2,15 @@
 title: "Data Lake Queries (Placeholder)"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - data_lake
   - queries
   - historical_analysis
   - siem
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Runbook: Data Lake Queries

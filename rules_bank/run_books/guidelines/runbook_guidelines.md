@@ -2,12 +2,15 @@
 title: "Runbook Guidelines"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - guidelines
   - runbook_creation
   - best_practices
   - documentation
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Runbook Guidelines

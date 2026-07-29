@@ -2,12 +2,15 @@
 title: "Group Cases Workflow"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - case_management
   - case_grouping
   - entity_analysis
   - workflow_automation
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Group Cases Workflow

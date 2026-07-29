@@ -2,12 +2,15 @@
 title: "Generate Report File"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - common_step
   - reporting
   - file_generation
   - documentation
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Common Step: Generate Report File

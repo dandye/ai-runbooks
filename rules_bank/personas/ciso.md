@@ -4,12 +4,15 @@ title: "Persona: Chief Information Security Officer (CISO)"
 description: The Chief Information Security Officer (CISO) is the senior-level executive responsible for establishing and maintaining the enterprise vision, strategy, and program to ensure information assets and technologies are adequately protected. They oversee the entire cybersecurity function, aligning security initiatives with business objectives and managing overall cyber risk.
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - ciso
   - executive
   - strategy
   - risk_management
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: Chief Information Security Officer (CISO)

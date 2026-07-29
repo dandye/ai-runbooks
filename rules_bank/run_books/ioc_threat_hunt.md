@@ -2,12 +2,15 @@
 title: "Runbook: IOC Threat Hunt"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - ioc_hunting
   - threat_hunting
   - indicators
   - proactive_hunting
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Runbook: IOC Threat Hunt

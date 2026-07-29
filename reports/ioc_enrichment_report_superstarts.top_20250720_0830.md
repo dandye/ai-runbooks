@@ -3,8 +3,9 @@ title: IOC Enrichment Report - superstarts.top
 type: IOC Enrichment
 indicator: superstarts.top
 indicator_type: domain
-analyst: Claude SOC Analyst
-timestamp: 2025-07-20T08:30:00Z
+generated:
+  by: reference_agent/claude
+  at: 2025-07-20T08:30:00Z
 risk_level: HIGH
 confidence: HIGH
 ---

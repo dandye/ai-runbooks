@@ -1,4 +1,5 @@
 ---
+type: Skill
 name: respond-phishing
 description: "Respond to a reported phishing email following PICERL methodology. Use when a phishing email is reported or detected. Analyzes artifacts, identifies recipients who clicked, contains malicious IOCs, and removes emails from mailboxes."
 required_roles:
@@ -6,6 +7,9 @@ required_roles:
   soar: roles/chronicle.soarAdmin
   gti: GTI Enterprise
 personas: [incident-responder]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:10:49-05:00
 ---
 
 # Phishing Incident Response Skill

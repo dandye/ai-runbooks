@@ -2,12 +2,15 @@
 title: "Lateral Movement Detection Hunt (Example: PsExec/WMI)"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - threat_hunting
   - lateral_movement
   - psexec
   - wmi
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Lateral Movement Detection Hunt (Example: PsExec/WMI)

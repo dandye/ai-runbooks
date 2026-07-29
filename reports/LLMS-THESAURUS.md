@@ -1,5 +1,8 @@
 ---
-generated: 2025-01-26T17:52:00Z
+type: Thesaurus
+generated:
+  by: process:generate-thesaurus
+  at: 2025-01-26T17:52:00Z
 directory: reports
 file_count: 32
 ---

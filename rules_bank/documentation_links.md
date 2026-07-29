@@ -2,7 +2,7 @@
 title: "External Documentation References and Links"
 type: "reference"
 category: "security_operations"
-status: "active"
+status: "stable"
 version: "1.0"
 last_updated: "2025-07-16"
 tags:
@@ -11,6 +11,9 @@ tags:
   - security_standards
   - tools
   - frameworks
+generated:
+  by: human:dandye
+  at: 2026-03-18T21:20:22-04:00
 ---
 
 # External Documentation References and Links

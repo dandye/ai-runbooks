@@ -2,12 +2,15 @@
 title: "Guided TTP Hunt Runbook (Example: Credential Access)"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - threat_hunting
   - ttp
   - credential_access
   - mitre_attack
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Guided TTP Hunt Runbook (Example: Credential Access)

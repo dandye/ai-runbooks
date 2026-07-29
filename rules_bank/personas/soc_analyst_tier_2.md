@@ -4,12 +4,15 @@ title: "Persona: Tier 2 SOC Analyst"
 description: The Tier 2 Security Operations Center (SOC) Analyst handles incidents escalated from Tier 1, conducts more in-depth investigations, analyzes complex threats, and performs proactive threat hunting based on intelligence. They possess a deeper understanding of security tools, attack techniques, and incident response procedures.
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - soc_analyst
   - tier_2
   - investigation
   - incident_response
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: Tier 2 SOC Analyst

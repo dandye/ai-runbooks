@@ -4,12 +4,15 @@ title: "Persona: Tier 3 SOC Analyst"
 description: The Tier 3 Security Operations Center (SOC) Analyst is the highest level of technical expertise within the SOC, responsible for handling the most complex and critical security incidents, leading incident response efforts, performing advanced threat hunting, developing new detection rules, and mentoring junior analysts. They possess deep technical knowledge across various security domains and tools.
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - soc_analyst
   - tier_3
   - advanced_analysis
   - threat_hunting
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: Tier 3 SOC Analyst

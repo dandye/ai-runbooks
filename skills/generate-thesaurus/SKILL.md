@@ -1,9 +1,13 @@
 ---
+type: Skill
 name: generate-thesaurus
 description: Generate controlled vocabulary thesaurus for content domains. Creates comprehensive thesauri with preferred terms, broader/narrower/related terms.
 required_roles:
   scribe: roles/scribe.editor
 personas: [information-architect, technical-writer, content-strategist]
+generated:
+  by: process:google-labs-jules
+  at: 2026-01-29T21:19:07Z
 ---
 
 # Generate Thesaurus Skill

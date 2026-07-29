@@ -1,15 +1,18 @@
 ---
 name: threat-hunter
-description: Use this agent when conducting proactive threat hunting activities, analyzing security data for signs of compromise, investigating suspicious patterns or anomalies, developing hunting hypotheses, or performing deep-dive security analysis. Examples: <example>Context: User needs to investigate unusual network traffic patterns that may indicate lateral movement. user: 'I'm seeing some strange network connections in our logs - multiple internal hosts connecting to an unusual external IP' assistant: 'I'll use the threat-hunter agent to analyze these network patterns and investigate potential lateral movement indicators' <commentary>Since the user is describing suspicious network activity that requires proactive hunting analysis, use the threat-hunter agent to conduct the investigation.</commentary></example> <example>Context: User wants to develop hunting queries for detecting advanced persistent threats. user: 'Help me create hunting queries to detect potential APT activity in our environment' assistant: 'I'm going to use the threat-hunter agent to develop comprehensive APT hunting queries and methodologies' <commentary>Since the user needs specialized threat hunting expertise for APT detection, use the threat-hunter agent to create effective hunting strategies.</commentary></example>
+description: "Use this agent when conducting proactive threat hunting activities, analyzing security data for signs of compromise, investigating suspicious patterns or anomalies, developing hunting hypotheses, or performing deep-dive security analysis. Examples: <example>Context: User needs to investigate unusual network traffic patterns that may indicate lateral movement. user: 'I'm seeing some strange network connections in our logs - multiple internal hosts connecting to an unusual external IP' assistant: 'I'll use the threat-hunter agent to analyze these network patterns and investigate potential lateral movement indicators' <commentary>Since the user is describing suspicious network activity that requires proactive hunting analysis, use the threat-hunter agent to conduct the investigation.</commentary></example> <example>Context: User wants to develop hunting queries for detecting advanced persistent threats. user: 'Help me create hunting queries to detect potential APT activity in our environment' assistant: 'I'm going to use the threat-hunter agent to develop comprehensive APT hunting queries and methodologies' <commentary>Since the user needs specialized threat hunting expertise for APT detection, use the threat-hunter agent to create effective hunting strategies.</commentary></example>"
 title: "Persona: Threat Hunter"
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - threat_hunter
   - proactive_hunting
   - threat_intelligence
   - advanced_analysis
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: Threat Hunter

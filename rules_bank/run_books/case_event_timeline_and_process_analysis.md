@@ -2,12 +2,15 @@
 title: "Case Event Timeline & Process Analysis Workflow"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - timeline_analysis
   - process_analysis
   - case_investigation
   - event_correlation
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 ## Case Event Timeline & Process Analysis Workflow

@@ -1,7 +1,9 @@
 ---
 title: "Content Inventory Report: rules_bank Directory"
 type: "content_inventory"
-generated: "2025-07-15T19:47:00Z"
+generated:
+  by: process:inventory-content
+  at: "2025-07-15T19:47:00Z"
 directory: "rules_bank"
 total_files: 69
 total_size: "385.5KB"

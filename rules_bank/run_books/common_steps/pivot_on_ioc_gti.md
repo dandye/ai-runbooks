@@ -2,12 +2,15 @@
 title: "Pivot on IOC using GTI Relationships"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - common_step
   - threat_intelligence
   - gti
   - relationship_analysis
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Common Step: Pivot on IOC using GTI Relationships

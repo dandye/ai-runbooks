@@ -2,12 +2,15 @@
 title: "Post-Incident Review (PIR) Runbook"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - post_incident_review
   - lessons_learned
   - incident_response
   - process_improvement
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Post-Incident Review (PIR) Runbook

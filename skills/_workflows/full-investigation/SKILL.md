@@ -16,6 +16,9 @@ required_roles:
   gti: GTI Enterprise
   scc: roles/securitycenter.findingsViewer
 personas: [tier2-analyst, tier3-analyst]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:27:43-05:00
 ---
 
 # Full Investigation Workflow

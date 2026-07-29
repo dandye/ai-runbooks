@@ -2,12 +2,15 @@
 title: "APT Threat Hunt"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - threat_hunting
   - apt
   - threat_intelligence
   - ttp
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Runbook: APT Threat Hunt

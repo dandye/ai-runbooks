@@ -1,7 +1,11 @@
 ---
+type: Skill
 name: generate-report
 description: "Save investigation findings to a markdown report file. Use after completing triage, enrichment, or investigation to create a permanent record. Generates timestamped files in ./reports/ directory."
 personas: [all]
+generated:
+  by: human:mlutx
+  at: 2026-01-12T17:23:43-06:00
 ---
 
 # Generate Report Skill

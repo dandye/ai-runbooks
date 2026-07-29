@@ -1,9 +1,13 @@
 ---
+type: Skill
 name: document-in-case
 description: "Add a comment to a case to document findings, actions, or recommendations. Use to maintain audit trail during investigations. Requires CASE_ID and comment text."
 required_roles:
   soar: roles/chronicle.editor
 personas: [tier1-analyst, tier2-analyst, tier3-analyst, threat-hunter, incident-responder]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:10:49-05:00
 ---
 
 # Document in Case Skill

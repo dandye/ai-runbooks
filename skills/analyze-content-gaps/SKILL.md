@@ -1,9 +1,13 @@
 ---
+type: Skill
 name: analyze-content-gaps
 description: Identify content gaps and organizational opportunities. Analyzes missing content areas, redundancies, and consolidation opportunities.
 required_roles:
   scribe: roles/scribe.viewer
 personas: [information-architect, content-strategist, product-manager]
+generated:
+  by: process:google-labs-jules
+  at: 2026-01-29T21:19:07Z
 ---
 
 # Analyze Content Gaps Skill

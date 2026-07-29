@@ -2,12 +2,15 @@
 title: "Close duplicate/similar Cases Workflow"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - case_management
   - duplicate_cases
   - workflow_automation
   - soar
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 ## Close duplicate/similar Cases Workflow

@@ -2,12 +2,15 @@
 title: "Compare GTI Collection to IoCs, Events in SecOps"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - threat_intelligence
   - ioc_correlation
   - gti
   - event_analysis
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 ### Compare GTI Collection to IoCs, Events in SecOps

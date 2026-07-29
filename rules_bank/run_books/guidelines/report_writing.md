@@ -2,12 +2,15 @@
 title: "Report Writing Guidelines & Template"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - guidelines
   - report_writing
   - documentation
   - templates
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Runbook: Report Writing Guidelines & Template

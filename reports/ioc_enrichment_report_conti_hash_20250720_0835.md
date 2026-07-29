@@ -4,8 +4,9 @@ type: IOC Enrichment
 indicator: 227164b06f201b07a8b82800adcc6a831cadaed6709d1473fd4182858fbd80a5
 indicator_type: hash
 hash_type: SHA256
-analyst: Claude SOC Analyst
-timestamp: 2025-07-20T08:35:00Z
+generated:
+  by: reference_agent/claude
+  at: 2025-07-20T08:35:00Z
 risk_level: CRITICAL
 confidence: HIGH
 ---

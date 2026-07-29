@@ -2,12 +2,15 @@
 title: "Ransomware Incident Response Plan (IRP) / Runbook"
 type: "irp"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - ransomware
   - incident_response
   - containment
   - irp
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:26:01Z
 ---
 
 # Ransomware Incident Response Plan (IRP) / Runbook

@@ -1,5 +1,8 @@
 ---
-generated: 2025-07-15T20:02:00Z
+type: Site Map
+generated:
+  by: process:generate-sitemap
+  at: 2025-07-15T20:02:00Z
 directory: rules_bank
 total_files: 69
 total_directories: 4

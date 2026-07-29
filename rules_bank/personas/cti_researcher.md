@@ -4,12 +4,15 @@ title: "Persona: Cyber Threat Intelligence (CTI) Researcher"
 description: The Cyber Threat Intelligence (CTI) Researcher focuses on the proactive discovery, analysis, and dissemination of intelligence regarding cyber threats. They delve deep into threat actors, malware families, campaigns, vulnerabilities, and Tactics, Techniques, and Procedures (TTPs) to understand the evolving threat landscape. Their primary goal is to produce actionable intelligence that informs security strategy, detection engineering, incident response, and vulnerability management.
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - cti_researcher
   - threat_intelligence
   - research
   - malware_analysis
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: Cyber Threat Intelligence (CTI) Researcher

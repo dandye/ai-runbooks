@@ -1,9 +1,13 @@
 ---
+type: Skill
 name: design-metadata-schema
 description: Design comprehensive metadata frameworks. Develops structured metadata templates and tagging systems.
 required_roles:
   scribe: roles/scribe.editor
 personas: [information-architect, data-architect, content-strategist]
+generated:
+  by: process:google-labs-jules
+  at: 2026-01-29T21:19:07Z
 ---
 
 # Design Metadata Schema Skill

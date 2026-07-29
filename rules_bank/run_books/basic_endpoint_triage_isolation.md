@@ -2,12 +2,15 @@
 title: "Basic Endpoint Triage & Isolation Runbook"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - endpoint_triage
   - isolation
   - incident_response
   - containment
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T21:58:26Z
 ---
 
 # Basic Endpoint Triage & Isolation Runbook

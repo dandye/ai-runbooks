@@ -1,4 +1,5 @@
 ---
+type: Skill
 name: deep-dive-ioc
 description: "Perform exhaustive analysis of a critical IOC. Use when an IOC needs Tier 2+ investigation beyond basic enrichment - includes GTI pivoting, deep SIEM searches, correlation with related entities, and threat attribution. For escalated IOCs requiring comprehensive investigation."
 required_roles:
@@ -6,6 +7,9 @@ required_roles:
   soar: roles/chronicle.editor
   gti: GTI Enterprise
 personas: [tier2-analyst, tier3-analyst, threat-hunter, incident-responder]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:27:43-05:00
 ---
 
 # Deep Dive IOC Analysis Skill

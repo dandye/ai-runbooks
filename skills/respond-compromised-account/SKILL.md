@@ -1,4 +1,5 @@
 ---
+type: Skill
 name: respond-compromised-account
 description: "Respond to a potentially compromised user account. Use when impossible travel, credential stuffing, successful phishing, or suspicious activity indicates account compromise. Investigates activity, contains the account, removes persistence, and restores access."
 required_roles:
@@ -6,6 +7,9 @@ required_roles:
   soar: roles/chronicle.soarAdmin
   gti: GTI Standard
 personas: [incident-responder]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:10:49-05:00
 ---
 
 # Compromised User Account Response Skill

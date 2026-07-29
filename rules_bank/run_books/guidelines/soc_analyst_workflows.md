@@ -2,12 +2,15 @@
 title: "SOC Analyst Standard Workflow Guide"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - guidelines
   - soc_workflows
   - analyst_guide
   - workflow_navigation
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Runbook: SOC Analyst Standard Workflow Guide

@@ -2,12 +2,15 @@
 title: "Reporting Templates & Guidelines"
 type: "guideline"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - reporting
   - templates
   - documentation
   - standards
+generated:
+  by: human:dandye
+  at: 2025-07-19T23:41:20-04:00
 ---
 
 # Reporting Templates & Guidelines

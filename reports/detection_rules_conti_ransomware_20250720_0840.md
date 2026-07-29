@@ -3,8 +3,9 @@ title: Detection Rules Package - Conti Ransomware
 type: Detection Engineering
 threat: Conti Ransomware
 rule_count: 8
-analyst: Claude SOC Analyst
-timestamp: 2025-07-20T08:40:00Z
+generated:
+  by: reference_agent/claude
+  at: 2025-07-20T08:40:00Z
 severity: CRITICAL
 confidence: HIGH
 mitre_tactics: [TA0005, TA0040, TA0003, TA0007]

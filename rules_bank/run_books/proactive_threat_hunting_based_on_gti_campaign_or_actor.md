@@ -2,12 +2,15 @@
 title: "Proactive Threat Hunting based on GTI Campaign/Actor"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - threat_hunting
   - gti
   - campaign_analysis
   - actor_analysis
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 ## Proactive Threat Hunting based on GTI Campaign/Actor

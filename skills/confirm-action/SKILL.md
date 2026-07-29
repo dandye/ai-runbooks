@@ -1,7 +1,11 @@
 ---
+type: Skill
 name: confirm-action
 description: "Ask the user to confirm before taking a significant action. Use before containment, remediation, or other impactful operations to ensure analyst approval. Presents options and waits for response."
 personas: [all]
+generated:
+  by: human:mlutx
+  at: 2026-01-12T17:23:43-06:00
 ---
 
 # Confirm Action Skill

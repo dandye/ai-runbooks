@@ -2,12 +2,15 @@
 title: "Basic IOC Enrichment Runbook"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - ioc_enrichment
   - tier_1
   - threat_intelligence
   - investigation
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:05:13Z
 ---
 
 # Basic IOC Enrichment Runbook

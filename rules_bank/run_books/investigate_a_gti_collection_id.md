@@ -2,12 +2,15 @@
 title: "Investigate Google Threat Intelligence Collection ID (Enhanced)"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - threat_intelligence
   - gti
   - collection_investigation
   - threat_correlation
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Investigate Google Threat Intelligence Collection ID (Enhanced)
