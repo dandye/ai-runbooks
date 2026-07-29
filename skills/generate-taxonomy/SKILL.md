@@ -1,9 +1,13 @@
 ---
+type: Skill
 name: generate-taxonomy
 description: Develop hierarchical classification systems. Creates parent-child categorical structures for content organization.
 required_roles:
   scribe: roles/scribe.editor
 personas: [information-architect, taxonomist, knowledge-manager]
+generated:
+  by: process:google-labs-jules
+  at: 2026-01-29T21:19:07Z
 ---
 
 # Generate Taxonomy Skill

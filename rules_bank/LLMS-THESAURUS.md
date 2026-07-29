@@ -1,5 +1,8 @@
 ---
-generated: 2025-07-15T20:10:00Z
+type: Thesaurus
+generated:
+  by: process:generate-thesaurus
+  at: 2025-07-15T20:10:00Z
 directory: rules_bank
 file_count: 75
 ---

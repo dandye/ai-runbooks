@@ -2,12 +2,15 @@
 title: "Close SOAR Case or Alert"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - common_step
   - case_management
   - case_closure
   - soar
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Common Step: Close SOAR Case or Alert

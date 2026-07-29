@@ -2,12 +2,15 @@
 title: "Create Investigation Report"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - investigation_report
   - documentation
   - incident_response
   - stakeholder_communication
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Runbook: Create Investigation Report

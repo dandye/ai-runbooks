@@ -4,12 +4,15 @@ title: "Persona: Incident Responder (IR)"
 description: The Incident Responder (IR) is responsible for managing the response to cybersecurity incidents, from initial detection and triage through containment, eradication, recovery, and post-incident analysis. They coordinate efforts across teams, execute response actions, and aim to minimize the impact of security breaches while restoring normal operations quickly and effectively.
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - incident_responder
   - incident_response
   - coordination
   - containment
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: Incident Responder (IR)

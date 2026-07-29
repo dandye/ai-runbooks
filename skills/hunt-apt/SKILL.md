@@ -1,10 +1,14 @@
 ---
+type: Skill
 name: hunt-apt
 description: "Hunt for a specific APT/threat actor in your environment. Use when you have a threat actor name or GTI collection ID and want to search for their TTPs and IOCs. Gathers intelligence from GTI, searches SIEM for IOCs and TTP-based indicators, and documents findings."
 required_roles:
   chronicle: roles/chronicle.editor
   gti: GTI Enterprise+
 personas: [threat-hunter, tier3-analyst]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:10:49-05:00
 ---
 
 # APT Threat Hunt Skill

@@ -2,12 +2,15 @@
 title: "Runbook: Generate Case Investigation Report"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - case_report
   - investigation
   - documentation
   - post_incident
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Runbook: Generate Case Investigation Report

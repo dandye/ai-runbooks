@@ -2,12 +2,15 @@
 title: "Detection Rule Validation & Tuning Runbook"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - detection_engineering
   - rule_tuning
   - validation
   - false_positive_reduction
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Detection Rule Validation & Tuning Runbook

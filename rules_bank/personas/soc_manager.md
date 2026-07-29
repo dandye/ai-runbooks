@@ -4,12 +4,15 @@ title: "Persona: SOC Manager"
 description: The Security Operations Center (SOC) Manager oversees the SOC team and its operations. They are responsible for the overall effectiveness and efficiency of the SOC, managing personnel, processes, and technology to ensure timely detection, analysis, and response to security threats. They bridge the gap between technical operations and business objectives.
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - soc_manager
   - management
   - operations
   - strategy
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: SOC Manager

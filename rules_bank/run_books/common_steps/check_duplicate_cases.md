@@ -2,12 +2,15 @@
 title: "Check for Duplicate/Similar SOAR Cases"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - common_step
   - case_management
   - duplicate_detection
   - soar
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Common Step: Check for Duplicate/Similar SOAR Cases

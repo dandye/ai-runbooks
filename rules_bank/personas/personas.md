@@ -2,12 +2,15 @@
 title: "Security Personas Overview"
 type: "guideline"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - personas
   - overview
   - security_roles
   - documentation
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Security Personas

@@ -2,12 +2,15 @@
 title: "IOC Containment Runbook"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - ioc_containment
   - incident_response
   - containment
   - threat_mitigation
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # IOC Containment Runbook

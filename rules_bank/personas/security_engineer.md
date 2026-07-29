@@ -4,12 +4,15 @@ title: "Persona: Security Engineer"
 description: The Security Engineer is responsible for designing, implementing, managing, and maintaining the organization's security infrastructure and tools. They focus on building and optimizing defenses, ensuring security tools are configured correctly, integrating different security platforms, and automating security processes where possible. Their goal is to create a robust and efficient security posture.
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - security_engineer
   - infrastructure
   - automation
   - security_tools
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: Security Engineer

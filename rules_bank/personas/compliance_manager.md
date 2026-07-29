@@ -4,12 +4,15 @@ title: "Persona: Compliance Manager"
 description: The Compliance Manager ensures the organization adheres to relevant laws, regulations, industry standards, and internal policies related to cybersecurity and data privacy. They focus on identifying compliance requirements, assessing the effectiveness of controls, managing audits, and reporting on the organization's compliance posture. Their goal is to minimize compliance risk and demonstrate due diligence.
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - compliance_manager
   - regulatory_compliance
   - audits
   - policy_management
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: Compliance Manager

@@ -2,12 +2,15 @@
 title: "Investigate a Case + external tools"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - case_investigation
   - external_tools
   - okta
   - user_analysis
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 ### Investigate a Case + external tools

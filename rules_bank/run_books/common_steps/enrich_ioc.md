@@ -2,12 +2,15 @@
 title: "Enrich IOC (GTI + SIEM)"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - common_step
   - ioc_enrichment
   - threat_intelligence
   - gti
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Common Step: Enrich IOC (GTI + SIEM)

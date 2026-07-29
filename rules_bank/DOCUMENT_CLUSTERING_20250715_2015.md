@@ -1,7 +1,9 @@
 ---
 title: "Document Clustering Analysis: rules_bank Directory"
 type: "document_clustering"
-generated: "2025-07-15T20:15:00Z"
+generated:
+  by: process:cluster-documents
+  at: "2025-07-15T20:15:00Z"
 directory: "rules_bank"
 algorithm: "hierarchical"
 total_documents: 75

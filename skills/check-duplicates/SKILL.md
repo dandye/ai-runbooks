@@ -1,9 +1,13 @@
 ---
+type: Skill
 name: check-duplicates
 description: "Check for duplicate or similar cases. Use before deep analysis to avoid investigating the same incident twice. Takes a CASE_ID and returns list of similar cases."
 required_roles:
   soar: roles/chronicle.editor
 personas: [tier1-analyst, tier2-analyst, tier3-analyst]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:10:49-05:00
 ---
 
 # Check Duplicates Skill

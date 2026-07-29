@@ -2,12 +2,15 @@
 title: "Rules Bank Directory Overview"
 type: "guideline"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - overview
   - directory_structure
   - documentation
   - getting_started
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Rules Bank Directory Overview

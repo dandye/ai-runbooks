@@ -1,7 +1,9 @@
 ---
 title: "Content Relationships Analysis: rules_bank Directory"
 type: "content_relationships"
-generated: "2025-07-15T19:57:00Z"
+generated:
+  by: process:analyze-content-gaps
+  at: "2025-07-15T19:57:00Z"
 directory: "rules_bank"
 total_nodes: 69
 total_edges: 147

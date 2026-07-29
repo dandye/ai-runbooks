@@ -2,12 +2,15 @@
 title: "Document Findings/Actions in SOAR Case"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - common_step
   - documentation
   - case_management
   - soar
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Common Step: Document Findings/Actions in SOAR Case

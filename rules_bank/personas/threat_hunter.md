@@ -4,12 +4,15 @@ description: Use this agent when conducting proactive threat hunting activities,
 title: "Persona: Threat Hunter"
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - threat_hunter
   - proactive_hunting
   - threat_intelligence
   - advanced_analysis
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: Threat Hunter

@@ -2,12 +2,15 @@
 title: "Correlate IOC with SIEM Alerts & SOAR Cases"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - common_step
   - ioc_correlation
   - alert_correlation
   - soar
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Common Step: Correlate IOC with SIEM Alerts & SOAR Cases

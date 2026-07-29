@@ -2,12 +2,15 @@
 title: "Advanced Threat Hunting (Hypothesis-Driven) Runbook"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - threat_hunting
   - tier_3
   - hypothesis_driven
   - proactive_hunting
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Advanced Threat Hunting (Hypothesis-Driven) Runbook

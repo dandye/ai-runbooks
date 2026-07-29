@@ -1,4 +1,5 @@
 ---
+type: Skill
 name: triage-suspicious-login
 description: "Triage suspicious login alerts like impossible travel, untrusted location, or multiple failures. Use when investigating authentication anomalies. Analyzes user history, source IP reputation, login patterns, and determines if escalation is needed."
 required_roles:
@@ -6,6 +7,9 @@ required_roles:
   soar: roles/chronicle.editor
   gti: GTI Standard
 personas: [tier1-analyst, tier2-analyst, tier3-analyst]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:10:49-05:00
 ---
 
 # Suspicious Login Triage Skill

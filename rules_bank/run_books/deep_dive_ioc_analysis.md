@@ -2,12 +2,15 @@
 title: "Deep Dive IOC Analysis Runbook"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - ioc_analysis
   - threat_intelligence
   - investigation
   - advanced_analysis
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Deep Dive IOC Analysis Runbook

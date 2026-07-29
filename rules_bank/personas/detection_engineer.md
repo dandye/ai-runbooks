@@ -4,12 +4,15 @@ title: "Persona: Detection Engineer"
 description: The Detection Engineer, sometimes referred to as a Content Developer, is responsible for the lifecycle of security detections within the organization's monitoring tools (primarily SIEM and EDR). They translate threat intelligence, incident findings, hunting results, and security requirements into effective detection logic. Their goal is to continuously improve the organization's ability to detect threats accurately and efficiently, balancing detection coverage with alert fidelity.
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - detection_engineer
   - rule_development
   - siem
   - detection_tuning
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: Detection Engineer

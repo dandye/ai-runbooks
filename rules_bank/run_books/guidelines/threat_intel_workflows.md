@@ -2,12 +2,15 @@
 title: "Threat Intelligence Workflows (Placeholder)"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - guidelines
   - threat_intelligence
   - cti_workflows
   - intelligence_analysis
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Runbook: Threat Intelligence Workflows

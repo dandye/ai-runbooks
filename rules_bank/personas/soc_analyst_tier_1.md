@@ -4,12 +4,15 @@ title: "Persona: Tier 1 SOC Analyst"
 description: The Tier 1 Security Operations Center (SOC) Analyst is the first line of defense, responsible for monitoring security alerts, performing initial triage, and escalating incidents based on predefined procedures. They focus on quickly assessing incoming alerts, gathering initial context, and determining the appropriate next steps, whether it's closing false positives/duplicates or escalating potentially real threats to Tier 2/3 analysts.
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - soc_analyst
   - tier_1
   - alert_triage
   - monitoring
+generated:
+  by: human:dandye
+  at: 2025-07-26T23:59:51-04:00
 ---
 
 # Persona: Tier 1 SOC Analyst

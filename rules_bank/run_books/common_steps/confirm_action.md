@@ -2,12 +2,15 @@
 title: "Confirm Action with User"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - common_step
   - user_interaction
   - confirmation
   - workflow
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Common Step: Confirm Action with User

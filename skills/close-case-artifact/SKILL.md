@@ -1,9 +1,13 @@
 ---
+type: Skill
 name: close-case-artifact
 description: "Close a case or alert with proper reason and documentation. Use when triage determines an alert is FP/BTP or investigation is complete. Requires artifact ID, type, closure reason, and root cause."
 required_roles:
   soar: roles/chronicle.editor
 personas: [tier1-analyst, tier2-analyst, tier3-analyst, incident-responder]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:10:49-05:00
 ---
 
 # Close Case Artifact Skill

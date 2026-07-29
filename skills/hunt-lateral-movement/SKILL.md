@@ -1,10 +1,14 @@
 ---
+type: Skill
 name: hunt-lateral-movement
 description: "Hunt for lateral movement using PsExec, WMI, or similar techniques. Use when proactively searching for attackers moving through your network using admin tools. Searches for service installations, remote process execution, and suspicious network correlations."
 required_roles:
   chronicle: roles/chronicle.editor
   gti: GTI Standard
 personas: [threat-hunter]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:10:49-05:00
 ---
 
 # Lateral Movement Hunt Skill (PsExec/WMI)

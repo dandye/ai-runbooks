@@ -2,12 +2,15 @@
 title: "Suspicious Login Alert Triage Runbook"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - login_analysis
   - alert_triage
   - authentication
   - anomaly_detection
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:02:11Z
 ---
 
 # Suspicious Login Alert Triage Runbook

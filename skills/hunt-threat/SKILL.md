@@ -1,10 +1,14 @@
 ---
+type: Skill
 name: hunt-threat
 description: "Conduct proactive, hypothesis-driven threat hunting. Use when performing advanced hunting based on threat intelligence, TTPs, or anomalies. For Tier 3 analysts or dedicated threat hunters. Supports iterative search, pivoting, and comprehensive documentation."
 required_roles:
   chronicle: roles/chronicle.editor
   gti: GTI Enterprise
 personas: [threat-hunter, tier3-analyst]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:10:49-05:00
 ---
 
 # Advanced Threat Hunting Skill

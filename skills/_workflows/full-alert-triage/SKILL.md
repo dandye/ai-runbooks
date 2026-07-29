@@ -13,6 +13,9 @@ required_roles:
   soar: roles/chronicle.editor
   gti: GTI Standard
 personas: [tier1-analyst]
+generated:
+  by: human:dandye
+  at: 2026-02-04T06:27:43-05:00
 ---
 
 # Full Alert Triage Workflow

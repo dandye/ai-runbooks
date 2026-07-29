@@ -1,9 +1,13 @@
 ---
+type: Skill
 name: generate-sitemap
 description: Generate hierarchical site structure and navigation maps. Creates visual representations of information architecture and content relationships.
 required_roles:
   scribe: roles/scribe.viewer
 personas: [information-architect, ux-designer, web-developer]
+generated:
+  by: process:google-labs-jules
+  at: 2026-01-29T21:19:07Z
 ---
 
 # Generate Sitemap Skill

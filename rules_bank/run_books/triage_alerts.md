@@ -2,12 +2,15 @@
 title: "Runbook: Alert Triage"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - alert_triage
   - tier_1
   - initial_assessment
   - soc_operations
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Runbook: Alert Triage

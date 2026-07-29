@@ -2,12 +2,15 @@
 title: "Compromised User Account Incident Response Plan (IRP) / Runbook"
 type: "irp"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - compromised_account
   - incident_response
   - identity_security
   - irp
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:26:01Z
 ---
 
 # Compromised User Account Incident Response Plan (IRP) / Runbook

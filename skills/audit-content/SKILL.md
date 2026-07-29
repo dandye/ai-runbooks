@@ -1,9 +1,13 @@
 ---
+type: Skill
 name: audit-content
 description: Comprehensive content quality and maintenance assessment. Evaluates documentation quality, relevance, maintenance needs, and provides actionable recommendations.
 required_roles:
   scribe: roles/scribe.editor
 personas: [information-architect, content-strategist, editor]
+generated:
+  by: process:google-labs-jules
+  at: 2026-01-29T21:19:07Z
 ---
 
 # Content Audit Skill

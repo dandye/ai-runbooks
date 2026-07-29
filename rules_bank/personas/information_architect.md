@@ -4,13 +4,16 @@ title: "Persona: Information Architect"
 description: The Information Architect designs and implements information structures, navigation systems, and content organization schemes to improve findability, usability, and user experience. They focus on creating coherent information architectures using controlled vocabularies, taxonomies, content audits, and metadata schemas following Rosenfeld and Morville principles.
 type: "persona"
 category: "information_architecture"
-status: "active"
+status: "stable"
 tags:
   - information_architect
   - content_organization
   - taxonomy
   - information_structure
   - user_experience
+generated:
+  by: human:dandye
+  at: 2025-07-27T00:10:34-04:00
 ---
 
 # Persona: Information Architect

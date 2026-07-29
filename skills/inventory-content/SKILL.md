@@ -1,9 +1,13 @@
 ---
+type: Skill
 name: inventory-content
 description: Systematic cataloging of information assets. Creates comprehensive inventories of all content with metadata and characteristics.
 required_roles:
   scribe: roles/scribe.viewer
 personas: [information-architect, content-manager, librarian]
+generated:
+  by: process:google-labs-jules
+  at: 2026-01-29T21:19:07Z
 ---
 
 # Content Inventory Skill

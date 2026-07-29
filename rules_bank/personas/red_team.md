@@ -2,12 +2,15 @@
 title: "Persona: Red Team Member"
 type: "persona"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - red_team
   - penetration_testing
   - adversary_simulation
   - security_testing
+generated:
+  by: human:dandye
+  at: 2025-07-15T22:17:00-04:00
 ---
 
 # Persona: Red Team Member

@@ -4,8 +4,9 @@ type: Detection Deployment
 package: detection_rules_conti_ransomware_20250720_0840.md
 rule_count: 8
 deployment_stage: PRODUCTION_READY
-analyst: Claude SOC Analyst
-timestamp: 2025-07-20T08:45:00Z
+generated:
+  by: reference_agent/claude
+  at: 2025-07-20T08:45:00Z
 deployment_date: 2025-07-20
 risk_level: CRITICAL
 ---

@@ -2,12 +2,15 @@
 title: "Meta-Analysis (Placeholder)"
 type: "runbook"
 category: "security_operations"
-status: "active"
+status: "stable"
 tags:
   - meta_analysis
   - advanced_analytics
   - pattern_analysis
   - correlation
+generated:
+  by: process:google-labs-jules
+  at: 2025-12-20T22:19:26Z
 ---
 
 # Runbook: Meta-Analysis
