@@ -9,8 +9,9 @@ Scope: prioritized plan for the next quarter, grounded in a full repo survey plu
   - PR triage outcome differed from the plan's assumption: agent reviews found blocking issues in #34, #33, and #30 (non-conforming frontmatter/sections; #33/#34 reference tools that do not exist in the repo; #33 has undirected Cypher that would produce false-positive isolation lists). All three got detailed block comments instead of merges. #16 and #9 closed. #27 rebase requested. #13/#20 deferred pending the issue #12 decision. #24/#25 held for post-CI landing.
 - DONE item 6: frontmatter validation CI shipped (scripts/validate_frontmatter.py + workflow) and green on GitHub; six pre-existing violations fixed, including two persona files that were silently failing Claude Code agent registration.
 - DONE item 7: LLMS.md reconciled (phantom config scripts and SuperClaude slash-commands claims removed).
-- PARTIAL item 10: Cline skills symlink added; CONTRIBUTING renamed to .md. Still open: mcp-security submodule decision, issue/PR templates.
-- OPEN: items 8, 9, remainder of 10, and all Later-bucket items (11-15).
+- DONE item 8: tier3-analyst, soc-manager, and ciso persona manifests created; all skill references resolve.
+- DONE item 10: Cline skills symlink, CONTRIBUTING.md rename, PR/issue templates added, mcp-security submodule initialized.
+- OPEN: item 9 (sitemap regeneration) and all Later-bucket items (11-15).
 
 ## Current State Snapshot
 
