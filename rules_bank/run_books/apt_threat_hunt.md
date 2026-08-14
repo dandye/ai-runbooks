@@ -75,7 +75,7 @@ Focuses on SIEM log analysis and GTI correlation for specific TTPs and IOCs rela
     *   Combine all findings: GTI intelligence, IOC match results, IOC search findings (positive and negative), TTP search findings (positive and negative), enrichment results (`ENRICHMENT_RESULTS`), and related SOAR cases (`${RELATED_SOAR_CASES}`).
     *   Document findings, queries used, and analysis in `${HUNT_CASE_ID}` (if provided) using `secops-soar.post_case_comment`.
 8.  **Generate Report:**
-    *   Structure a Markdown report summarizing the hunt (referencing `.clinerules/reporting_templates.md` and `.clinerules/run_books/guidelines/runbook_guidelines.md`). Include:
+    *   Structure a Markdown report summarizing the hunt (referencing `rules_bank/reporting_templates.md` and `rules_bank/run_books/guidelines/runbook_guidelines.md`). Include:
         *   Metadata (Runbook Used, Timestamp, Case ID if applicable).
         *   Hunt Objective/Hypothesis.
         *   Scope (`${TARGET_SCOPE_QUERY}`) & Timeframe (`${HUNT_TIMEFRAME_HOURS}`).

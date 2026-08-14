@@ -55,7 +55,7 @@ This runbook outlines the process for conducting a PIR meeting, analyzing incide
     *   **Brainstorm Recommendations:** Collaboratively develop specific, measurable, achievable, relevant, and time-bound (SMART) recommendations for improvement.
 4.  **Document PIR Findings & Recommendations:**
     *   Consolidate the discussion points, identified gaps, root cause analysis, and recommendations.
-    *   Structure the findings according to a standard PIR report template (potentially defined in `.clinerules/reporting_templates.md`).
+    *   Structure the findings according to a standard PIR report template (potentially defined in `rules_bank/reporting_templates.md`).
 5.  **Assign & Track Recommendations:**
     *   Assign owners and target completion dates for each recommendation.
     *   Establish a mechanism for tracking the implementation status of recommendations (e.g., within the SOAR case, a separate tracking system).

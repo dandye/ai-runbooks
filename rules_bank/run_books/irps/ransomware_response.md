@@ -101,7 +101,7 @@ sequenceDiagram
     *   Ensure regular, tested backups of critical systems exist.
     *   Maintain asset inventory and network diagrams.
     *   Ensure relevant detections for ransomware precursors (e.g., credential dumping, lateral movement tools, specific exploits) and known ransomware IOCs are active.
-    *   Review and understand communication, escalation (`.clinerules/escalation_paths.md`), and potentially ransom payment decision-making procedures.
+    *   Review and understand communication, escalation (`rules_bank/escalation_paths.md`), and potentially ransom payment decision-making procedures.
 
 ---
 
@@ -190,7 +190,7 @@ sequenceDiagram
 *   **Objective:** Review the incident and response to identify areas for improvement.
 *   **Sub-Runbooks/Steps:**
     1.  **Update Todo List:** Display final todo list status showing all completed tasks and any remaining items. Calculate and report overall completion percentage. This provides an audit trail of the response activities.
-    2.  **Generate Incident Report:** Execute `../common_steps/generate_report_file.md` with comprehensive ransomware incident findings, strain analysis, response timeline, containment actions, recovery results, and initial analysis using guidelines from `.clinerules/reporting_templates.md` and `../report_writing.md`. Include the todo list tracking information in the report methodology section.
+    2.  **Generate Incident Report:** Execute `../common_steps/generate_report_file.md` with comprehensive ransomware incident findings, strain analysis, response timeline, containment actions, recovery results, and initial analysis using guidelines from `rules_bank/reporting_templates.md` and `../report_writing.md`. Include the todo list tracking information in the report methodology section.
     3.  **Conduct Post-Incident Review:** Execute `../post_incident_review.md` with `${CASE_ID}` and the generated incident report, including:
         *   **Incident Review Meeting:** Conduct a post-mortem meeting. Discuss initial access, spread, impact, response effectiveness, recovery success.
         *   **Analyze Response:** Review timeline, tool effectiveness, runbook adherence.

@@ -21,7 +21,7 @@ To provide general guidelines and a basic template structure for writing consist
 
 ## Scope
 
-These guidelines apply to various report types (e.g., investigation summaries, threat hunt reports, triage reports) generated within this security environment. Specific content requirements may vary based on the report type (refer to `.clinerules/reporting_templates.md`).
+These guidelines apply to various report types (e.g., investigation summaries, threat hunt reports, triage reports) generated within this security environment. Specific content requirements may vary based on the report type (refer to `rules_bank/reporting_templates.md`).
 
 ## Inputs
 
@@ -38,7 +38,7 @@ These guidelines apply to various report types (e.g., investigation summaries, t
 ## Workflow Steps & Diagram (Conceptual - For Writing the Report)
 
 1.  **Gather Information:** Collect all necessary findings, analysis, context, runbook name, case ID, and the generated Mermaid diagram.
-2.  **Structure Report:** Organize the information logically. Start with metadata, followed by a summary/executive summary, detailed findings, analysis, conclusions, and recommendations. Refer to `.clinerules/reporting_templates.md` for specific section requirements based on report type.
+2.  **Structure Report:** Organize the information logically. Start with metadata, followed by a summary/executive summary, detailed findings, analysis, conclusions, and recommendations. Refer to `rules_bank/reporting_templates.md` for specific section requirements based on report type.
 3.  **Incorporate Metadata:** Ensure the report includes:
     *   `**Runbook Used:** ${RUNBOOK_NAME}` (If applicable)
     *   **Timestamp:** Generation time (e.g., YYYY-MM-DD HH:MM Timezone)
@@ -52,7 +52,7 @@ These guidelines apply to various report types (e.g., investigation summaries, t
 sequenceDiagram
     participant Analyst/Agent
     participant Cline as Cline (MCP Client)
-    participant ReportingTemplates as .clinerules/reporting_templates.md
+    participant ReportingTemplates as rules_bank/reporting_templates.md
 
     Analyst/Agent->>Cline: Initiate Report Writing\nInput: FINDINGS, RUNBOOK_NAME, CASE_ID, MERMAID_DIAGRAM
 

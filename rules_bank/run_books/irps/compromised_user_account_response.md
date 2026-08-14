@@ -94,7 +94,7 @@ sequenceDiagram
     *   Verify tool connectivity (SIEM, SOAR, IDP).
     *   Ensure relevant detections for suspicious logins, impossible travel, credential stuffing, etc., are active.
     *   Maintain access credentials and procedures for Identity Provider actions (disable, reset, session termination).
-    *   Review and understand communication and escalation plans (`.clinerules/escalation_paths.md`).
+    *   Review and understand communication and escalation plans (`rules_bank/escalation_paths.md`).
 
 ---
 
@@ -172,7 +172,7 @@ sequenceDiagram
 
 *   **Objective:** Review the incident and response to identify areas for improvement.
 *   **Sub-Runbooks/Steps:**
-    1.  **Generate Incident Report:** Execute `../common_steps/generate_report_file.md` with comprehensive incident findings, response timeline, actions taken, and initial analysis using guidelines from `.clinerules/reporting_templates.md`.
+    1.  **Generate Incident Report:** Execute `../common_steps/generate_report_file.md` with comprehensive incident findings, response timeline, actions taken, and initial analysis using guidelines from `rules_bank/reporting_templates.md`.
     2.  **Conduct Post-Incident Review:** Execute `../post_incident_review.md` with `${CASE_ID}` and the generated incident report, including:
         *   **Incident Review Meeting:** Discuss the initial access vector (if known), detection method, response effectiveness, and recovery process.
         *   **Analyze Response:** Review timeline, tool effectiveness, runbook adherence.

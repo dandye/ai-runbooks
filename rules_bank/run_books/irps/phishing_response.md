@@ -111,7 +111,7 @@ sequenceDiagram
         *   Template for informing third parties (e.g., impersonated brands) of abuse.
         *   Template for user warnings/guidance post-incident.
     *   Ensure relevant detections for known phishing indicators (domains, IPs, TTPs) are active in SIEM/Email Gateway.
-    *   Familiarity with escalation paths (`.clinerules/escalation_paths.md`).
+    *   Familiarity with escalation paths (`rules_bank/escalation_paths.md`).
     *   *(Consider periodic phishing firedrills/simulations).*
 
 ---
@@ -220,7 +220,7 @@ sequenceDiagram
 
 *   **Objective:** Review the incident and response to identify areas for improvement in prevention, detection, and response.
 *   **Sub-Runbooks/Steps:**
-    1.  **Generate Incident Report:** Execute `../common_steps/generate_report_file.md` with comprehensive phishing incident findings, response timeline, containment actions, eradication results, and initial analysis using guidelines from `.clinerules/reporting_templates.md` and `../report_writing.md`.
+    1.  **Generate Incident Report:** Execute `../common_steps/generate_report_file.md` with comprehensive phishing incident findings, response timeline, containment actions, eradication results, and initial analysis using guidelines from `rules_bank/reporting_templates.md` and `../report_writing.md`.
     2.  **Conduct Post-Incident Review:** Execute `../post_incident_review.md` with `${CASE_ID}` and the generated incident report, including:
         *   **Incident Review Meeting:** Convene relevant stakeholders (SOC, IR, Email Security, potentially affected user's manager) to discuss the incident timeline, root cause (how the phish bypassed defenses, why the user clicked/reported), response actions, and their effectiveness.
         *   **Analyze Response & Identify Gaps:**

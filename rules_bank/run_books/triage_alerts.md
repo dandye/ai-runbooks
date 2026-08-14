@@ -61,7 +61,7 @@ Covers initial alert review, basic entity enrichment, duplicate detection, and d
 7.  **Basic Enrichment:** Initialize `ENRICHMENT_RESULTS` structure. For each entity `Ei` in `KEY_ENTITIES`:
     *   Execute `common_steps/enrich_ioc.md` with `IOC_VALUE=Ei` and appropriate `IOC_TYPE`.
     *   Store results (`GTI_FINDINGS`, `SIEM_ENTITY_SUMMARY`, `SIEM_IOC_MATCH_STATUS`) in `ENRICHMENT_RESULTS[Ei]`.
-8.  **Initial Assessment:** Based on alert type, `ENRICHMENT_RESULTS`, `${ENTITY_RELATED_CASES}`, `${INITIAL_SIEM_CONTEXT}`, and potential known benign patterns (referencing `.clinerules/common_benign_alerts.md` if available), make an initial assessment:
+8.  **Initial Assessment:** Based on alert type, `ENRICHMENT_RESULTS`, `${ENTITY_RELATED_CASES}`, `${INITIAL_SIEM_CONTEXT}`, and potential known benign patterns (referencing `rules_bank/common_benign_alerts.md` if available), make an initial assessment:
     *   False Positive (FP)
     *   Benign True Positive (BTP - expected/authorized activity)
     *   Requires Further Investigation (True Positive - TP or Suspicious)
