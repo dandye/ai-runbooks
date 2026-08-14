@@ -1,4 +1,6 @@
 ---
+name: red-team-member
+description: The Red Team Member simulates adversary tactics, techniques, and procedures against the organization's defenses under authorized engagement rules, to test detection coverage and response readiness and report exploitable gaps.
 title: "Persona: Red Team Member"
 type: "persona"
 category: "security_operations"

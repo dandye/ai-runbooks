@@ -1,4 +1,6 @@
 ---
+name: personas-overview
+description: Overview and index of all security role personas available in this repository, with links to each persona definition.
 title: "Security Personas Overview"
 type: "guideline"
 category: "security_operations"

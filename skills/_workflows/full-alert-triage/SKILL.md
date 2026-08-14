@@ -1,5 +1,5 @@
 ---
-name: full-triage-alert
+name: full-alert-triage
 description: "Complete Tier 1 triage workflow. Orchestrates the full alert triage process: check-duplicates, triage-alert, enrich-ioc for each entity, and either close (FP/BTP) or escalate (TP/Suspicious). Use for end-to-end alert processing."
 type: workflow
 orchestrates:

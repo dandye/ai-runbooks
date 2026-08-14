@@ -1,0 +1,25 @@
+name: Validate frontmatter
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "rules_bank/**"
+      - "skills/**"
+      - "scripts/validate_frontmatter.py"
+  pull_request:
+    paths:
+      - "rules_bank/**"
+      - "skills/**"
+      - "scripts/validate_frontmatter.py"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - run: python3 scripts/validate_frontmatter.py .

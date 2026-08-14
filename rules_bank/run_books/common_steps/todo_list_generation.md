@@ -1,3 +1,17 @@
+---
+title: "Todo List Generation for Security Operations"
+type: "runbook"
+category: "security_operations"
+status: "stable"
+tags:
+  - common_step
+  - task_management
+  - workflow
+generated:
+  by: human:dandye
+  at: 2026-08-14T21:40:00Z
+---
+
 # Todo List Generation for Security Operations
 
 ## Overview
