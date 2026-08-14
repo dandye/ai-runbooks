@@ -39,31 +39,23 @@ All AI tools access identical content through symlinks to the master `rules_bank
 - Provides standardized security workflows regardless of the AI assistant used
 - Maintains specialized tool configurations while sharing core knowledge
 
-## Configuration Scripts
+## Validation
 
-### Setting Active Persona
 ```bash
-python set_persona_rules.py <persona_name>
-# Example: python set_persona_rules.py tier1_soc_analyst
+python3 scripts/validate_frontmatter.py .
 ```
-Currently supported personas: `tier1_soc_analyst`, `threat_hunter`
-
-### Linking Common Steps
-```bash
-python symlink_common_steps.py
-```
-Run this after changing personas to ensure common steps remain accessible.
+Validates YAML frontmatter across `rules_bank/` and `skills/` (also runs in CI via `.github/workflows/validate-frontmatter.yml` on every push and pull request touching content).
 
 ## Key Concepts & Capabilities
 
 ### Core Components
 - **Runbooks**: Tactical, step-by-step procedures for specific security tasks (alert triage, IOC enrichment, threat hunting)
 - **IRPs**: End-to-end incident response plans for major incidents following PICERL lifecycle  
-- **Personas**: Predefined security roles with specific responsibilities, skills, tool access, and specialized slash commands
+- **Personas**: Predefined security roles with specific responsibilities, skills, and tool access
 - **MCP Integration**: Model Context Protocol tools for Chronicle SIEM, SOAR, Google Threat Intelligence, and Security Command Center
 
 ### Advanced Features
-- **Slash Commands**: Specialized commands for security workflows (primarily supported in Claude)
+- **Skills**: Atomic and composite security workflows in `skills/` (invocable as slash commands in Claude Code)
 - **Dynamic Configuration**: Persona-based context switching and tool access management
 - **Report Generation**: Automated security report creation with standardized templates
 - **Threat Intelligence**: Active integration with Google Threat Intelligence and security feeds
@@ -181,7 +173,7 @@ This repository includes multiple layers of context to help AI assistants unders
 - **`LLMS-THESAURUS.md`** - Controlled vocabulary with security terminology definitions, hierarchical relationships (BT/NT/RT), and scope notes. **CRITICAL for understanding security concepts and terminology consistency.**
 - **`LLMS-SITEMAP.md`** - Structural navigation providing directory overviews, content organization maps, priority markers, and cross-references. **ESSENTIAL for understanding content relationships and navigation.**
 - **`agent_tool_mapping.md`** - Maps runbook actions to specific MCP tools and security platforms
-- **`personas/`** - Role-specific context including responsibilities, skills, tools, and specialized slash commands
+- **`personas/`** - Role-specific context including responsibilities, skills, and tool access
 
 **Note on IA File Precedence:** When multiple LLMS-* files exist, prioritize the one closest to your working directory. The rules_bank/LLMS-* files take precedence for security operations, while local directory LLMS-* files provide the most specific context.
 
